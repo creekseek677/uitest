@@ -1,4 +1,4 @@
--- basically a mod of veyra for ppl
+-- Xenia UI (modified veyra) 
 
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
@@ -202,7 +202,7 @@ local Theme = {
 	Text = Color3.fromRGB(240, 240, 245),
 	SecondaryText = Color3.fromRGB(150, 150, 160),
 	MutedText = Color3.fromRGB(100, 100, 110),
-	Accent = Color3.fromRGB(255, 255, 255),
+	Accent = Color3.fromRGB(132, 96, 255),
 	Border = Color3.fromRGB(40, 40, 48),
 	ToggleOn = Color3.fromRGB(255, 255, 255),
 	ToggleOff = Color3.fromRGB(50, 50, 58),
@@ -217,13 +217,18 @@ local Theme = {
 	NotificationWarning = Color3.fromRGB(255, 180, 60),
 	NotificationError = Color3.fromRGB(255, 80, 80),
 	OutlineAccent = Color3.fromRGB(255, 255, 255),
-	Font = Enum.Font.Gotham,
-	FontBold = Enum.Font.GothamSemibold,
+	Font = Enum.Font.GothamMedium,
+	FontBold = Enum.Font.GothamBold,
 	FontMono = Enum.Font.Code,
-	CornerRadius = 8,  -- soft rounded corners
-	ElementHeight = 32,
-	AnimationSpeed = 0.35,
-	HoverSpeed = 0.15,
+	CornerRadius = 6,
+	WindowCornerRadius = 10,
+	CardCornerRadius = 6,
+	ButtonCornerRadius = 5,
+	NotificationCornerRadius = 10,
+	ElementHeight = 36,
+	AnimationSpeed = 0.25,
+	HoverSpeed = 0.12,
+	ShadowTransparency = 0.42,
 }
 
 -- Built-in presets (use Library:ApplyTheme("Light") or SetTheme(ThemePresets.Light))
@@ -236,7 +241,7 @@ local ThemePresets = {
 		Text = Color3.fromRGB(240, 240, 245),
 		SecondaryText = Color3.fromRGB(150, 150, 160),
 		MutedText = Color3.fromRGB(100, 100, 110),
-		Accent = Color3.fromRGB(255, 255, 255),
+		Accent = Color3.fromRGB(132, 96, 255),
 		Border = Color3.fromRGB(40, 40, 48),
 		ToggleOn = Color3.fromRGB(255, 255, 255),
 		ToggleOff = Color3.fromRGB(50, 50, 58),
@@ -301,6 +306,22 @@ local ThemePresets = {
 
 local ThemeListeners = {}
 
+local function NormalizeThemeAliases()
+	Theme.TextPrimary = Theme.Text
+	Theme.TextSecondary = Theme.SecondaryText
+	Theme.TextMuted = Theme.MutedText
+	Theme.Surface = Theme.Secondary
+	Theme.SurfaceHover = Theme.Hover
+	Theme.SurfacePressed = Theme.Tertiary
+	Theme.WindowRadius = Theme.WindowRadius or 10
+	Theme.CardRadius = Theme.CardRadius or Theme.CornerRadius or 6
+	Theme.ButtonRadius = Theme.ButtonRadius or Theme.CornerRadius or 5
+	Theme.NotificationRadius = Theme.NotificationRadius or 10
+	Theme.Shadow = Theme.Shadow or Color3.new(0, 0, 0)
+end
+
+NormalizeThemeAliases()
+
 local function GetTheme()
 	return Theme
 end
@@ -310,6 +331,7 @@ local function SetTheme(t)
 	for k, v in pairs(t) do
 		Theme[k] = v
 	end
+	NormalizeThemeAliases()
 	for _, fn in ipairs(ThemeListeners) do
 		task.spawn(fn)
 	end
@@ -1131,8 +1153,8 @@ NotificationManager.__index = NotificationManager
 
 local MAX_NOTIFICATIONS = 10 -- hard cap; drop oldest under spam
 local NOTIF_CORNER = 16
-local NOTIF_HEADER_H = 28
-local NOTIF_WIDTH = 270
+local NOTIF_HEADER_H = 30
+local NOTIF_WIDTH = 320
 
 function NotificationManager.new()
 	local self = setmetatable({}, NotificationManager)
@@ -1233,14 +1255,16 @@ function NotificationManager:Notify(config)
 	gradient.Rotation = 0
 	gradient.Parent = frame
 
-	local corner = Instance.new("UICorner")
-	corner.CornerRadius = UDim.new(0, Theme.CornerRadius or 8)
-	corner.Parent = frame
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = bd
+	stroke.Thickness = 1
+	stroke.Transparency = 0.3
+	stroke.Parent = frame
 
 	local header = Instance.new("Frame")
 	header.Name = "Header"
 	header.BackgroundColor3 = headBg
-	header.BackgroundTransparency = 0.08
+	header.BackgroundTransparency = 0.15
 	header.BorderSizePixel = 0
 	header.Size = UDim2.new(1, 0, 0, NOTIF_HEADER_H)
 	header.ZIndex = 2
@@ -1268,7 +1292,7 @@ function NotificationManager:Notify(config)
 	title.Size = UDim2.new(1, -contentOffset - 12, 1, 0)
 	title.Position = UDim2.new(0, contentOffset, 0, 0)
 	title.Font = Theme.FontBold
-	title.TextSize = 13
+	title.TextSize = 14
 	title.TextColor3 = titleCol
 	title.TextXAlignment = Enum.TextXAlignment.Left
 	title.Text = config.Title or "Notification"
@@ -1285,15 +1309,15 @@ function NotificationManager:Notify(config)
 	body.Parent = frame
 
 	local bodyPad = Instance.new("UIPadding")
-	bodyPad.PaddingTop = UDim.new(0, 7)
-	bodyPad.PaddingBottom = UDim.new(0, 9)
-	bodyPad.PaddingLeft = UDim.new(0, 12)
-	bodyPad.PaddingRight = UDim.new(0, 12)
+	bodyPad.PaddingTop = UDim.new(0, 10)
+	bodyPad.PaddingBottom = UDim.new(0, 16)
+	bodyPad.PaddingLeft = UDim.new(0, 16)
+	bodyPad.PaddingRight = UDim.new(0, 16)
 	bodyPad.Parent = body
 
 	local bodyLayout = Instance.new("UIListLayout")
 	bodyLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	bodyLayout.Padding = UDim.new(0, 3)
+	bodyLayout.Padding = UDim.new(0, 6)
 	bodyLayout.Parent = body
 
 	local sep = CreateEtherealSeparator(body)
@@ -1306,7 +1330,7 @@ function NotificationManager:Notify(config)
 	desc.Size = UDim2.new(1, 0, 0, 0)
 	desc.AutomaticSize = Enum.AutomaticSize.Y
 	desc.Font = Theme.Font
-	desc.TextSize = 12
+	desc.TextSize = 13
 	desc.TextColor3 = descCol
 	desc.TextXAlignment = Enum.TextXAlignment.Left
 	desc.TextYAlignment = Enum.TextYAlignment.Top
@@ -1557,8 +1581,13 @@ function NotificationManager:Remove(notif)
 end
 
 function NotificationManager:Clear()
-	while #self.Notifications > 0 do
-		self.Notifications[1]:Close()
+	local snapshot = table.clone(self.Notifications)
+	for _, notification in ipairs(snapshot) do
+		pcall(function()
+			if notification and notification.Close then
+				notification:Close()
+			end
+		end)
 	end
 end
 
@@ -1578,6 +1607,8 @@ local function GetParentForComponent(tab)
 end
 
 -- SECTION
+local AttachSectionAPI
+
 local function CreateSection(tab, config)
 	config = config or {}
 	local cleanup = CreateCleanup()
@@ -1618,12 +1649,26 @@ local function CreateSection(tab, config)
 		d.Parent = container
 	end
 
+	local collapseButton = Instance.new("TextButton")
+	collapseButton.Name = "Collapse"
+	collapseButton.BackgroundTransparency = 1
+	collapseButton.Size = UDim2.new(0, 24, 0, 24)
+	collapseButton.Position = UDim2.new(1, -24, 0, -2)
+	collapseButton.Font = Enum.Font.GothamBold
+	collapseButton.TextSize = 11
+	collapseButton.TextColor3 = Theme.SecondaryText
+	collapseButton.Text = (config.Collapsed == true) and "⌄" or "⌃"
+	collapseButton.AutoButtonColor = false
+	collapseButton.Visible = config.Collapsible == true
+	collapseButton.Parent = container
+
 	local content = Instance.new("Frame")
 	content.Name = "Content"
 	content.BackgroundTransparency = 1
 	content.Size = UDim2.new(1, 0, 0, 0)
 	content.AutomaticSize = Enum.AutomaticSize.Y
 	content.LayoutOrder = 2
+	content.Visible = not (config.Collapsible == true and config.Collapsed == true)
 	content.Parent = container
 
 	local cl = Instance.new("UIListLayout")
@@ -1632,6 +1677,15 @@ local function CreateSection(tab, config)
 	cl.Parent = content
 
 	cleanup:AddInstance(container)
+
+	local collapsed = config.Collapsible == true and config.Collapsed == true
+	if config.Collapsible == true then
+		cleanup:AddConnection(collapseButton.MouseButton1Click:Connect(function()
+			collapsed = not collapsed
+			content.Visible = not collapsed
+			collapseButton.Text = collapsed and "⌄" or "⌃"
+		end))
+	end
 
 	local descLabel = nil
 	if config.Description then
@@ -1649,6 +1703,9 @@ local function CreateSection(tab, config)
 		Container = container,
 		Content = content,
 		Cleanup = cleanup,
+		Components = {},
+		Name = config.Name or "Section",
+		Collapsible = config.Collapsible == true,
 	}
 
 	function section:RefreshTheme()
@@ -1659,13 +1716,39 @@ local function CreateSection(tab, config)
 			descLabel.Font = Theme.Font
 			descLabel.TextColor3 = Theme.SecondaryText
 		end
+		collapseButton.TextColor3 = Theme.SecondaryText
+	end
+
+	function section:ToggleCollapse()
+		if not self.Collapsible then return end
+		collapsed = not collapsed
+		content.Visible = not collapsed
+		collapseButton.Text = collapsed and "⌄" or "⌃"
+	end
+
+	function section:SetCollapsed(state)
+		if not self.Collapsible then return end
+		collapsed = state and true or false
+		content.Visible = not collapsed
+		collapseButton.Text = collapsed and "⌄" or "⌃"
+	end
+
+	function section:IsCollapsed()
+		return self.Collapsible and collapsed
 	end
 
 	function section:Destroy()
+		for _, component in ipairs(self.Components) do
+			if component and component.Destroy then
+				pcall(function() component:Destroy() end)
+			end
+		end
+		table.clear(self.Components)
 		cleanup:Destroy()
 	end
 
 	table.insert(tab.Sections, section)
+	AttachSectionAPI(section, tab)
 	return section
 end
 
@@ -1674,14 +1757,14 @@ local function CreateButton(tab, config)
 	config = config or {}
 	local cleanup = CreateCleanup()
 	local enabled = true
-	local parent = GetParentForComponent(tab)
+	local parent = config._Parent or GetParentForComponent(tab)
 
 	local frame = Instance.new("TextButton")
 	frame.Name = "Button_" .. (config.Name or "Untitled")
 	frame.BackgroundColor3 = Theme.Secondary
 	frame.BackgroundTransparency = 0.1
 	frame.BorderSizePixel = 0
-	frame.Size = UDim2.new(1, 0, 0, Theme.ElementHeight)
+	frame.Size = UDim2.new(1, 0, 0, config.Description and 48 or Theme.ElementHeight)
 	frame.AutoButtonColor = false
 	frame.Text = ""
 	frame.Parent = parent
@@ -1693,7 +1776,7 @@ local function CreateButton(tab, config)
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = Theme.Border
 	stroke.Thickness = 1
-	stroke.Transparency = 1
+	stroke.Transparency = 0.5
 	stroke.Parent = frame
 
 	local title = Instance.new("TextLabel")
@@ -1777,7 +1860,12 @@ local function CreateButton(tab, config)
 
 	cleanup:AddInstance(frame)
 
-	local btn = { Frame = frame, Cleanup = cleanup }
+	local btn = {
+		Frame = frame,
+		Cleanup = cleanup,
+		Name = config.Name or "Button",
+		SearchText = string.lower(tostring(config.Name or "Button") .. " " .. tostring(config.Description or "")),
+	}
 
 	function btn:RefreshTheme()
 		if cleanup:IsDestroyed() then return end
@@ -1816,14 +1904,14 @@ local function CreateToggle(tab, config)
 	local cleanup = CreateCleanup()
 	local value = config.Default == true
 	local enabled = true
-	local parent = GetParentForComponent(tab)
+	local parent = config._Parent or GetParentForComponent(tab)
 
 	local frame = Instance.new("Frame")
 	frame.Name = "Toggle_" .. (config.Name or "Untitled")
 	frame.BackgroundColor3 = Theme.Secondary
 	frame.BackgroundTransparency = 0.15
 	frame.BorderSizePixel = 0
-	frame.Size = UDim2.new(1, 0, 0, Theme.ElementHeight)
+	frame.Size = UDim2.new(1, 0, 0, config.Description and 48 or Theme.ElementHeight)
 	frame.Parent = parent
 
 	local corner = Instance.new("UICorner")
@@ -1833,7 +1921,7 @@ local function CreateToggle(tab, config)
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = Theme.Border
 	stroke.Thickness = 1
-	stroke.Transparency = 1
+	stroke.Transparency = 0.5
 	stroke.Parent = frame
 
 	local title = Instance.new("TextLabel")
@@ -1926,7 +2014,13 @@ local function CreateToggle(tab, config)
 	cleanup:AddInstance(frame)
 	updateVisual(false)
 
-	local toggle = { Frame = frame, Cleanup = cleanup, Changed = changed }
+	local toggle = {
+		Frame = frame,
+		Cleanup = cleanup,
+		Changed = changed,
+		Name = config.Name or "Toggle",
+		SearchText = string.lower(tostring(config.Name or "Toggle") .. " " .. tostring(config.Description or "")),
+	}
 
 	function toggle:RefreshTheme()
 		if cleanup:IsDestroyed() then return end
@@ -1973,12 +2067,19 @@ end
 local function CreateSlider(tab, config)
 	config = config or {}
 	local cleanup = CreateCleanup()
-	local minv = config.Min or 0
-	local maxv = config.Max or 100
-	local step = config.Step or 1
-	local value = config.Default or minv
+	local minv = tonumber(config.Min) or 0
+	local maxv = tonumber(config.Max) or 100
+	local step = tonumber(config.Step) or 1
+	if maxv <= minv then
+		warn("[VeyraUI] Slider Max must be greater than Min; adjusted automatically.")
+		maxv = minv + 1
+	end
+	if step <= 0 then
+		step = 1
+	end
+	local value = math.clamp(tonumber(config.Default) or minv, minv, maxv)
 	local enabled = true
-	local parent = GetParentForComponent(tab)
+	local parent = config._Parent or GetParentForComponent(tab)
 	local dragging = false
 
 	local frame = Instance.new("Frame")
@@ -1996,7 +2097,7 @@ local function CreateSlider(tab, config)
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = Theme.Border
 	stroke.Thickness = 1
-	stroke.Transparency = 1
+	stroke.Transparency = 0.5
 	stroke.Parent = frame
 
 	local title = Instance.new("TextLabel")
@@ -2060,7 +2161,8 @@ local function CreateSlider(tab, config)
 	end
 
 	local function setVisual(v, animate)
-		local alpha = math.clamp((v - minv) / (maxv - minv), 0, 1)
+		local range = maxv - minv
+		local alpha = range == 0 and 0 or math.clamp((v - minv) / range, 0, 1)
 		local ts = UDim2.new(alpha, 0, 1, 0)
 		local tp = UDim2.new(alpha, -6, 0.5, -6)
 		if animate then
@@ -2076,7 +2178,9 @@ local function CreateSlider(tab, config)
 	local changed = CreateSignal()
 
 	local function updateFromInput(pos)
-		local rel = math.clamp((pos.X - track.AbsolutePosition.X) / track.AbsoluteSize.X, 0, 1)
+		local trackWidth = track.AbsoluteSize.X
+		if trackWidth <= 0 then return end
+		local rel = math.clamp((pos.X - track.AbsolutePosition.X) / trackWidth, 0, 1)
 		local raw = minv + rel * (maxv - minv)
 		local newVal = snap(raw)
 		if newVal ~= value then
@@ -2135,7 +2239,13 @@ local function CreateSlider(tab, config)
 	cleanup:AddInstance(frame)
 	setVisual(value, false)
 
-	local slider = { Frame = frame, Cleanup = cleanup, Changed = changed }
+	local slider = {
+		Frame = frame,
+		Cleanup = cleanup,
+		Changed = changed,
+		Name = config.Name or "Slider",
+		SearchText = string.lower(tostring(config.Name or "Slider") .. " " .. tostring(config.Description or "")),
+	}
 
 	function slider:RefreshTheme()
 		if cleanup:IsDestroyed() then return end
@@ -2181,7 +2291,7 @@ end
 local function CreateLabel(tab, config)
 	config = config or {}
 	local cleanup = CreateCleanup()
-	local parent = GetParentForComponent(tab)
+	local parent = config._Parent or GetParentForComponent(tab)
 
 	local frame = Instance.new("Frame")
 	frame.BackgroundTransparency = 1
@@ -2214,7 +2324,14 @@ local function CreateLabel(tab, config)
 
 	cleanup:AddInstance(frame)
 
-	local label = { Frame = frame, TitleLabel = title, DescLabel = desc, Cleanup = cleanup }
+	local label = {
+		Frame = frame,
+		TitleLabel = title,
+		DescLabel = desc,
+		Cleanup = cleanup,
+		Name = config.Name or "Label",
+		SearchText = string.lower(tostring(config.Name or "Label") .. " " .. tostring(config.Description or "")),
+	}
 
 	function label:RefreshTheme()
 		if cleanup:IsDestroyed() then return end
@@ -2243,7 +2360,7 @@ local function CreateDropdown(tab, config)
 	local open = false
 	local transitioning = false
 	local destroyed = false
-	local parent = GetParentForComponent(tab)
+	local parent = config._Parent or GetParentForComponent(tab)
 	local outsideConn = nil
 	local closedHeight = Theme.ElementHeight
 	local listGap = 4
@@ -2252,7 +2369,13 @@ local function CreateDropdown(tab, config)
 
 	-- Declare early so closures can safely reference them
 	local changed = CreateSignal()
-	local dd = { Frame = nil, Cleanup = cleanup, Changed = changed }
+	local dd = {
+		Frame = nil,
+		Cleanup = cleanup,
+		Changed = changed,
+		Name = config.Name or "Dropdown",
+		SearchText = string.lower(tostring(config.Name or "Dropdown") .. " " .. tostring(config.Description or "")),
+	}
 
 	local frame = Instance.new("Frame")
 	frame.Name = "Dropdown_" .. (config.Name or "Untitled")
@@ -2271,7 +2394,7 @@ local function CreateDropdown(tab, config)
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = Theme.Border
 	stroke.Thickness = 1
-	stroke.Transparency = 1
+	stroke.Transparency = 0.5
 	stroke.Parent = frame
 
 	-- Header row (always visible)
@@ -2320,7 +2443,7 @@ local function CreateDropdown(tab, config)
 	local ls = Instance.new("UIStroke")
 	ls.Color = Theme.Border
 	ls.Thickness = 1
-	ls.Transparency = 1
+	ls.Transparency = 0.35
 	ls.Parent = list
 
 	local ll = Instance.new("UIListLayout")
@@ -2577,7 +2700,7 @@ end
 local function CreateTextbox(tab, config)
 	config = config or {}
 	local cleanup = CreateCleanup()
-	local parent = GetParentForComponent(tab)
+	local parent = config._Parent or GetParentForComponent(tab)
 
 	local frame = Instance.new("Frame")
 	frame.BackgroundColor3 = Theme.Secondary
@@ -2593,7 +2716,7 @@ local function CreateTextbox(tab, config)
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = Theme.Border
 	stroke.Thickness = 1
-	stroke.Transparency = 1
+	stroke.Transparency = 0.5
 	stroke.Parent = frame
 
 	local box = Instance.new("TextBox")
@@ -2631,7 +2754,14 @@ local function CreateTextbox(tab, config)
 
 	cleanup:AddInstance(frame)
 
-	local tb = { Frame = frame, Box = box, Cleanup = cleanup, Changed = changed }
+	local tb = {
+		Frame = frame,
+		Box = box,
+		Cleanup = cleanup,
+		Changed = changed,
+		Name = config.Name or "Textbox",
+		SearchText = string.lower(tostring(config.Name or "Textbox") .. " " .. tostring(config.Description or "")),
+	}
 
 	function tb:RefreshTheme()
 		if cleanup:IsDestroyed() then return end
@@ -2674,7 +2804,7 @@ local function CreateKeybind(tab, config)
 	local active = false
 	local listening = false
 	local destroyed = false
-	local parent = GetParentForComponent(tab)
+	local parent = config._Parent or GetParentForComponent(tab)
 
 	local frame = Instance.new("Frame")
 	frame.BackgroundColor3 = Theme.Secondary
@@ -2690,7 +2820,7 @@ local function CreateKeybind(tab, config)
 	local stroke = Instance.new("UIStroke")
 	stroke.Color = Theme.Border
 	stroke.Thickness = 1
-	stroke.Transparency = 1
+	stroke.Transparency = 0.5
 	stroke.Parent = frame
 
 	local title = Instance.new("TextLabel")
@@ -2789,7 +2919,12 @@ local function CreateKeybind(tab, config)
 
 	cleanup:AddInstance(frame)
 
-	local kb = { Frame = frame, Cleanup = cleanup }
+	local kb = {
+		Frame = frame,
+		Cleanup = cleanup,
+		Name = config.Name or "Keybind",
+		SearchText = string.lower(tostring(config.Name or "Keybind") .. " " .. tostring(config.Description or "")),
+	}
 
 	function kb:RefreshTheme()
 		if destroyed or cleanup:IsDestroyed() then return end
@@ -2838,7 +2973,7 @@ end
 -- DIVIDER
 local function CreateDivider(tab)
 	local cleanup = CreateCleanup()
-	local parent = GetParentForComponent(tab)
+	local parent = config._Parent or GetParentForComponent(tab)
 
 	local frame = Instance.new("Frame")
 	frame.BackgroundTransparency = 1
@@ -2863,6 +2998,522 @@ local function CreateDivider(tab)
 	function div:Destroy() cleanup:Destroy() end
 	table.insert(tab.Components, div)
 	return div
+end
+
+-- PARAGRAPH
+local function CreateParagraph(tab, config)
+	config = config or {}
+	local cleanup = CreateCleanup()
+	local parent = config._Parent or GetParentForComponent(tab)
+	local titleText = tostring(config.Title or config.Name or "Paragraph")
+	local bodyText = tostring(config.Content or config.Description or "")
+
+	local frame = Instance.new("Frame")
+	frame.Name = "Paragraph_" .. titleText
+	frame.BackgroundColor3 = Theme.Secondary
+	frame.BackgroundTransparency = 0.08
+	frame.BorderSizePixel = 0
+	frame.Size = UDim2.new(1, 0, 0, 0)
+	frame.AutomaticSize = Enum.AutomaticSize.Y
+	frame.Parent = parent
+
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0, Theme.CardCornerRadius or 6)
+	corner.Parent = frame
+
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = Theme.Border
+	stroke.Transparency = 0.55
+	stroke.Thickness = 1
+	stroke.Parent = frame
+
+	local pad = Instance.new("UIPadding")
+	pad.PaddingTop = UDim.new(0, 10)
+	pad.PaddingBottom = UDim.new(0, 10)
+	pad.PaddingLeft = UDim.new(0, 12)
+	pad.PaddingRight = UDim.new(0, 12)
+	pad.Parent = frame
+
+	local layout = Instance.new("UIListLayout")
+	layout.Padding = UDim.new(0, 4)
+	layout.SortOrder = Enum.SortOrder.LayoutOrder
+	layout.Parent = frame
+
+	local title = Instance.new("TextLabel")
+	title.BackgroundTransparency = 1
+	title.Size = UDim2.new(1, 0, 0, 18)
+	title.AutomaticSize = Enum.AutomaticSize.Y
+	title.Font = Theme.FontBold
+	title.TextSize = 13
+	title.TextColor3 = Theme.Text
+	title.TextXAlignment = Enum.TextXAlignment.Left
+	title.TextWrapped = true
+	title.Text = titleText
+	title.LayoutOrder = 1
+	title.Parent = frame
+
+	local body = Instance.new("TextLabel")
+	body.BackgroundTransparency = 1
+	body.Size = UDim2.new(1, 0, 0, 16)
+	body.AutomaticSize = Enum.AutomaticSize.Y
+	body.Font = Theme.Font
+	body.TextSize = 11
+	body.TextColor3 = Theme.SecondaryText
+	body.TextXAlignment = Enum.TextXAlignment.Left
+	body.TextYAlignment = Enum.TextYAlignment.Top
+	body.TextWrapped = true
+	body.Text = bodyText
+	body.LayoutOrder = 2
+	body.Parent = frame
+
+	cleanup:AddInstance(frame)
+
+	local obj = {
+		Frame = frame,
+		Cleanup = cleanup,
+		Name = titleText,
+		Description = bodyText,
+		SearchText = string.lower(titleText .. " " .. bodyText),
+	}
+	function obj:RefreshTheme()
+		if cleanup:IsDestroyed() then return end
+		frame.BackgroundColor3 = Theme.Secondary
+		stroke.Color = Theme.Border
+		title.Font = Theme.FontBold
+		title.TextColor3 = Theme.Text
+		body.Font = Theme.Font
+		body.TextColor3 = Theme.SecondaryText
+	end
+	function obj:SetTitle(v) title.Text = tostring(v) end
+	function obj:SetContent(v) body.Text = tostring(v) end
+	function obj:Destroy() cleanup:Destroy() end
+	function obj:IsDestroyed() return cleanup:IsDestroyed() end
+
+	table.insert(tab.Components, obj)
+	return obj
+end
+
+-- COLOR PICKER
+local function CreateColorPicker(tab, config)
+	config = config or {}
+	local cleanup = CreateCleanup()
+	local parent = config._Parent or GetParentForComponent(tab)
+	local value = typeof(config.Default) == "Color3" and config.Default or Color3.fromRGB(125, 90, 255)
+	local h, s, v = value:ToHSV()
+	local open = false
+	local changing = false
+
+	local frame = Instance.new("Frame")
+	frame.Name = "ColorPicker_" .. (config.Name or "Untitled")
+	frame.BackgroundColor3 = Theme.Secondary
+	frame.BackgroundTransparency = 0.1
+	frame.BorderSizePixel = 0
+	frame.Size = UDim2.new(1, 0, 0, Theme.ElementHeight)
+	frame.ClipsDescendants = true
+	frame.Parent = parent
+
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0, Theme.CardCornerRadius or 6)
+	corner.Parent = frame
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = Theme.Border
+	stroke.Transparency = 0.5
+	stroke.Thickness = 1
+	stroke.Parent = frame
+
+	local title = Instance.new("TextLabel")
+	title.BackgroundTransparency = 1
+	title.Size = UDim2.new(1, -82, 0, Theme.ElementHeight)
+	title.Position = UDim2.new(0, 12, 0, 0)
+	title.Font = Theme.Font
+	title.TextSize = 13
+	title.TextColor3 = Theme.Text
+	title.TextXAlignment = Enum.TextXAlignment.Left
+	title.Text = config.Name or "Color"
+	title.Parent = frame
+
+	local swatch = Instance.new("TextButton")
+	swatch.Name = "Swatch"
+	swatch.BackgroundColor3 = value
+	swatch.BorderSizePixel = 0
+	swatch.Size = UDim2.fromOffset(44, 22)
+	swatch.Position = UDim2.new(1, -56, 0, 7)
+	swatch.AutoButtonColor = false
+	swatch.Text = ""
+	swatch.Parent = frame
+	local swCorner = Instance.new("UICorner")
+	swCorner.CornerRadius = UDim.new(0, 5)
+	swCorner.Parent = swatch
+
+	local picker = Instance.new("Frame")
+	picker.Name = "Picker"
+	picker.BackgroundTransparency = 1
+	picker.Size = UDim2.new(1, -24, 0, 100)
+	picker.Position = UDim2.new(0, 12, 0, Theme.ElementHeight + 8)
+	picker.Parent = frame
+
+	local sv = Instance.new("TextButton")
+	sv.BackgroundColor3 = Color3.fromHSV(h, 1, 1)
+	sv.BorderSizePixel = 0
+	sv.Size = UDim2.new(1, -26, 1, 0)
+	sv.Text = ""
+	sv.AutoButtonColor = false
+	sv.Parent = picker
+	local svCorner = Instance.new("UICorner")
+	svCorner.CornerRadius = UDim.new(0, 5)
+	svCorner.Parent = sv
+	local svWhite = Instance.new("UIGradient")
+	svWhite.Color = ColorSequence.new(Color3.new(1,1,1), Color3.new(1,1,1))
+	svWhite.Transparency = NumberSequence.new({
+		NumberSequenceKeypoint.new(0, 0),
+		NumberSequenceKeypoint.new(1, 1),
+	})
+	svWhite.Rotation = 0
+	svWhite.Parent = sv
+	local svBlack = Instance.new("Frame")
+	svBlack.BackgroundColor3 = Color3.new(0,0,0)
+	svBlack.BorderSizePixel = 0
+	svBlack.Size = UDim2.new(1,0,1,0)
+	svBlack.Parent = sv
+	local blackGrad = Instance.new("UIGradient")
+	blackGrad.Transparency = NumberSequence.new({
+		NumberSequenceKeypoint.new(0, 1),
+		NumberSequenceKeypoint.new(1, 0),
+	})
+	blackGrad.Rotation = 90
+	blackGrad.Parent = svBlack
+
+	local hueBar = Instance.new("TextButton")
+	hueBar.BackgroundColor3 = Color3.new(1,1,1)
+	hueBar.BorderSizePixel = 0
+	hueBar.Size = UDim2.new(0, 18, 1, 0)
+	hueBar.Position = UDim2.new(1, -18, 0, 0)
+	hueBar.Text = ""
+	hueBar.AutoButtonColor = false
+	hueBar.Parent = picker
+	local hueGrad = Instance.new("UIGradient")
+	hueGrad.Color = ColorSequence.new({
+		ColorSequenceKeypoint.new(0, Color3.fromHSV(0,1,1)),
+		ColorSequenceKeypoint.new(0.17, Color3.fromHSV(0.17,1,1)),
+		ColorSequenceKeypoint.new(0.34, Color3.fromHSV(0.34,1,1)),
+		ColorSequenceKeypoint.new(0.51, Color3.fromHSV(0.51,1,1)),
+		ColorSequenceKeypoint.new(0.68, Color3.fromHSV(0.68,1,1)),
+		ColorSequenceKeypoint.new(0.85, Color3.fromHSV(0.85,1,1)),
+		ColorSequenceKeypoint.new(1, Color3.fromHSV(1,1,1)),
+	})
+	hueGrad.Rotation = 90
+	hueGrad.Parent = hueBar
+
+	local function emit()
+		value = Color3.fromHSV(h, s, v)
+		swatch.BackgroundColor3 = value
+		sv.BackgroundColor3 = Color3.fromHSV(h, 1, 1)
+		if config.Callback then task.spawn(config.Callback, value) end
+	end
+
+	local function setSV(pos)
+		local w, hh = sv.AbsoluteSize.X, sv.AbsoluteSize.Y
+		if w <= 0 or hh <= 0 then return end
+		s = math.clamp((pos.X - sv.AbsolutePosition.X) / w, 0, 1)
+		v = 1 - math.clamp((pos.Y - sv.AbsolutePosition.Y) / hh, 0, 1)
+		emit()
+	end
+	local function setHue(pos)
+		local hh = hueBar.AbsoluteSize.Y
+		if hh <= 0 then return end
+		h = math.clamp((pos.Y - hueBar.AbsolutePosition.Y) / hh, 0, 1)
+		emit()
+	end
+
+	local function setOpen(state)
+		open = state
+		local target = open and 144 or Theme.ElementHeight
+		picker.Visible = true
+		TweenEngine.Play(frame, { Size = UDim2.new(1, 0, 0, target) }, {
+			Duration = 0.18, Easing = "QuadOut",
+		})
+		picker.BackgroundTransparency = open and 0 or 1
+	end
+
+	cleanup:AddConnection(swatch.MouseButton1Click:Connect(function()
+		setOpen(not open)
+	end))
+	cleanup:AddConnection(sv.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			changing = true
+			setSV(input.Position)
+		end
+	end))
+	cleanup:AddConnection(hueBar.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			changing = true
+			setHue(input.Position)
+		end
+	end))
+	cleanup:AddConnection(UserInputService.InputChanged:Connect(function(input)
+		if not changing then return end
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			local p = input.Position
+			if p.X >= sv.AbsolutePosition.X and p.X <= sv.AbsolutePosition.X + sv.AbsoluteSize.X and p.Y >= sv.AbsolutePosition.Y and p.Y <= sv.AbsolutePosition.Y + sv.AbsoluteSize.Y then
+				setSV(p)
+			end
+			if p.X >= hueBar.AbsolutePosition.X and p.X <= hueBar.AbsolutePosition.X + hueBar.AbsoluteSize.X and p.Y >= hueBar.AbsolutePosition.Y and p.Y <= hueBar.AbsolutePosition.Y + hueBar.AbsoluteSize.Y then
+				setHue(p)
+			end
+		end
+	end))
+	cleanup:AddConnection(UserInputService.InputEnded:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			changing = false
+		end
+	end))
+	cleanup:AddInstance(frame)
+
+	local obj = {
+		Frame = frame,
+		Cleanup = cleanup,
+		Name = config.Name or "Color",
+		SearchText = string.lower(tostring(config.Name or "Color") .. " " .. tostring(config.Description or "")),
+	}
+	function obj:Set(color, suppress)
+		if typeof(color) ~= "Color3" then return end
+		value = color
+		h, s, v = color:ToHSV()
+		swatch.BackgroundColor3 = color
+		sv.BackgroundColor3 = Color3.fromHSV(h, 1, 1)
+		if not suppress and config.Callback then task.spawn(config.Callback, color) end
+	end
+	function obj:Get() return value end
+	function obj:RefreshTheme()
+		frame.BackgroundColor3 = Theme.Secondary
+		stroke.Color = Theme.Border
+		title.Font = Theme.Font
+		title.TextColor3 = Theme.Text
+	end
+	function obj:Destroy() cleanup:Destroy() end
+	function obj:IsDestroyed() return cleanup:IsDestroyed() end
+
+	table.insert(tab.Components, obj)
+	return obj
+end
+
+-- MULTI DROPDOWN
+local function CreateMultiDropdown(tab, config)
+	config = config or {}
+	local cleanup = CreateCleanup()
+	local parent = config._Parent or GetParentForComponent(tab)
+	local options = config.Options or {}
+	local selected = {}
+	for _, v in ipairs(config.Default or {}) do selected[tostring(v)] = true end
+	local open = false
+	local rowH = 26
+	local baseH = Theme.ElementHeight
+	local maxRows = math.min(#options, 5)
+	local changed = CreateSignal()
+
+	local frame = Instance.new("Frame")
+	frame.Name = "MultiDropdown_" .. (config.Name or "Untitled")
+	frame.BackgroundColor3 = Theme.Secondary
+	frame.BackgroundTransparency = 0.1
+	frame.BorderSizePixel = 0
+	frame.Size = UDim2.new(1, 0, 0, baseH)
+	frame.ClipsDescendants = true
+	frame.Parent = parent
+	local corner = Instance.new("UICorner")
+	corner.CornerRadius = UDim.new(0, Theme.CardCornerRadius or 6)
+	corner.Parent = frame
+	local stroke = Instance.new("UIStroke")
+	stroke.Color = Theme.Border
+	stroke.Transparency = 0.5
+	stroke.Parent = frame
+
+	local header = Instance.new("TextButton")
+	header.BackgroundTransparency = 1
+	header.Size = UDim2.new(1,0,0,baseH)
+	header.AutoButtonColor = false
+	header.Text = ""
+	header.Parent = frame
+
+	local title = Instance.new("TextLabel")
+	title.BackgroundTransparency = 1
+	title.Size = UDim2.new(1,-44,1,0)
+	title.Position = UDim2.new(0,12,0,0)
+	title.Font = Theme.Font
+	title.TextSize = 13
+	title.TextColor3 = Theme.Text
+	title.TextXAlignment = Enum.TextXAlignment.Left
+	title.Text = config.Name or "Multi Select"
+	title.Parent = header
+
+	local arrow = Instance.new("TextLabel")
+	arrow.BackgroundTransparency = 1
+	arrow.Size = UDim2.fromOffset(20,baseH)
+	arrow.Position = UDim2.new(1,-28,0,0)
+	arrow.Font = Enum.Font.GothamBold
+	arrow.TextSize = 11
+	arrow.TextColor3 = Theme.SecondaryText
+	arrow.Text = "▼"
+	arrow.Parent = header
+
+	local list = Instance.new("ScrollingFrame")
+	list.BackgroundColor3 = Theme.Tertiary
+	list.BorderSizePixel = 0
+	list.Size = UDim2.new(1,-12,0,math.max(1,maxRows)*rowH)
+	list.Position = UDim2.new(0,6,0,baseH+4)
+	list.CanvasSize = UDim2.new(0,0,0,math.max(1,#options)*rowH)
+	list.ScrollBarThickness = 3
+	list.ScrollBarImageColor3 = Theme.Border
+	list.Visible = #options > 0
+	list.Parent = frame
+	local listCorner = Instance.new("UICorner")
+	listCorner.CornerRadius = UDim.new(0,5)
+	listCorner.Parent = list
+	local ll = Instance.new("UIListLayout")
+	ll.SortOrder = Enum.SortOrder.LayoutOrder
+	ll.Parent = list
+
+	local function selectionArray()
+		local out = {}
+		for _, opt in ipairs(options) do
+			local key = tostring(opt)
+			if selected[key] then table.insert(out, opt) end
+		end
+		return out
+	end
+
+	local function refreshRows()
+		for _, child in ipairs(list:GetChildren()) do
+			if child:IsA("TextButton") then child:Destroy() end
+		end
+		for i, opt in ipairs(options) do
+			local key = tostring(opt)
+			local row = Instance.new("TextButton")
+			row.BackgroundTransparency = 1
+			row.Size = UDim2.new(1,0,0,rowH)
+			row.AutoButtonColor = false
+			row.Font = Theme.Font
+			row.TextSize = 12
+			row.TextXAlignment = Enum.TextXAlignment.Left
+			row.TextColor3 = selected[key] and Theme.Text or Theme.SecondaryText
+			row.Text = (selected[key] and "✓  " or "○  ") .. key
+			row.Parent = list
+			cleanup:AddConnection(row.MouseButton1Click:Connect(function()
+				selected[key] = not selected[key]
+				row.TextColor3 = selected[key] and Theme.Text or Theme.SecondaryText
+				row.Text = (selected[key] and "✓  " or "○  ") .. key
+				changed:Fire(selectionArray())
+				if config.Callback then task.spawn(config.Callback, selectionArray()) end
+			end))
+		end
+	end
+
+	local function setOpen(state)
+		open = state
+		arrow.Text = open and "▲" or "▼"
+		local rows = math.min(math.max(#options,1),5)
+		local target = open and (baseH + 8 + rows*rowH) or baseH
+		TweenEngine.Play(frame,{Size=UDim2.new(1,0,0,target)},{Duration=0.18,Easing="QuadOut"})
+	end
+
+	refreshRows()
+	cleanup:AddConnection(header.MouseButton1Click:Connect(function() setOpen(not open) end))
+	cleanup:AddInstance(frame)
+	local obj = {
+		Frame = frame,
+		Cleanup = cleanup,
+		Changed = changed,
+		Name = config.Name or "Multi Select",
+		SearchText = string.lower(tostring(config.Name or "") .. " " .. tostring(config.Description or "")),
+	}
+	function obj:Get()
+		return selectionArray()
+	end
+	function obj:Set(values, suppress)
+		table.clear(selected)
+		if type(values) == "table" then
+			for _, v in ipairs(values) do selected[tostring(v)] = true end
+		end
+		refreshRows()
+		if not suppress then
+			changed:Fire(selectionArray())
+			if config.Callback then task.spawn(config.Callback, selectionArray()) end
+		end
+	end
+	function obj:RefreshTheme()
+		frame.BackgroundColor3 = Theme.Secondary
+		stroke.Color = Theme.Border
+		title.Font = Theme.Font
+		title.TextColor3 = Theme.Text
+		arrow.TextColor3 = Theme.SecondaryText
+		list.BackgroundColor3 = Theme.Tertiary
+		list.ScrollBarImageColor3 = Theme.Border
+	end
+	function obj:Destroy()
+		changed:Destroy()
+		cleanup:Destroy()
+	end
+	function obj:IsDestroyed() return cleanup:IsDestroyed() end
+
+	table.insert(tab.Components,obj)
+	return obj
+end
+
+-- Section-owned API. This is declared after every component factory exists,
+-- so old sections remain able to create components safely.
+AttachSectionAPI = function(section, tab)
+	local function withParent(config)
+		local c = {}
+		for k, v in pairs(config or {}) do c[k] = v end
+		c._Parent = section.Content
+		return c
+	end
+	local function add(factory, config)
+		local obj = factory(tab, withParent(config))
+		if obj then table.insert(section.Components, obj) end
+		return obj
+	end
+	function section:CreateButton(c) return add(CreateButton, c) end
+	function section:CreateToggle(c) return add(CreateToggle, c) end
+	function section:CreateSlider(c) return add(CreateSlider, c) end
+	function section:CreateLabel(c) return add(CreateLabel, c) end
+	function section:CreateDropdown(c) return add(CreateDropdown, c) end
+	function section:CreateMultiDropdown(c) return add(CreateMultiDropdown, c) end
+	function section:CreateColorPicker(c) return add(CreateColorPicker, c) end
+	function section:CreateTextbox(c) return add(CreateTextbox, c) end
+	function section:CreateKeybind(c) return add(CreateKeybind, c) end
+	function section:CreateParagraph(c) return add(CreateParagraph, c) end
+	function section:CreateDivider() return add(CreateDivider, {}) end
+
+	-- Kavo-style convenience aliases, while keeping the explicit Create* API.
+	function section:Button(name, callback)
+		return self:CreateButton({ Name = name, Callback = callback })
+	end
+	function section:Toggle(name, default, callback)
+		return self:CreateToggle({ Name = name, Default = default == true, Callback = callback })
+	end
+	function section:Slider(name, min, max, default, callback)
+		return self:CreateSlider({
+			Name = name, Min = min or 0, Max = max or 100,
+			Default = default or min or 0, Callback = callback,
+		})
+	end
+	function section:Dropdown(name, options, default, callback)
+		return self:CreateDropdown({
+			Name = name, Options = options or {},
+			Default = default or (options and options[1]) or "", Callback = callback,
+		})
+	end
+	function section:MultiDropdown(name, options, default, callback)
+		return self:CreateMultiDropdown({
+			Name = name, Options = options or {}, Default = default or {}, Callback = callback,
+		})
+	end
+	function section:ColorPicker(name, default, callback)
+		return self:CreateColorPicker({ Name = name, Default = default, Callback = callback })
+	end
+	function section:Paragraph(title, content)
+		return self:CreateParagraph({ Title = title, Content = content })
+	end
 end
 
 ----------------------------------------------------------------
@@ -2937,11 +3588,26 @@ local function CreateTab(window, config)
 
 	-- Padding so long text never overlaps the left indicator
 	local btnPad = Instance.new("UIPadding")
-	btnPad.PaddingLeft = UDim.new(0, 16)
+	btnPad.PaddingLeft = UDim.new(0, config.Icon and 32 or 16)
 	btnPad.PaddingRight = UDim.new(0, 4)
 	btnPad.Parent = tabBtn
 
-	-- White indicator further left, clear of tab text
+	local tabCorner = Instance.new("UICorner")
+	tabCorner.CornerRadius = UDim.new(0, Theme.ButtonCornerRadius or 5)
+	tabCorner.Parent = tabBtn
+
+	if config.Icon then
+		local icon = Instance.new("ImageLabel")
+		icon.Name = "Icon"
+		icon.BackgroundTransparency = 1
+		icon.Size = UDim2.fromOffset(16, 16)
+		icon.Position = UDim2.new(0, 7, 0.5, -8)
+		icon.Image = tostring(config.Icon)
+		icon.ImageColor3 = Theme.SecondaryText
+		icon.Parent = tabBtn
+	end
+
+	-- Active indicator stays visible and animated in the left gutter.
 	local indicator = Instance.new("Frame")
 	indicator.Name = "Indicator"
 	indicator.BackgroundColor3 = Theme.Accent
@@ -2973,10 +3639,12 @@ local function CreateTab(window, config)
 	function tab:SetActive(active)
 		if active then
 			content.Visible = true
-			tabBtn.BackgroundTransparency = 0.35
-			tabBtn.BackgroundColor3 = Theme.Secondary
+			tabBtn.BackgroundTransparency = 0.15
+			tabBtn.BackgroundColor3 = Theme.Hover
 			tabBtn.TextColor3 = Theme.Text
-			indicator.Visible = false
+			indicator.Visible = true
+			local icon = tabBtn:FindFirstChild("Icon")
+			if icon and icon:IsA("ImageLabel") then icon.ImageColor3 = Theme.Text end
 		else
 			content.Visible = false
 			-- close dropdowns so list never floats on another tab
@@ -2986,6 +3654,8 @@ local function CreateTab(window, config)
 			tabBtn.BackgroundTransparency = 1
 			tabBtn.TextColor3 = Theme.SecondaryText
 			indicator.Visible = false
+			local icon = tabBtn:FindFirstChild("Icon")
+			if icon and icon:IsA("ImageLabel") then icon.ImageColor3 = Theme.SecondaryText end
 		end
 	end
 
@@ -2996,9 +3666,9 @@ local function CreateTab(window, config)
 		tabBtn.Font = Theme.Font
 		indicator.BackgroundColor3 = Theme.Accent
 		if content.Visible then
-			tabBtn.BackgroundTransparency = 0.35
+			tabBtn.BackgroundTransparency = 0.15
 			tabBtn.TextColor3 = Theme.Text
-			indicator.Visible = false
+			indicator.Visible = true
 		else
 			tabBtn.BackgroundTransparency = 1
 			tabBtn.TextColor3 = Theme.SecondaryText
@@ -3021,6 +3691,9 @@ local function CreateTab(window, config)
 	function tab:CreateTextbox(c) return CreateTextbox(tab, c) end
 	function tab:CreateKeybind(c) return CreateKeybind(tab, c) end
 	function tab:CreateDivider() return CreateDivider(tab) end
+	function tab:CreateMultiDropdown(c) return CreateMultiDropdown(tab, c) end
+	function tab:CreateColorPicker(c) return CreateColorPicker(tab, c) end
+	function tab:CreateParagraph(c) return CreateParagraph(tab, c) end
 
 	function tab:Destroy()
 		for _, c in ipairs(tab.Components) do
@@ -3059,7 +3732,7 @@ local function SetupSettingsTab(window)
 		local stroke = Instance.new("UIStroke")
 		stroke.Color = Theme.Border
 		stroke.Thickness = 1
-		stroke.Transparency = 1
+		stroke.Transparency = 0.5
 		stroke.Parent = card
 
 		local avatar = Instance.new("ImageLabel")
@@ -3331,8 +4004,8 @@ local function ComputeResponsiveSize(config)
 		end
 	else
 		-- PC / large display
-		w = config.Width or 540
-		h = config.Height or 300
+		w = config.Width or 560
+		h = config.Height or 380
 		w = math.clamp(w, 400, math.min(720, vw - 40))
 		h = math.clamp(h, 260, math.min(420, vh - 40))
 	end
@@ -3368,7 +4041,7 @@ local function CreateWindow(library, config)
 	root.Size = UDim2.fromOffset(width, height)
 	root.AnchorPoint = Vector2.new(0, 0)
 	root.Position = UDim2.new(0.5, -width / 2, 0.5, -height / 2)
-	root.ClipsDescendants = true
+	root.ClipsDescendants = false
 	root.Parent = gui
 
 	-- Soft UI scale on very small phones so text/controls stay usable
@@ -3393,33 +4066,50 @@ local function CreateWindow(library, config)
 	sizeConstraint.MaxSize = Vector2.new(math.min(900, vp.X - 8), math.min(560, vp.Y - 8))
 	sizeConstraint.Parent = root
 
+	local shadow = Instance.new("ImageLabel")
+	shadow.Name = "Shadow"
+	shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+	shadow.Position = UDim2.new(0.5, 0, 0.5, 5)
+	shadow.Size = UDim2.new(1, 34, 1, 34)
+	shadow.BackgroundTransparency = 1
+	shadow.Image = "rbxassetid://1316045217"
+	shadow.ImageColor3 = Theme.Shadow
+	shadow.ImageTransparency = Theme.ShadowTransparency or 0.42
+	shadow.ScaleType = Enum.ScaleType.Slice
+	shadow.SliceCenter = Rect.new(10, 10, 118, 118)
+	shadow.ZIndex = 0
+	shadow.Parent = root
+
 	local main = Instance.new("Frame")
 	main.Name = "Main"
 	main.BackgroundColor3 = Theme.Background
 	main.BackgroundTransparency = 0.02
 	main.BorderSizePixel = 0
 	main.Size = UDim2.new(1, 0, 1, 0)
+	main.ZIndex = 1
+	main.ClipsDescendants = true
 	main.Parent = root
 
-	-- No main corner (sharp frame)
+	local mainCorner = Instance.new("UICorner")
+	mainCorner.CornerRadius = UDim.new(0, Theme.WindowCornerRadius or 10)
+	mainCorner.Parent = main
 
 	local mainStroke = Instance.new("UIStroke")
 	mainStroke.Color = Theme.Border
 	mainStroke.Thickness = 1
-	mainStroke.Transparency = 1
+	mainStroke.Transparency = 0.45
 	mainStroke.Parent = main
 
 	-- Left-edge white accent line (matches reference)
 	local outline = Instance.new("Frame")
 	outline.Name = "OutlineAccent"
 	outline.BackgroundColor3 = Theme.OutlineAccent or Color3.fromRGB(255, 255, 255)
-	outline.BackgroundTransparency = 1
+	outline.BackgroundTransparency = 0.05
 	outline.BorderSizePixel = 0
 	outline.Size = UDim2.new(0, 2, 1, 0)
 	outline.Position = UDim2.new(0, 0, 0, 0)
 	outline.ZIndex = 5
 	outline.Parent = main
-	outline.Visible = false
 
 	-- Title bar (full width)
 	local titleBar = Instance.new("Frame")
@@ -3536,6 +4226,9 @@ local function CreateWindow(library, config)
 	searchPad.PaddingLeft = UDim.new(0, 8)
 	searchPad.PaddingRight = UDim.new(0, 8)
 	searchPad.Parent = searchBox
+	local searchCorner = Instance.new("UICorner")
+	searchCorner.CornerRadius = UDim.new(0, Theme.ButtonCornerRadius or 5)
+	searchCorner.Parent = searchBox
 
 	-- Vertical tab list (scrollable if many)
 	local tabBar = Instance.new("ScrollingFrame")
@@ -3600,8 +4293,15 @@ local function CreateWindow(library, config)
 			local btn = tab.Button
 			if btn and btn.Parent then
 				local name = string.lower(tostring(tab.Name or btn.Text or ""))
-				local show = (q == "") or (string.find(name, q, 1, true) ~= nil)
-				btn.Visible = show
+				local showTab = (q == "") or (string.find(name, q, 1, true) ~= nil)
+				btn.Visible = showTab
+			end
+			for _, component in ipairs(tab.Components) do
+				local frame = component and component.Frame
+				if frame and frame.Parent then
+					local haystack = string.lower(tostring(component.SearchText or component.Name or frame.Name or ""))
+					frame.Visible = (q == "") or (string.find(haystack, q, 1, true) ~= nil)
+				end
 			end
 		end
 	end
@@ -3748,6 +4448,9 @@ local function CreateWindow(library, config)
 		if cleanup:IsDestroyed() then return end
 		main.BackgroundColor3 = Theme.Background
 		mainStroke.Color = Theme.Border
+		shadow.ImageColor3 = Theme.Shadow or Color3.new(0,0,0)
+		shadow.ImageTransparency = Theme.ShadowTransparency or 0.42
+		mainCorner.CornerRadius = UDim.new(0, Theme.WindowCornerRadius or 10)
 		titleBar.BackgroundColor3 = Theme.Secondary
 		titleFix.BackgroundColor3 = Theme.Secondary
 		titleLabel.TextColor3 = Theme.Text
@@ -4311,6 +5014,20 @@ local function wrapTab(tab)
 	end
 	function t:Line()
 		return self:CreateDivider()
+	end
+	function t:Paragraph(title, content)
+		return self:CreateParagraph({ Title = title, Content = content })
+	end
+	function t:Color(name, default, callback)
+		return self:CreateColorPicker({ Name = name, Default = default, Callback = callback })
+	end
+	function t:MultiDrop(name, options, default, callback)
+		return self:CreateMultiDropdown({
+			Name = name,
+			Options = options or {},
+			Default = default or {},
+			Callback = callback,
+		})
 	end
 	return t
 end
