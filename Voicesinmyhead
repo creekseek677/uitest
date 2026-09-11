@@ -41,7 +41,7 @@ aemin.TextColor3=Color3.fromRGB(200,200,200)
 aemin.Font=Enum.Font.GothamBold aemin.TextSize=18 aemin.Parent=aa local
 af=Instance.new(“ScrollingFrame”) af.Name=“ag”
 af.Size=UDim2.new(1,-16,0,0) af.Position=UDim2.new(0,8,0,40)
-af.BackgroundTransparency=1 af.BorderSizePixel=0 af.ScrollBarThickness=6
+af.BackgroundTransparency=1 af.BorderSizePixel=0 af.ScrollBarThickness=7
 af.ScrollBarImageColor3=Color3.fromRGB(60,60,60)
 af.ScrollingDirection=Enum.ScrollingDirection.Y af.ScrollingEnabled=true
 af.CanvasSize=UDim2.new(0,0,0,0)
@@ -50,9 +50,9 @@ af.ElasticBehavior=Enum.ElasticBehavior.WhenScrollable af.Visible=false
 af.Parent=x local ag=Instance.new(“UIListLayout”)
 ag.Padding=UDim.new(0,6) ag.SortOrder=Enum.SortOrder.LayoutOrder
 ag.Parent=af local agPadding=Instance.new(“UIPadding”)
-agPadding.PaddingBottom=UDim.new(0,16) agPadding.Parent=af local
+agPadding.PaddingBottom=UDim.new(0,18) agPadding.Parent=af local
 function updateCanvas()
-af.CanvasSize=UDim2.new(0,0,0,ag.AbsoluteContentSize.Y+16) end
+af.CanvasSize=UDim2.new(0,0,0,ag.AbsoluteContentSize.Y+18) end
 ag:GetPropertyChangedSignal(“AbsoluteContentSize”):Connect(updateCanvas)
 task.defer(updateCanvas) local openSize=UDim2.new(0,280,0,460) local
 closedSize=UDim2.new(0,280,0,36) local isOpen=false local
@@ -225,11 +225,13 @@ di=Instance.new(“Sound”) di.SoundId=“rbxassetid://”..tostring(dg)
 di.Volume=0 local dj=Instance.new(“Part”)
 dj.Size=Vector3.new(0.1,0.1,0.1) dj.Transparency=1 dj.CanCollide=false
 dj.Anchored=true dj.Position=Vector3.new(0,0,0) dj.Parent=b di.Parent=dj
-local dk dk=di.Played:Connect(function() local dl=di.TimeLength if dl>0
-then dh(dl) else dh(2.5) end di:Stop() dj:Destroy() dk:Disconnect() end)
-task.delay(1,function() if di and di.Parent then dh(2.5) di:Stop()
-dj:Destroy() if dk then dk:Disconnect() end end end) di:Play() end local
-function dm(dn) if dn.Character then ct(dn.Character) end
+local dk local dlDone=false local function dlFinish(length) if dlDone
+then return end dlDone=true if dh then dh(length) end if di then
+di:Stop() end if dj and dj.Parent then dj:Destroy() end if dk then
+dk:Disconnect() dk=nil end end dk=di.Played:Connect(function() local
+dl=di.TimeLength if dl>0 then dlFinish(dl) else dlFinish(2.5) end end)
+task.delay(1,function() dlFinish(2.5) end) di:Play() end local function
+dm(dn) if dn.Character then ct(dn.Character) end
 dn.CharacterAdded:Connect(function(dp) task.wait(0.2) ct(dp) end) end
 local function dq(dr) if type(dr)~=“table” or #dr==0 then return nil end
 return dr[math.random(1,#dr)] end local function ds(dt,du) local
@@ -282,25 +284,38 @@ ds(fk,4) then table.insert(fj,fk) end end end for _,fl in ipairs(fj) do
 if math.random(1,100)<=n[4] then local
 fm=math.random(1,math.max(1,#fj))*0.15 task.delay(fm,function() if
 ds(fl,4) then local fn=dq(g[4]) if fn then eq(fn,fl,4) dy(fl,4) end end
-end) end end end local hc=20 local hj=45 local function fo(fp)
-i[fp]={fq=100,fr=100} dm(fp) local function fs(ft) task.wait(0.5) local
-fu=ft:FindFirstChild(“Humanoid”) if not fu then return end
-i[fp].fq=fu.Health i[fp].fr=fu.Health local function fv(fw) local
-fx=i[fp].fr if fw0 then if ds(fp,2) then local fy=dq(g[2]) if fy then
-eq(fy,fp,2) dy(fp,2) task.wait(0.2) fh(fp) end end else if ds(fp,3) then
-local fz=dq(g[3]) if fz then eq(fz,fp,3) dy(fp,3) task.wait(0.3) fh(fp)
-end end end end i[fp].fr=fw i[fp].fq=fw end fu.HealthChanged:Connect(fv)
-fu.Died:Connect(function() if ds(fp,3) then local ga=dq(g[3]) if ga then
-eq(ga,fp,3) dy(fp,3) task.wait(0.3) fh(fp) end end i[fp].fq=0 end) end
-if fp.Character then fs(fp.Character) end fp.CharacterAdded:Connect(fs)
-coroutine.wrap(function() while fp.Parent do
-task.wait(math.random(hc,hj)) if math.random(1,100)<=n[1] then if
-ds(fp,1) then local gb=dq(g[1]) if gb then eq(gb,fp,1) dy(fp,1)
-task.wait(0.3) fh(fp) end end end end end)() end for ,gc in
+end) end end end local hc=20 local hj=45 local function fo(fp) if not fp
+or not fp.Parent then return end i[fp]={fq=100,fr=100} k[fp]=k[fp] or {}
+dm(fp) local function fs(ft) if not fp.Parent or i[fp]==nil or not ft or
+not ft.Parent then return end task.wait(0.5) if not fp.Parent or
+i[fp]==nil or not ft.Parent then return end local
+fu=ft:FindFirstChild(“Humanoid”) if not fu or i[fp]==nil then return end
+i[fp].fq=fu.Health i[fp].fr=fu.Health local function fv(fw) if not
+fp.Parent or i[fp]==nil then return end local fx=i[fp].fr if fw0 then if
+ds(fp,2) then local fy=dq(g[2]) if fy then eq(fy,fp,2) dy(fp,2)
+task.wait(0.2) if fp.Parent and i[fp] then fh(fp) end end end else if
+ds(fp,3) then local fz=dq(g[3]) if fz then eq(fz,fp,3) dy(fp,3)
+task.wait(0.3) if fp.Parent and i[fp] then fh(fp) end end end end end if
+i[fp] then i[fp].fr=fw i[fp].fq=fw end end local
+healthConn=fu.HealthChanged:Connect(fv) local
+diedConn=fu.Died:Connect(function() if not fp.Parent or i[fp]==nil then
+return end if ds(fp,3) then local ga=dq(g[3]) if ga then eq(ga,fp,3)
+dy(fp,3) task.wait(0.3) if fp.Parent and i[fp] then fh(fp) end end end
+if i[fp] then i[fp].fq=0 end end) k[fp].healthConn=healthConn
+k[fp].diedConn=diedConn end if fp.Character then fs(fp.Character) end
+k[fp].characterConn=fp.CharacterAdded:Connect(fs)
+coroutine.wrap(function() while fp.Parent and i[fp] do
+task.wait(math.random(hc,hj)) if not fp.Parent or i[fp]==nil then break
+end if math.random(1,100)<=n[1] then if ds(fp,1) then local gb=dq(g[1])
+if gb then eq(gb,fp,1) dy(fp,1) task.wait(0.3) if fp.Parent and i[fp]
+then fh(fp) end end end end end end)() end for ,gc in
 ipairs(a:GetPlayers()) do task.spawn(function() fo(gc) end) end
 a.PlayerAdded:Connect(function(gd) task.spawn(function() fo(gd) end)
-end) a.PlayerRemoving:Connect(function(ge) i[ge]=nil j[ge]=nil if l[ge]
-then task.cancel(l[ge]) l[ge]=nil end if ge.Character then local
+end) a.PlayerRemoving:Connect(function(ge) local gk=k[ge] if gk then if
+gk.healthConn then gk.healthConn:Disconnect() end if gk.diedConn then
+gk.diedConn:Disconnect() end if gk.characterConn then
+gk.characterConn:Disconnect() end k[ge]=nil end i[ge]=nil j[ge]=nil if
+l[ge] then task.cancel(l[ge]) l[ge]=nil end if ge.Character then local
 gf=ge.Character:FindFirstChild(“VoiceBillboard”) if gf then gf:Destroy()
 end end for gg,gh in pairs(h) do if gh and gh.fc==ge then if gh.fa then
 gh.fa:Stop() end if gh.fb and gh.fb.Parent then gh.fb:Destroy() end
@@ -556,6 +571,4 @@ math.clamp((inp.Position.X - px) / sw, 0, 1) jsChance = math.floor(p *
 100) jcFill.Size = UDim2.new(p,0,1,0) jcKnob.Position =
 UDim2.new(p,-7,0.5,-7) jcVal.Text = tostring(jsChance) end end)
 
-task.defer(updateCanvas)
-
-return gj
+task.defer(updateCanvas) return gj
