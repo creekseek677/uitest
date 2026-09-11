@@ -35,10 +35,18 @@ t=1.0,
 u=true,
 v=true
 }
-local Icons=loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Footagesus/Icons/main/Main-v2.lua"))()
-Icons.SetIconsType("lucide")
-local function getIcon(name)
-	return Icons.GetIcon(name) or ""
+local getIcon
+local success, Icons = pcall(function()
+    return loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Footagesus/Icons/main/Main-v2.lua"))()
+end)
+if success and Icons then
+    Icons.SetIconsType("lucide")
+    getIcon = function(name)
+        return Icons.GetIcon(name) or ""
+    end
+else
+    warn("Icons library failed to load. UI will run without icons.")
+    getIcon = function(name) return "" end
 end
 local w=Instance.new("ScreenGui")
 w.Name="x"
