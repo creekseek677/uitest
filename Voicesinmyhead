@@ -15,6 +15,7 @@ local i={}
 local j={}
 local k={}
 local l={}
+local jsChance = 35
 local m={
 [1]=3,
 [2]=10,
@@ -54,7 +55,7 @@ local y=Instance.new("UICorner")
 y.CornerRadius=UDim.new(0,10)
 y.Parent=x
 local z=Instance.new("UIStroke")
-z.Color=Color3.fromRGB(120,80,255)
+z.Color=Color3.fromRGB(255,255,255)
 z.Thickness=1.5
 z.Parent=x
 local aa=Instance.new("Frame")
@@ -77,7 +78,7 @@ ad.Size=UDim2.new(1,-80,1,0)
 ad.Position=UDim2.new(0,12,0,0)
 ad.BackgroundTransparency=1
 ad.Text="Rainbow Scare"
-ad.TextColor3=Color3.fromRGB(255,80,160)
+ad.TextColor3=Color3.fromRGB(255,255,255)
 ad.Font=Enum.Font.GothamBold
 ad.TextSize=14
 ad.TextXAlignment=Enum.TextXAlignment.Left
@@ -116,7 +117,7 @@ local ag=Instance.new("UIListLayout")
 ag.Padding=UDim.new(0,6)
 ag.SortOrder=Enum.SortOrder.LayoutOrder
 ag.Parent=af
-local openSize=UDim2.new(0,280,0,360)
+local openSize=UDim2.new(0,280,0,460)
 local closedSize=UDim2.new(0,280,0,36)
 local isOpen=false
 local isMinimized=true
@@ -165,24 +166,7 @@ aemin.MouseButton1Click:Connect(function()
 	if isOpen then minimizeUI() else openUI() end
 end)
 task.delay(0.1,openUI)
-coroutine.wrap(function()
-	local cols={
-		Color3.fromRGB(255,80,160),
-		Color3.fromRGB(255,120,80),
-		Color3.fromRGB(255,220,60),
-		Color3.fromRGB(80,255,140),
-		Color3.fromRGB(80,180,255),
-		Color3.fromRGB(160,100,255)
-	}
-	local i=1
-	while true do
-		local n=i%#cols+1
-		silkyTween(ad,{TextColor3=cols[n]},0.8,Enum.EasingStyle.Sine)
-		silkyTween(z,{Color=cols[n]},0.8,Enum.EasingStyle.Sine)
-		i=n
-		task.wait(0.85)
-	end
-end)()
+
 local function ah(ai,aj)
 local ak=Instance.new("Frame")
 ak.Size=UDim2.new(1,0,0,32)
@@ -247,7 +231,7 @@ ax.CornerRadius=UDim.new(0,3)
 ax.Parent=aw
 local ay=Instance.new("Frame")
 ay.Size=UDim2.new(r.t,0,1,0)
-ay.BackgroundColor3=Color3.fromRGB(255,100,180)
+ay.BackgroundColor3=Color3.fromRGB(255,255,255)
 ay.BorderSizePixel=0
 ay.Parent=aw
 local az=Instance.new("UICorner")
@@ -1072,131 +1056,7 @@ local jsImgs={
 "rbxassetid://2553655919",
 "rbxassetid://11913700",
 "rbxassetid://31317701",
-"rbxassetid://7131541",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561",
-"rbxassetid://83814472401561"
+"rbxassetid://7131541"
 }
 local jsSnds={
 "rbxassetid://6754147732",
@@ -1261,123 +1121,31 @@ local jsSnds={
 "rbxassetid://138917352150837",
 "rbxassetid://139324436704947",
 "rbxassetid://139765110669684",
-"rbxassetid://138890398994853",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732",
-"rbxassetid://6754147732"
+"rbxassetid://138890398994853"
 }
 local jsGui=Instance.new("ScreenGui")
 jsGui.Name="js"
 jsGui.IgnoreGuiInset=true
-jsGui.DisplayOrder=999
+jsGui.DisplayOrder=2147483647
 jsGui.ResetOnSpawn=false
-jsGui.Parent=f:WaitForChild("PlayerGui")
+jsGui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+pcall(function() jsGui.Parent=f:WaitForChild("PlayerGui") end)
 local jsBg=Instance.new("Frame")
 jsBg.Size=UDim2.new(1,0,1,0)
+jsBg.Position=UDim2.new(0,0,0,0)
 jsBg.BackgroundColor3=Color3.new(0,0,0)
 jsBg.BackgroundTransparency=1
 jsBg.BorderSizePixel=0
 jsBg.Visible=false
+jsBg.ZIndex=100
 jsBg.Parent=jsGui
 local jsImg=Instance.new("ImageLabel")
 jsImg.Size=UDim2.new(1,0,1,0)
+jsImg.Position=UDim2.new(0,0,0,0)
 jsImg.BackgroundTransparency=1
 jsImg.ImageTransparency=1
-jsImg.ScaleType=Enum.ScaleType.Fit
+jsImg.ScaleType=Enum.ScaleType.Stretch
+jsImg.ZIndex=101
 jsImg.Parent=jsBg
 local function doJs()
 	if not r.u then return end
@@ -1404,17 +1172,90 @@ local function doJs()
 	end)
 end
 local function multiJs()
-	local cnt=math.random(1,3)
+	local cnt
+	if jsChance >= 100 then
+		cnt = math.random(3,6)
+	elseif jsChance >= 80 then
+		cnt = math.random(2,4)
+	elseif jsChance >= 50 then
+		cnt = math.random(1,3)
+	else
+		cnt = math.random(1,2)
+	end
 	for i=1,cnt do
-		task.delay((i-1)*0.55,doJs)
+		task.delay((i-1)*0.5,doJs)
 	end
 end
 coroutine.wrap(function()
 	while true do
-		task.wait(math.random(25,90))
-		if r.u and math.random(1,100)<=35 then
+		if jsChance <= 0 then
+			task.wait(5)
+		elseif jsChance >= 100 then
 			multiJs()
+			task.wait(0.25)
+		else
+			local maxWait = math.max(10, math.floor(90 - jsChance * 0.7))
+			local minWait = math.max(4, math.floor(maxWait * 0.4))
+			task.wait(math.random(minWait, maxWait))
+			if r.u and math.random(1,100) <= jsChance then
+				multiJs()
+			end
 		end
 	end
 end)()
+
+-- Jumpscare Chance Slider
+local jcFrame, jcLbl = ah("Jumpscare Chance", 100)
+local jcTrack = Instance.new("Frame")
+jcTrack.Size = UDim2.new(0.45,0,0,6)
+jcTrack.Position = UDim2.new(0.5,0,0.5,-3)
+jcTrack.BackgroundColor3 = Color3.fromRGB(50,50,50)
+jcTrack.BorderSizePixel = 0
+jcTrack.Parent = jcFrame
+local jcTC = Instance.new("UICorner") jcTC.CornerRadius = UDim.new(0,3) jcTC.Parent = jcTrack
+
+local jcFill = Instance.new("Frame")
+jcFill.Size = UDim2.new(jsChance/100,0,1,0)
+jcFill.BackgroundColor3 = Color3.fromRGB(255,80,80)
+jcFill.BorderSizePixel = 0
+jcFill.Parent = jcTrack
+local jcFC = Instance.new("UICorner") jcFC.CornerRadius = UDim.new(0,3) jcFC.Parent = jcFill
+
+local jcKnob = Instance.new("TextButton")
+jcKnob.Size = UDim2.new(0,14,0,14)
+jcKnob.Position = UDim2.new(jsChance/100,-7,0.5,-7)
+jcKnob.BackgroundColor3 = Color3.fromRGB(255,255,255)
+jcKnob.Text = ""
+jcKnob.Parent = jcTrack
+local jcKC = Instance.new("UICorner") jcKC.CornerRadius = UDim.new(1,0) jcKC.Parent = jcKnob
+
+local jcVal = Instance.new("TextLabel")
+jcVal.Size = UDim2.new(0,30,1,0)
+jcVal.Position = UDim2.new(1,-35,0,0)
+jcVal.BackgroundTransparency = 1
+jcVal.Text = tostring(jsChance)
+jcVal.TextColor3 = Color3.fromRGB(180,180,180)
+jcVal.Font = Enum.Font.Gotham
+jcVal.TextSize = 12
+jcVal.Parent = jcFrame
+
+local jcDrag = false
+jcKnob.MouseButton1Down:Connect(function() jcDrag = true end)
+c.InputEnded:Connect(function(inp)
+	if inp.UserInputType==Enum.UserInputType.MouseButton1 or inp.UserInputType==Enum.UserInputType.Touch then
+		jcDrag = false
+	end
+end)
+c.InputChanged:Connect(function(inp)
+	if jcDrag and (inp.UserInputType==Enum.UserInputType.MouseMovement or inp.UserInputType==Enum.UserInputType.Touch) then
+		local px = jcTrack.AbsolutePosition.X
+		local sw = jcTrack.AbsoluteSize.X
+		local p = math.clamp((inp.Position.X - px) / sw, 0, 1)
+		jsChance = math.floor(p * 100)
+		jcFill.Size = UDim2.new(p,0,1,0)
+		jcKnob.Position = UDim2.new(p,-7,0.5,-7)
+		jcVal.Text = tostring(jsChance)
+	end
+end)
+
 return gj
