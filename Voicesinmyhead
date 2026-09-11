@@ -1,0 +1,1669 @@
+local a=game:GetService("Players")
+local b=game:GetService("Workspace")
+local c=game:GetService("UserInputService")
+local d=game:GetService("TweenService")
+local e=game:GetService("RunService")
+local f=a.LocalPlayer
+local g={
+[1]={123044303994375,103660746061428,75637648039086,5030402048,86837306997861,96281103613406,137581198061053,97852528632885,5161592186,99927181905461,94960112472516,4541552530,138155938349025,2164397857,77680306214562,125454319097196,139785351379081,119866685732193,6364600789,4541601937,7226610682,135074773934459,114000468625580,119669644558502,4541496591,77927942306834,7436555614,100053426740689,73944013855086,111134077549844,8266908202,88558209523087,77767534864229,100718900484328,86489612055236,140177918664226,89947470135373,138023320028337,7518827825,107811801422160,111185293097461,74224041251020,133871445663152,107462093686133,89772394068591,82706203808655,83348169518954,90997053045711,78096726451207,136349473943981,134229432519727,140644686986145,75536411243388,89089261050741,86394425280837,101942393815597,84917813742365,109523676339672,100785284742630,120738866199180,127682283769953,105656929862560,82461785419863,121655250859854,78903997608315,103174106803434,134097384411270,97509020628298,7518835656,134937624513424,137363192765480,125746048332941,127380548842621,128536736641243,81988139281220,111813337356720,134124154776208,130400014876558,115350222916022,128469629950144,87453017467147,84881583814092,83719896470978,98688401406115,83698740666045,113048198226469,114088246078285,100340156582123,101816267586417,85365894642945,120224963718630,127781343273877,98495875536738,107819330848898,134653783511274,77285387413057,91895029907428,5359431243,72414792787245,92279199079271,84632739448429,95831042912410,140644831633779,92037028831221,115516809640212,132686709305301,90151067916460,120987979668202,117245798021315,95376108276083,89678520529165,5717121527,104325116068612,108706289463478,74027948052683,117333274135220,7078730266,122586997527353,80383471346647,13502750239,128301429841017,120007408401235,132707208976018,129099343557564,140201753911558,90354737662165,136514507117808,113604801712666,111583187408971,104392572604782,84931461699163,135940592018966,89648856262009,123077176424112,138864598498483,111677597842516,80301627508319,92888520831475,135455822510958,4269343309,86771275626153,18960307174,103313929612435,84512277901997,136515209354869,95072412283035,75099750017962,7102441747,74446091290636,93857490751151,140505698910456,73151937286069,117689483112264,112857810922097,79332954343290,103182202071549,121809529868087,8830417389,124288658658869,122060876723823,97541058657879,109603358638247,102125069984975,134283353678806,131140990880922,117236105724823,116614571801498,137884010024670,9118907001,101565269491832,85843840195489,132711750902093,124866950774339,102560602322001,110771398988100,86036858040298,138822171314257,91029029275852,121468353358396,116195744920617,136532027751110,6400547643,70979345372029,75005076882649,89636569052293,138442043819459,130953728323065,76700051050162,117593323315250,140037223576002,113027067329756,77370447654653,118214676544833,140384727798439,134549360210972,132485278597776,125169624790105,116106179787633,104991057651871,104221287036914,7173976933,7169485926,108458794103088,128217175445044,98065299568261,72692630081496,88751021428882,123556631405308,135909181856526,131475073519274,130487946468477,129672214850442,127228515866792,126683068752302,119467299888806,117325264323989,106044493989182,95611319293585,94147072524450,93787950025550,85099269013874,85510602512034,75130373593960,73284353028765,9117803265,9117802186,9113461595,9066422312,8751354974,7662156159,7662145278,7662129214,7662116657,6984479449,6984423651,4980436517,1253565304,1253558886,138535601469792,9125773982,125853087610330,104347159363539,96719824081387,79210276414151,3892151882,7105187524,104226481380868,86926175961875,99248100907398,111373247510728,137812336859925,72875981721445,117992684269470,82241925071719,122771968483267,121521552258987,126296283190978,129503172509025,92338441194085,81588784147895,132603075666016,116245229309693,106296775532751,72285865814647,75690425331627,109205203550230,83321762959042,5256600840,6860725411,131349769139285,73809996990793,8742003414,100670471448441,78311278956073,107741584211234,108201876079710,116316828209167,92058045131140,73550334887374,93581420805853,71652979013382,9117800464,98774782275896,81994115419537,109969981277507,105113656480314,72839390391168,7159310972,71198952735275,97866017637646,118926509382938,90626684549819,75313342766037,139441486682031,75036337376608,9117801185,123979217071359,119665126324216,116810636115696,110986192072697,131073013941233,124663801420429,131435365612251,113214756266889,73099897790517,126755337402751,6984514157,107667766078851,95500081888104,71074580551637,85777622219760,87587071290310,131315418528721,85626179321332,133895736596002,115568873580262,76744769738457,115232492430878},
+[2]={77503682299807,88506904433512,135651685303108,5887507874,89738815265557,103552223389683,183345423,5291641717,17712048342,114739399228816,124085568487204,70545394897779,81473153453639,124102449219812,117304386224395,134631462190753,133212103539028,123572846158655,88631209504508,86766344642064,75199053916603,116565600001923,87792884329852,137378206255510},
+[3]={129187403689496,126619913329099,4980304037,135881090369317,78523844245618,9058909979,97480286525719,92241766174214,104461187583348,1080610583,565424701,112398446636056,3604140002,1106906657,571884894,1080625252,96271190588167,17638604308,18900008907,81602283697675,90700989840687,75201111270943,100494222092218,138653824465794,116569075451653,129016542446095,107081526006526,7745218668,120684568421123,112618609792970,76981902327303,89566790255807},
+[4]={7393525156,679847985,1000204726,73880845386129,126986741585934,7085409495,131558826975154,81218800788892,8974931344,95457517353904,97586771453333,116978677797205,114834244992089,111204965045440,116890211384648,130963551021153,100229277884126,139053006613829,105808563439062,88558077689131,110475244339697,5685399745,5223746841,103139690245935,138796141112694,128213715101985,93398055562825,111507391511100,105720610295075,128203559567945,17571063959,78876396429378,130723519809726}
+}
+local h={}
+local i={}
+local j={}
+local k={}
+local l={}
+local m={
+[1]=3,
+[2]=10,
+[3]=10,
+[4]=1.5
+}
+local n={
+[1]=50,
+[4]=70
+}
+local o={
+p=200,
+q=50
+}
+local r={
+s=true,
+t=1.0,
+u=true,
+v=true
+}
+local Icons=loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Footagesus/Icons/main/Main-v2.lua"))()
+Icons.SetIconsType("lucide")
+local function getIcon(name)
+	return Icons.GetIcon(name) or ""
+end
+local w=Instance.new("ScreenGui")
+w.Name="x"
+w.ResetOnSpawn=false
+w.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+w.Parent=f:WaitForChild("PlayerGui")
+local x=Instance.new("Frame")
+x.Name="y"
+x.Size=UDim2.new(0,280,0,36)
+x.Position=UDim2.new(0.5,-140,0.5,-160)
+x.BackgroundColor3=Color3.fromRGB(25,25,25)
+x.BorderSizePixel=0
+x.Active=true
+x.ClipsDescendants=true
+x.Parent=w
+local y=Instance.new("UICorner")
+y.CornerRadius=UDim.new(0,10)
+y.Parent=x
+local z=Instance.new("UIStroke")
+z.Color=Color3.fromRGB(45,45,45)
+z.Thickness=1.5
+z.Parent=x
+local aa=Instance.new("Frame")
+aa.Name="ab"
+aa.Size=UDim2.new(1,0,0,36)
+aa.BackgroundColor3=Color3.fromRGB(30,30,30)
+aa.BorderSizePixel=0
+aa.Parent=x
+local ab=Instance.new("UICorner")
+ab.CornerRadius=UDim.new(0,10)
+ab.Parent=aa
+local ac=Instance.new("Frame")
+ac.Size=UDim2.new(1,0,0,10)
+ac.Position=UDim2.new(0,0,1,-10)
+ac.BackgroundColor3=Color3.fromRGB(30,30,30)
+ac.BorderSizePixel=0
+ac.Parent=aa
+local ad=Instance.new("TextLabel")
+ad.Size=UDim2.new(1,-80,1,0)
+ad.Position=UDim2.new(0,12,0,0)
+ad.BackgroundTransparency=1
+ad.Text="Team Skeet"
+ad.TextColor3=Color3.fromRGB(0,255,100)
+ad.Font=Enum.Font.GothamBold
+ad.TextSize=14
+ad.TextXAlignment=Enum.TextXAlignment.Left
+ad.Parent=aa
+local ae=Instance.new("ImageButton")
+ae.Size=UDim2.new(0,24,0,24)
+ae.Position=UDim2.new(1,-32,0,6)
+ae.BackgroundTransparency=1
+ae.Image=getIcon("x")
+ae.ImageColor3=Color3.fromRGB(200,200,200)
+ae.Parent=aa
+local aemin=Instance.new("ImageButton")
+aemin.Size=UDim2.new(0,24,0,24)
+aemin.Position=UDim2.new(1,-60,0,6)
+aemin.BackgroundTransparency=1
+aemin.Image=getIcon("minus")
+aemin.ImageColor3=Color3.fromRGB(200,200,200)
+aemin.Parent=aa
+local af=Instance.new("ScrollingFrame")
+af.Name="ag"
+af.Size=UDim2.new(1,-16,0,0)
+af.Position=UDim2.new(0,8,0,40)
+af.BackgroundTransparency=1
+af.BorderSizePixel=0
+af.ScrollBarThickness=4
+af.ScrollBarImageColor3=Color3.fromRGB(60,60,60)
+af.CanvasSize=UDim2.new(0,0,0,420)
+af.Visible=false
+af.Parent=x
+local ag=Instance.new("UIListLayout")
+ag.Padding=UDim.new(0,6)
+ag.SortOrder=Enum.SortOrder.LayoutOrder
+ag.Parent=af
+local openSize=UDim2.new(0,280,0,360)
+local closedSize=UDim2.new(0,280,0,36)
+local isOpen=false
+local isMinimized=true
+local function silkyTween(obj,props,dur,style,dir)
+	style=style or Enum.EasingStyle.Quint
+	dir=dir or Enum.EasingDirection.Out
+	local tw=d:Create(obj,TweenInfo.new(dur or 0.45,style,dir),props)
+	tw:Play()
+	return tw
+end
+local function openUI()
+	if isOpen then return end
+	isOpen=true
+	isMinimized=false
+	af.Visible=true
+	silkyTween(x,{Size=openSize},0.5,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
+	silkyTween(af,{Size=UDim2.new(1,-16,1,-48)},0.4,Enum.EasingStyle.Quint)
+	aemin.Image=getIcon("minus")
+end
+local function minimizeUI()
+	if not isOpen then return end
+	isOpen=false
+	isMinimized=true
+	silkyTween(af,{Size=UDim2.new(1,-16,0,0)},0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.In)
+	silkyTween(x,{Size=closedSize},0.4,Enum.EasingStyle.Back,Enum.EasingDirection.In)
+	task.delay(0.35,function()
+		if isMinimized then af.Visible=false end
+	end)
+	aemin.Image=getIcon("maximize-2")
+end
+local function closeUI()
+	silkyTween(x,{Size=UDim2.new(0,0,0,0),BackgroundTransparency=1},0.35,Enum.EasingStyle.Back,Enum.EasingDirection.In)
+	silkyTween(z,{Transparency=1},0.3)
+	task.delay(0.4,function()
+		w.Enabled=false
+		x.Size=closedSize
+		x.BackgroundTransparency=0
+		z.Transparency=0
+		af.Visible=false
+		isOpen=false
+		isMinimized=true
+	end)
+end
+ae.MouseButton1Click:Connect(closeUI)
+aemin.MouseButton1Click:Connect(function()
+	if isOpen then minimizeUI() else openUI() end
+end)
+task.delay(0.1,openUI)
+local function ah(ai,aj)
+local ak=Instance.new("Frame")
+ak.Size=UDim2.new(1,0,0,32)
+ak.BackgroundColor3=Color3.fromRGB(35,35,35)
+ak.BorderSizePixel=0
+ak.Parent=af
+local al=Instance.new("UICorner")
+al.CornerRadius=UDim.new(0,6)
+al.Parent=ak
+local am=Instance.new("TextLabel")
+am.Size=UDim2.new(0.6,0,1,0)
+am.Position=UDim2.new(0,10,0,0)
+am.BackgroundTransparency=1
+am.Text=ai
+am.TextColor3=Color3.fromRGB(220,220,220)
+am.Font=Enum.Font.Gotham
+am.TextSize=13
+am.TextXAlignment=Enum.TextXAlignment.Left
+am.Parent=ak
+return ak,am
+end
+local an,ao=ah("Enabled",1)
+local ap=Instance.new("TextButton")
+ap.Size=UDim2.new(0,40,0,20)
+ap.Position=UDim2.new(1,-50,0.5,-10)
+ap.BackgroundColor3=Color3.fromRGB(0,180,80)
+ap.Text=""
+ap.Parent=an
+local aq=Instance.new("UICorner")
+aq.CornerRadius=UDim.new(0,10)
+aq.Parent=ap
+local ar=Instance.new("Frame")
+ar.Size=UDim2.new(0,16,0,16)
+ar.Position=UDim2.new(1,-18,0.5,-8)
+ar.BackgroundColor3=Color3.fromRGB(255,255,255)
+ar.BorderSizePixel=0
+ar.Parent=ap
+local as=Instance.new("UICorner")
+as.CornerRadius=UDim.new(1,0)
+as.Parent=ar
+local at=true
+ap.MouseButton1Click:Connect(function()
+at=not at
+r.u=at
+if at then
+ap.BackgroundColor3=Color3.fromRGB(0,180,80)
+ar:TweenPosition(UDim2.new(1,-18,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
+else
+ap.BackgroundColor3=Color3.fromRGB(60,60,60)
+ar:TweenPosition(UDim2.new(0,2,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
+end
+end)
+local au,av=ah("Volume",2)
+local aw=Instance.new("Frame")
+aw.Size=UDim2.new(0.45,0,0,6)
+aw.Position=UDim2.new(0.5,0,0.5,-3)
+aw.BackgroundColor3=Color3.fromRGB(50,50,50)
+aw.BorderSizePixel=0
+aw.Parent=au
+local ax=Instance.new("UICorner")
+ax.CornerRadius=UDim.new(0,3)
+ax.Parent=aw
+local ay=Instance.new("Frame")
+ay.Size=UDim2.new(r.t,0,1,0)
+ay.BackgroundColor3=Color3.fromRGB(0,220,100)
+ay.BorderSizePixel=0
+ay.Parent=aw
+local az=Instance.new("UICorner")
+az.CornerRadius=UDim.new(0,3)
+az.Parent=ay
+local ba=Instance.new("TextButton")
+ba.Size=UDim2.new(0,14,0,14)
+ba.Position=UDim2.new(r.t,-7,0.5,-7)
+ba.BackgroundColor3=Color3.fromRGB(255,255,255)
+ba.Text=""
+ba.Parent=aw
+local bb=Instance.new("UICorner")
+bb.CornerRadius=UDim.new(1,0)
+bb.Parent=ba
+local bc=Instance.new("TextLabel")
+bc.Size=UDim2.new(0,30,1,0)
+bc.Position=UDim2.new(1,-35,0,0)
+bc.BackgroundTransparency=1
+bc.Text=tostring(math.floor(r.t*100))
+bc.TextColor3=Color3.fromRGB(180,180,180)
+bc.Font=Enum.Font.Gotham
+bc.TextSize=12
+bc.Parent=au
+local bd=false
+ba.MouseButton1Down:Connect(function()
+bd=true
+end)
+c.InputEnded:Connect(function(be)
+if be.UserInputType==Enum.UserInputType.MouseButton1 or be.UserInputType==Enum.UserInputType.Touch then
+bd=false
+end
+end)
+c.InputChanged:Connect(function(be)
+if bd and (be.UserInputType==Enum.UserInputType.MouseMovement or be.UserInputType==Enum.UserInputType.Touch) then
+local bf=aw.AbsolutePosition.X
+local bg=aw.AbsoluteSize.X
+local bh=math.clamp((be.Position.X-bf)/bg,0,1)
+r.t=bh
+ay.Size=UDim2.new(bh,0,1,0)
+ba.Position=UDim2.new(bh,-7,0.5,-7)
+bc.Text=tostring(math.floor(bh*100))
+end
+end)
+local bi,bj=ah("Hear Self",3)
+local bk=Instance.new("TextButton")
+bk.Size=UDim2.new(0,40,0,20)
+bk.Position=UDim2.new(1,-50,0.5,-10)
+bk.BackgroundColor3=Color3.fromRGB(0,180,80)
+bk.Text=""
+bk.Parent=bi
+local bl=Instance.new("UICorner")
+bl.CornerRadius=UDim.new(0,10)
+bl.Parent=bk
+local bm=Instance.new("Frame")
+bm.Size=UDim2.new(0,16,0,16)
+bm.Position=UDim2.new(1,-18,0.5,-8)
+bm.BackgroundColor3=Color3.fromRGB(255,255,255)
+bm.BorderSizePixel=0
+bm.Parent=bk
+local bn=Instance.new("UICorner")
+bn.CornerRadius=UDim.new(1,0)
+bn.Parent=bm
+bk.MouseButton1Click:Connect(function()
+r.s=not r.s
+if r.s then
+bk.BackgroundColor3=Color3.fromRGB(0,180,80)
+bm:TweenPosition(UDim2.new(1,-18,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
+else
+bk.BackgroundColor3=Color3.fromRGB(60,60,60)
+bm:TweenPosition(UDim2.new(0,2,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
+end
+end)
+local bo,bp=ah("Icons",4)
+local bq=Instance.new("TextButton")
+bq.Size=UDim2.new(0,40,0,20)
+bq.Position=UDim2.new(1,-50,0.5,-10)
+bq.BackgroundColor3=Color3.fromRGB(0,180,80)
+bq.Text=""
+bq.Parent=bo
+local br=Instance.new("UICorner")
+br.CornerRadius=UDim.new(0,10)
+br.Parent=bq
+local bs=Instance.new("Frame")
+bs.Size=UDim2.new(0,16,0,16)
+bs.Position=UDim2.new(1,-18,0.5,-8)
+bs.BackgroundColor3=Color3.fromRGB(255,255,255)
+bs.BorderSizePixel=0
+bs.Parent=bq
+local bt=Instance.new("UICorner")
+bt.CornerRadius=UDim.new(1,0)
+bt.Parent=bs
+bq.MouseButton1Click:Connect(function()
+r.v=not r.v
+if r.v then
+bq.BackgroundColor3=Color3.fromRGB(0,180,80)
+bs:TweenPosition(UDim2.new(1,-18,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
+else
+bq.BackgroundColor3=Color3.fromRGB(60,60,60)
+bs:TweenPosition(UDim2.new(0,2,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
+end
+end)
+local bu,bv=ah("Far Range",5)
+local bw=Instance.new("TextBox")
+bw.Size=UDim2.new(0,50,0,22)
+bw.Position=UDim2.new(1,-60,0.5,-11)
+bw.BackgroundColor3=Color3.fromRGB(45,45,45)
+bw.Text=tostring(o.p)
+bw.TextColor3=Color3.fromRGB(220,220,220)
+bw.Font=Enum.Font.Gotham
+bw.TextSize=12
+bw.Parent=bu
+local bx=Instance.new("UICorner")
+bx.CornerRadius=UDim.new(0,4)
+bx.Parent=bw
+bw.FocusLost:Connect(function()
+local by=tonumber(bw.Text)
+if by and by>0 then
+o.p=by
+else
+bw.Text=tostring(o.p)
+end
+end)
+local bz,ca=ah("Close Range",6)
+local cb=Instance.new("TextBox")
+cb.Size=UDim2.new(0,50,0,22)
+cb.Position=UDim2.new(1,-60,0.5,-11)
+cb.BackgroundColor3=Color3.fromRGB(45,45,45)
+cb.Text=tostring(o.q)
+cb.TextColor3=Color3.fromRGB(220,220,220)
+cb.Font=Enum.Font.Gotham
+cb.TextSize=12
+cb.Parent=bz
+local cc=Instance.new("UICorner")
+cc.CornerRadius=UDim.new(0,4)
+cc.Parent=cb
+cb.FocusLost:Connect(function()
+local cd=tonumber(cb.Text)
+if cd and cd>=0 then
+o.q=cd
+else
+cb.Text=tostring(o.q)
+end
+end)
+local ce,cf=ah("Idle Chance",7)
+local cg=Instance.new("TextBox")
+cg.Size=UDim2.new(0,50,0,22)
+cg.Position=UDim2.new(1,-60,0.5,-11)
+cg.BackgroundColor3=Color3.fromRGB(45,45,45)
+cg.Text=tostring(n[1])
+cg.TextColor3=Color3.fromRGB(220,220,220)
+cg.Font=Enum.Font.Gotham
+cg.TextSize=12
+cg.Parent=ce
+local ch=Instance.new("UICorner")
+ch.CornerRadius=UDim.new(0,4)
+ch.Parent=cg
+cg.FocusLost:Connect(function()
+local ci=tonumber(cg.Text)
+if ci and ci>=0 and ci<=100 then
+n[1]=ci
+else
+cg.Text=tostring(n[1])
+end
+end)
+local cj,ck=ah("Reply Chance",8)
+local cl=Instance.new("TextBox")
+cl.Size=UDim2.new(0,50,0,22)
+cl.Position=UDim2.new(1,-60,0.5,-11)
+cl.BackgroundColor3=Color3.fromRGB(45,45,45)
+cl.Text=tostring(n[4])
+cl.TextColor3=Color3.fromRGB(220,220,220)
+cl.Font=Enum.Font.Gotham
+cl.TextSize=12
+cl.Parent=cj
+local cm=Instance.new("UICorner")
+cm.CornerRadius=UDim.new(0,4)
+cm.Parent=cl
+cl.FocusLost:Connect(function()
+local cn=tonumber(cl.Text)
+if cn and cn>=0 and cn<=100 then
+n[4]=cn
+else
+cl.Text=tostring(n[4])
+end
+end)
+local co=false
+local cp=nil
+local cq=nil
+aa.InputBegan:Connect(function(cr)
+if cr.UserInputType==Enum.UserInputType.MouseButton1 or cr.UserInputType==Enum.UserInputType.Touch then
+co=true
+cp=Vector2.new(cr.Position.X-x.AbsolutePosition.X,cr.Position.Y-x.AbsolutePosition.Y)
+end
+end)
+c.InputEnded:Connect(function(cr)
+if cr.UserInputType==Enum.UserInputType.MouseButton1 or cr.UserInputType==Enum.UserInputType.Touch then
+co=false
+end
+end)
+c.InputChanged:Connect(function(cr)
+if co and (cr.UserInputType==Enum.UserInputType.MouseMovement or cr.UserInputType==Enum.UserInputType.Touch) then
+local cs=UDim2.new(0,cr.Position.X-cp.X,0,cr.Position.Y-cp.Y)
+x.Position=cs
+end
+end)
+-- close handled above
+local function ct(cu)
+if not cu then return nil end
+local cv=cu:FindFirstChild("Head") or cu:FindFirstChild("UpperTorso") or cu:FindFirstChild("Torso") or cu:FindFirstChild("HumanoidRootPart")
+if not cv then return nil end
+local cw=cu:FindFirstChild("VoiceBillboard")
+if cw then cw:Destroy() end
+local cx=Instance.new("BillboardGui")
+cx.Name="VoiceBillboard"
+cx.Adornee=cv
+cx.Size=UDim2.new(0,50,0,50)
+cx.StudsOffset=Vector3.new(0,2.5,0)
+cx.AlwaysOnTop=false
+cx.MaxDistance=0
+local cy=Instance.new("ImageLabel")
+cy.Size=UDim2.new(1,0,1,0)
+cy.BackgroundTransparency=1
+cy.Image="rbxassetid://16969537160"
+cy.ScaleType=Enum.ScaleType.Fit
+cy.Parent=cx
+cx.Parent=cu
+cx.Enabled=false
+return cx
+end
+local function cz(da,db)
+if not r.v then return end
+if not da or not da.Character then return end
+local dc=da.Character
+local dd=dc:FindFirstChild("VoiceBillboard")
+if not dd then dd=ct(dc) end
+if dd then
+local de=dc:FindFirstChild("Head") or dc:FindFirstChild("UpperTorso") or dc:FindFirstChild("Torso") or dc:FindFirstChild("HumanoidRootPart")
+if de then dd.Adornee=de end
+if l[da] then task.cancel(l[da]) end
+dd.Enabled=true
+l[da]=task.delay(db,function()
+if dd and dd.Parent then dd.Enabled=false end
+l[da]=nil
+end)
+end
+end
+local function df(dg,dh)
+local di=Instance.new("Sound")
+di.SoundId="rbxassetid://"..tostring(dg)
+di.Volume=0
+local dj=Instance.new("Part")
+dj.Size=Vector3.new(0.1,0.1,0.1)
+dj.Transparency=1
+dj.CanCollide=false
+dj.Anchored=true
+dj.Position=Vector3.new(0,0,0)
+dj.Parent=b
+di.Parent=dj
+local dk
+dk=di.Played:Connect(function()
+local dl=di.TimeLength
+if dl>0 then dh(dl) else dh(2.5) end
+di:Stop()
+dj:Destroy()
+dk:Disconnect()
+end)
+task.delay(1,function()
+if di and di.Parent then
+dh(2.5)
+di:Stop()
+dj:Destroy()
+if dk then dk:Disconnect() end
+end
+end)
+di:Play()
+end
+local function dm(dn)
+if dn.Character then ct(dn.Character) end
+dn.CharacterAdded:Connect(function(dp)
+task.wait(0.2)
+ct(dp)
+end)
+end
+local function dq(dr)
+if type(dr)~="table" or #dr==0 then return nil end
+return dr[math.random(1,#dr)]
+end
+local function ds(dt,du)
+local dv=os.clock()
+if not j[dt] then j[dt]={} end
+local dw=m[du] or 3
+local dx=j[dt][du]
+if dx and (dv-dx)<dw then return false end
+return true
+end
+local function dy(dz,ea)
+local eb=os.clock()
+if not j[dz] then j[dz]={} end
+j[dz][ea]=eb
+end
+local function ec(ed,ee)
+if not ed.Character or not ee.Character then return 99999 end
+local ef=ed.Character:FindFirstChild("HumanoidRootPart")
+local eg=ee.Character:FindFirstChild("HumanoidRootPart")
+if not ef or not eg then return 99999 end
+return (eg.Position-ef.Position).Magnitude
+end
+local function eh(ei,ej)
+if ei==f and r.s then return true end
+local ek=ec(f,ei)
+return ek<=ej
+end
+local function el(em)
+if not em or not em.Character then return nil end
+local en=em.Character:FindFirstChild("HumanoidRootPart")
+if en then return en.Position end
+local eo=em.Character:FindFirstChild("UpperTorso") or em.Character:FindFirstChild("Torso")
+if eo then return eo.Position end
+local ep=em.Character:FindFirstChild("Head")
+if ep then return ep.Position end
+return nil
+end
+local function eq(er,es,et)
+if not r.u then return false end
+local eu=el(es)
+if not eu then return false end
+local ev=ec(f,es)
+if et~=4 then
+if es~=f and ev>o.p then return false end
+end
+df(er,function(ew)
+cz(es,ew)
+end)
+local ex=Instance.new("Sound")
+ex.SoundId="rbxassetid://"..tostring(er)
+ex.Volume=r.t
+local ey=Instance.new("Part")
+ey.Size=Vector3.new(0.1,0.1,0.1)
+ey.Transparency=1
+ey.CanCollide=false
+ey.Anchored=true
+ey.Position=eu
+ey.Parent=b
+ex.Parent=ey
+if es~=f then
+if ev<=10 then
+ex.Volume=1.0*r.t
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.RollOffMinDistance=5
+ex.RollOffMaxDistance=100
+elseif ev<=30 then
+ex.Volume=0.8*r.t
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.RollOffMinDistance=10
+ex.RollOffMaxDistance=150
+elseif ev<=60 then
+ex.Volume=0.6*r.t
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.RollOffMinDistance=15
+ex.RollOffMaxDistance=200
+else
+ex.Volume=0.4*r.t
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.RollOffMinDistance=20
+ex.RollOffMaxDistance=300
+end
+else
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.Volume=1.0*r.t
+end
+local ez={fa=ex,fb=ey,fc=es}
+local fd=#h+1
+h[fd]=ez
+ex.Ended:Connect(function()
+if ey and ey.Parent then ey:Destroy() end
+h[fd]=nil
+end)
+task.delay(15,function()
+if h[fd] then
+if ex then ex:Stop() end
+if ey and ey.Parent then ey:Destroy() end
+h[fd]=nil
+end
+end)
+ex:Play()
+return true
+end
+local function fe()
+for _,ff in pairs(h) do
+if ff and ff.fc and ff.fb then
+if not ff.fc.Character then
+if ff.fa then ff.fa:Stop() end
+if ff.fb.Parent then ff.fb:Destroy() end
+else
+local fg=el(ff.fc)
+if fg and ff.fb.Parent then ff.fb.Position=fg end
+end
+end
+end
+end
+coroutine.wrap(function()
+while true do
+fe()
+task.wait(0.05)
+end
+end)()
+local function fh(fi)
+if not fi or fi==f then return end
+if not eh(fi,o.q) then return end
+local fj={}
+for _,fk in ipairs(a:GetPlayers()) do
+if fk~=fi and fk~=f then
+if eh(fk,o.q) and ds(fk,4) then
+table.insert(fj,fk)
+end
+end
+end
+for _,fl in ipairs(fj) do
+if math.random(1,100)<=n[4] then
+local fm=math.random(1,math.max(1,#fj))*0.15
+task.delay(fm,function()
+if ds(fl,4) then
+local fn=dq(g[4])
+if fn then
+eq(fn,fl,4)
+dy(fl,4)
+end
+end
+end)
+end
+end
+end
+local function fo(fp)
+i[fp]={fq=100,fr=100}
+dm(fp)
+local function fs(ft)
+task.wait(0.5)
+local fu=ft:FindFirstChild("Humanoid")
+if not fu then return end
+i[fp].fq=fu.Health
+i[fp].fr=fu.Health
+local function fv(fw)
+local fx=i[fp].fr
+if fw<fx then
+if fw>0 then
+if ds(fp,2) then
+local fy=dq(g[2])
+if fy then
+eq(fy,fp,2)
+dy(fp,2)
+task.wait(0.2)
+fh(fp)
+end
+end
+else
+if ds(fp,3) then
+local fz=dq(g[3])
+if fz then
+eq(fz,fp,3)
+dy(fp,3)
+task.wait(0.3)
+fh(fp)
+end
+end
+end
+end
+i[fp].fr=fw
+i[fp].fq=fw
+end
+fu.HealthChanged:Connect(fv)
+fu.Died:Connect(function()
+if ds(fp,3) then
+local ga=dq(g[3])
+if ga then
+eq(ga,fp,3)
+dy(fp,3)
+task.wait(0.3)
+fh(fp)
+end
+end
+i[fp].fq=0
+end)
+end
+if fp.Character then fs(fp.Character) end
+fp.CharacterAdded:Connect(fs)
+coroutine.wrap(function()
+while fp.Parent do
+task.wait(math.random(20,45))
+if math.random(1,100)<=n[1] then
+if ds(fp,1) then
+local gb=dq(g[1])
+if gb then
+eq(gb,fp,1)
+dy(fp,1)
+task.wait(0.3)
+fh(fp)
+end
+end
+end
+end
+end)()
+end
+for _,gc in ipairs(a:GetPlayers()) do
+task.spawn(function() fo(gc) end)
+end
+a.PlayerAdded:Connect(function(gd)
+task.spawn(function() fo(gd) end)
+end)
+a.PlayerRemoving:Connect(function(ge)
+i[ge]=nil
+j[ge]=nil
+if l[ge] then task.cancel(l[ge]) l[ge]=nil end
+if ge.Character then
+local gf=ge.Character:FindFirstChild("VoiceBillboard")
+if gf then gf:Destroy() end
+end
+for gg,gh in pairs(h) do
+if gh and gh.fc==ge then
+if gh.fa then gh.fa:Stop() end
+if gh.fb and gh.fb.Parent then gh.fb:Destroy() end
+h[gg]=nil
+end
+end
+end)
+task.wait(math.random(3,8))
+local gi=dq(g[1])
+if gi then eq(gi,f,1) end
+local gj={}
+gj.gk=function(gl,gm)
+local gn=gm and a:FindFirstChild(gm) or f
+if not gn then return false end
+local go
+if gl==2 then go=dq(g[2])
+elseif gl==3 then go=dq(g[3])
+elseif gl==4 then go=dq(g[4])
+else go=dq(g[1]) end
+if go then return eq(go,gn,gl) end
+return false
+end
+gj.gp=function(gq)
+if type(gq)=="number" and gq>0 then o.p=gq end
+end
+gj.gr=function(gs)
+if type(gs)=="number" and gs>=0 then o.q=gs end
+end
+gj.gt=function(gu)
+if type(gu)=="number" and gu>0 then r.t=gu end
+end
+gj.gv=function()
+for _,gw in pairs(h) do
+if gw and gw.fa then gw.fa:Stop() end
+if gw and gw.fb and gw.fb.Parent then gw.fb:Destroy() end
+end
+h={}
+end
+return gj
+
+local gx=Instance.new("Frame")
+gx.Size=UDim2.new(1,0,0,32)
+gx.BackgroundColor3=Color3.fromRGB(35,35,35)
+gx.BorderSizePixel=0
+gx.Parent=af
+local gy=Instance.new("UICorner")
+gy.CornerRadius=UDim.new(0,6)
+gy.Parent=gx
+local gz=Instance.new("TextLabel")
+gz.Size=UDim2.new(0.6,0,1,0)
+gz.Position=UDim2.new(0,10,0,0)
+gz.BackgroundTransparency=1
+gz.Text="Min Delay"
+gz.TextColor3=Color3.fromRGB(220,220,220)
+gz.Font=Enum.Font.Gotham
+gz.TextSize=13
+gz.TextXAlignment=Enum.TextXAlignment.Left
+gz.Parent=gx
+local ha=Instance.new("TextBox")
+ha.Size=UDim2.new(0,50,0,22)
+ha.Position=UDim2.new(1,-60,0.5,-11)
+ha.BackgroundColor3=Color3.fromRGB(45,45,45)
+ha.Text="20"
+ha.TextColor3=Color3.fromRGB(220,220,220)
+ha.Font=Enum.Font.Gotham
+ha.TextSize=12
+ha.Parent=gx
+local hb=Instance.new("UICorner")
+hb.CornerRadius=UDim.new(0,4)
+hb.Parent=ha
+local hc=20
+ha.FocusLost:Connect(function()
+local hd=tonumber(ha.Text)
+if hd and hd>0 then hc=hd else ha.Text=tostring(hc) end
+end)
+
+local he=Instance.new("Frame")
+he.Size=UDim2.new(1,0,0,32)
+he.BackgroundColor3=Color3.fromRGB(35,35,35)
+he.BorderSizePixel=0
+he.Parent=af
+local hf=Instance.new("UICorner")
+hf.CornerRadius=UDim.new(0,6)
+hf.Parent=he
+local hg=Instance.new("TextLabel")
+hg.Size=UDim2.new(0.6,0,1,0)
+hg.Position=UDim2.new(0,10,0,0)
+hg.BackgroundTransparency=1
+hg.Text="Max Delay"
+hg.TextColor3=Color3.fromRGB(220,220,220)
+hg.Font=Enum.Font.Gotham
+hg.TextSize=13
+hg.TextXAlignment=Enum.TextXAlignment.Left
+hg.Parent=he
+local hh=Instance.new("TextBox")
+hh.Size=UDim2.new(0,50,0,22)
+hh.Position=UDim2.new(1,-60,0.5,-11)
+hh.BackgroundColor3=Color3.fromRGB(45,45,45)
+hh.Text="45"
+hh.TextColor3=Color3.fromRGB(220,220,220)
+hh.Font=Enum.Font.Gotham
+hh.TextSize=12
+hh.Parent=he
+local hi=Instance.new("UICorner")
+hi.CornerRadius=UDim.new(0,4)
+hi.Parent=hh
+local hj=45
+hh.FocusLost:Connect(function()
+local hk=tonumber(hh.Text)
+if hk and hk>hc then hj=hk else hh.Text=tostring(hj) end
+end)
+
+local hl=Instance.new("Frame")
+hl.Size=UDim2.new(1,0,0,32)
+hl.BackgroundColor3=Color3.fromRGB(35,35,35)
+hl.BorderSizePixel=0
+hl.Parent=af
+local hm=Instance.new("UICorner")
+hm.CornerRadius=UDim.new(0,6)
+hm.Parent=hl
+local hn=Instance.new("TextLabel")
+hn.Size=UDim2.new(0.6,0,1,0)
+hn.Position=UDim2.new(0,10,0,0)
+hn.BackgroundTransparency=1
+hn.Text="Hurt CD"
+hn.TextColor3=Color3.fromRGB(220,220,220)
+hn.Font=Enum.Font.Gotham
+hn.TextSize=13
+hn.TextXAlignment=Enum.TextXAlignment.Left
+hn.Parent=hl
+local ho=Instance.new("TextBox")
+ho.Size=UDim2.new(0,50,0,22)
+ho.Position=UDim2.new(1,-60,0.5,-11)
+ho.BackgroundColor3=Color3.fromRGB(45,45,45)
+ho.Text=tostring(m[2])
+ho.TextColor3=Color3.fromRGB(220,220,220)
+ho.Font=Enum.Font.Gotham
+ho.TextSize=12
+ho.Parent=hl
+local hp=Instance.new("UICorner")
+hp.CornerRadius=UDim.new(0,4)
+hp.Parent=ho
+ho.FocusLost:Connect(function()
+local hq=tonumber(ho.Text)
+if hq and hq>0 then m[2]=hq else ho.Text=tostring(m[2]) end
+end)
+
+local hr=Instance.new("Frame")
+hr.Size=UDim2.new(1,0,0,32)
+hr.BackgroundColor3=Color3.fromRGB(35,35,35)
+hr.BorderSizePixel=0
+hr.Parent=af
+local hs=Instance.new("UICorner")
+hs.CornerRadius=UDim.new(0,6)
+hs.Parent=hr
+local ht=Instance.new("TextLabel")
+ht.Size=UDim2.new(0.6,0,1,0)
+ht.Position=UDim2.new(0,10,0,0)
+ht.BackgroundTransparency=1
+ht.Text="Death CD"
+ht.TextColor3=Color3.fromRGB(220,220,220)
+ht.Font=Enum.Font.Gotham
+ht.TextSize=13
+ht.TextXAlignment=Enum.TextXAlignment.Left
+ht.Parent=hr
+local hu=Instance.new("TextBox")
+hu.Size=UDim2.new(0,50,0,22)
+hu.Position=UDim2.new(1,-60,0.5,-11)
+hu.BackgroundColor3=Color3.fromRGB(45,45,45)
+hu.Text=tostring(m[3])
+hu.TextColor3=Color3.fromRGB(220,220,220)
+hu.Font=Enum.Font.Gotham
+hu.TextSize=12
+hu.Parent=hr
+local hv=Instance.new("UICorner")
+hv.CornerRadius=UDim.new(0,4)
+hv.Parent=hu
+hu.FocusLost:Connect(function()
+local hw=tonumber(hu.Text)
+if hw and hw>0 then m[3]=hw else hu.Text=tostring(m[3]) end
+end)
+
+local hx=Instance.new("Frame")
+hx.Size=UDim2.new(1,0,0,32)
+hx.BackgroundColor3=Color3.fromRGB(35,35,35)
+hx.BorderSizePixel=0
+hx.Parent=af
+local hy=Instance.new("UICorner")
+hy.CornerRadius=UDim.new(0,6)
+hy.Parent=hx
+local hz=Instance.new("TextLabel")
+hz.Size=UDim2.new(0.6,0,1,0)
+hz.Position=UDim2.new(0,10,0,0)
+hz.BackgroundTransparency=1
+hz.Text="Idle CD"
+hz.TextColor3=Color3.fromRGB(220,220,220)
+hz.Font=Enum.Font.Gotham
+hz.TextSize=13
+hz.TextXAlignment=Enum.TextXAlignment.Left
+hz.Parent=hx
+local ia=Instance.new("TextBox")
+ia.Size=UDim2.new(0,50,0,22)
+ia.Position=UDim2.new(1,-60,0.5,-11)
+ia.BackgroundColor3=Color3.fromRGB(45,45,45)
+ia.Text=tostring(m[1])
+ia.TextColor3=Color3.fromRGB(220,220,220)
+ia.Font=Enum.Font.Gotham
+ia.TextSize=12
+ia.Parent=hx
+local ib=Instance.new("UICorner")
+ib.CornerRadius=UDim.new(0,4)
+ib.Parent=ia
+ia.FocusLost:Connect(function()
+local ic=tonumber(ia.Text)
+if ic and ic>0 then m[1]=ic else ia.Text=tostring(m[1]) end
+end)
+
+local id=Instance.new("Frame")
+id.Size=UDim2.new(1,0,0,32)
+id.BackgroundColor3=Color3.fromRGB(35,35,35)
+id.BorderSizePixel=0
+id.Parent=af
+local ie=Instance.new("UICorner")
+ie.CornerRadius=UDim.new(0,6)
+ie.Parent=id
+local ig=Instance.new("TextLabel")
+ig.Size=UDim2.new(0.6,0,1,0)
+ig.Position=UDim2.new(0,10,0,0)
+ig.BackgroundTransparency=1
+ig.Text="Reply CD"
+ig.TextColor3=Color3.fromRGB(220,220,220)
+ig.Font=Enum.Font.Gotham
+ig.TextSize=13
+ig.TextXAlignment=Enum.TextXAlignment.Left
+ig.Parent=id
+local ih=Instance.new("TextBox")
+ih.Size=UDim2.new(0,50,0,22)
+ih.Position=UDim2.new(1,-60,0.5,-11)
+ih.BackgroundColor3=Color3.fromRGB(45,45,45)
+ih.Text=tostring(m[4])
+ih.TextColor3=Color3.fromRGB(220,220,220)
+ih.Font=Enum.Font.Gotham
+ih.TextSize=12
+ih.Parent=id
+local ii=Instance.new("UICorner")
+ii.CornerRadius=UDim.new(0,4)
+ii.Parent=ih
+ih.FocusLost:Connect(function()
+local ij=tonumber(ih.Text)
+if ij and ij>0 then m[4]=ij else ih.Text=tostring(m[4]) end
+end)
+
+af.CanvasSize=UDim2.new(0,0,0,420)
+
+local ik=function()
+for il=1,50 do
+local im=math.random()
+local io=math.sin(im)*math.cos(im)
+end
+end
+local ip=function(iq)
+if type(iq)~="number" then return 0 end
+return iq*iq+iq
+end
+local ir=function(is,it)
+local iu={}
+for iv=1,it do
+table.insert(iu,is+iv)
+end
+return iu
+end
+local iw=function()
+local ix=0
+for iy=1,100 do
+ix=ix+math.random()
+end
+return ix
+end
+local iz=function(ja)
+if not ja then return false end
+return true
+end
+local jb=function(jc,jd)
+return jc and jd
+end
+local je=function()
+local jf={}
+for jg=1,20 do
+jf[jg]=math.random(1,999)
+end
+return jf
+end
+local jh=function(ji)
+local jj=0
+for jk,jl in pairs(ji) do
+jj=jj+1
+end
+return jj
+end
+local jm=function(jn)
+if type(jn)=="table" then
+return #jn>0
+end
+return false
+end
+local jo=function()
+task.wait(0.01)
+end
+local jp=function(jq)
+return jq
+end
+local jr=function(js,jt)
+return js or jt
+end
+local ju=function()
+local jv=os.clock()
+return jv
+end
+local jw=function(jx)
+return tostring(jx)
+end
+local jy=function(jz)
+return tonumber(jz) or 0
+end
+local ka=function()
+local kb=Vector3.new(0,0,0)
+return kb
+end
+local kc=function(kd)
+return kd*2
+end
+local ke=function(kf,kg)
+return kf+kg
+end
+local kh=function()
+local ki=Color3.new(1,1,1)
+return ki
+end
+local kj=function(kk)
+return UDim2.new(0,kk,0,kk)
+end
+local kl=function()
+local km=Instance.new("Folder")
+km.Name="tmp"
+return km
+end
+local kn=function(ko)
+if ko then ko:Destroy() end
+end
+local kp=function()
+local kq=math.random(1,10)
+return kq
+end
+local kr=function(ks)
+return ks%2==0
+end
+local kt=function()
+local ku={}
+for kv=1,5 do
+ku[kv]={kw=math.random(),kx=math.random()}
+end
+return ku
+end
+local ky=function(kz)
+local la=0
+for lb=1,#kz do
+la=la+kz[lb]
+end
+return la
+end
+local lc=function()
+return true
+end
+local ld=function()
+return false
+end
+local le=function(lf)
+return not lf
+end
+local lg=function(lh,li)
+if lh then return li end
+return nil
+end
+local lj=function()
+local lk=0
+while lk<10 do
+lk=lk+1
+end
+return lk
+end
+local ll=function(lm)
+local ln=type(lm)
+return ln
+end
+local lo=function()
+local lp=pcall(function() end)
+return lp
+end
+local lq=function(lr)
+return lr
+end
+local ls=function()
+local lt=coroutine.running()
+return lt
+end
+local lu=function(lv)
+task.spawn(lv)
+end
+local lw=function()
+local lx=e.Heartbeat:Wait()
+return lx
+end
+local ly=function(lz)
+return lz and true or false
+end
+local ma=function()
+local mb=f.Name
+return mb
+end
+local mc=function(md)
+return a:FindFirstChild(md)
+end
+local me=function()
+local mf=a:GetPlayers()
+return #mf
+end
+local mg=function(mh)
+if mh.Character then return true end
+return false
+end
+local mi=function(mj)
+local mk=mj:FindFirstChild("Humanoid")
+return mk
+end
+local ml=function(mm)
+local mn=mm:FindFirstChild("HumanoidRootPart")
+return mn
+end
+local mo=function(mp)
+local mq=mp:FindFirstChild("Head")
+return mq
+end
+local mr=function()
+local ms=b.CurrentCamera
+return ms
+end
+local mt=function(mu)
+return mu.AbsoluteSize
+end
+local mv=function(mw)
+return mw.AbsolutePosition
+end
+local mx=function()
+local my=c:GetMouseLocation()
+return my
+end
+local mz=function(na)
+return na.UserInputType
+end
+local nb=function()
+local nc=d:Create(x,TweenInfo.new(0.2),{BackgroundTransparency=0.1})
+return nc
+end
+local nd=function(ne)
+ne:Play()
+end
+local nf=function()
+local ng=Instance.new("UIListLayout")
+return ng
+end
+local nh=function(ni)
+ni.Padding=UDim.new(0,4)
+end
+local nj=function()
+local nk=Instance.new("UIPadding")
+return nk
+end
+local nl=function(nm)
+nm.PaddingTop=UDim.new(0,4)
+end
+local nn=function()
+local no=Instance.new("UIStroke")
+no.Thickness=1
+return no
+end
+local np=function(nq)
+nq.Color=Color3.fromRGB(40,40,40)
+end
+local nr=function()
+local ns=Instance.new("UIGradient")
+return ns
+end
+local nt=function(nu)
+nu.Color=ColorSequence.new(Color3.new(1,1,1))
+end
+local nv=function()
+local nw=0
+for nx=1,30 do
+nw=nw+math.sqrt(nx)
+end
+return nw
+end
+local ny=function(nz)
+local oa=string.rep("a",nz)
+return #oa
+end
+local ob=function()
+local oc={1,2,3,4,5,6,7,8,9,10}
+table.sort(oc)
+return oc
+end
+local od=function(oe)
+table.insert(oe,math.random())
+end
+local of=function(og)
+table.remove(og,1)
+end
+local oh=function()
+local oi=pairs
+return oi
+end
+local oj=function()
+local ok=ipairs
+return ok
+end
+local ol=function(om)
+local on=next(om)
+return on
+end
+local oo=function()
+local op=select
+return op
+end
+local oq=function(or_)
+return or_
+end
+local os_=function()
+local ot=unpack
+return ot
+end
+local ou=function(ov)
+local ow=type(ov)=="function"
+return ow
+end
+local ox=function()
+local oy=getfenv
+return oy
+end
+local oz=function()
+local pa=setfenv
+return pa
+end
+local pb=function(pc)
+return pc
+end
+local pd=function()
+local pe=math.floor(math.random()*100)
+return pe
+end
+local pf=function(pg)
+return math.ceil(pg)
+end
+local ph=function(pi)
+return math.abs(pi)
+end
+local pj=function(pk)
+return math.max(pk,0)
+end
+local pl=function(pm)
+return math.min(pm,100)
+end
+local pn=function()
+local po=math.pi
+return po
+end
+local pp=function(pq)
+return math.rad(pq)
+end
+local pr=function(ps)
+return math.deg(ps)
+end
+local pt=function()
+local pu=Vector2.new(0,0)
+return pu
+end
+local pv=function(pw)
+return pw.X
+end
+local px=function(py)
+return py.Y
+end
+local pz=function()
+local qa=CFrame.new()
+return qa
+end
+local qb=function(qc)
+return qc.Position
+end
+local qd=function(qe)
+return qe.LookVector
+end
+local qf=function()
+local qg=Ray.new(Vector3.new(),Vector3.new(0,1,0))
+return qg
+end
+local qh=function(qi)
+return qi.Origin
+end
+local qj=function(qk)
+return qk.Direction
+end
+local ql=function()
+local qm=Region3.new(Vector3.new(),Vector3.new(1,1,1))
+return qm
+end
+local qn=function(qo)
+return qo.CFrame
+end
+local qp=function(qq)
+return qq.Size
+end
+local qr=function()
+local qs=NumberSequence.new(1)
+return qs
+end
+local qt=function(qu)
+return qu.Keypoints
+end
+local qv=function()
+local qw=ColorSequence.new(Color3.new())
+return qw
+end
+local qx=function(qy)
+return qy.Keypoints
+end
+local qz=function()
+local ra=NumberRange.new(0,1)
+return ra
+end
+local rb=function(rc)
+return rc.Min
+end
+local rd=function(re)
+return re.Max
+end
+local rf=function()
+local rg=Rect.new(0,0,1,1)
+return rg
+end
+local rh=function(ri)
+return ri.Width
+end
+local rj=function(rk)
+return rk.Height
+end
+local rl=function()
+local rm=UDim.new(0,0)
+return rm
+end
+local rn=function(ro)
+return ro.Scale
+end
+local rp=function(rq)
+return rq.Offset
+end
+local rr=function()
+local rs=UDim2.new()
+return rs
+end
+local rt=function(ru)
+return ru.X
+end
+local rv=function(rw)
+return rw.Y
+end
+local rx=function()
+local ry=Enum.Font.Gotham
+return ry
+end
+local rz=function()
+local sa=Enum.EasingStyle.Quad
+return sa
+end
+local sb=function()
+local sc=Enum.EasingDirection.Out
+return sc
+end
+local sd=function()
+local se=Enum.RollOffMode.Linear
+return se
+end
+local sf=function()
+local sg=Enum.ScaleType.Fit
+return sg
+end
+local sh=function()
+local si=Enum.ZIndexBehavior.Sibling
+return si
+end
+local sj=function()
+local sk=Enum.UserInputType.MouseButton1
+return sk
+end
+local sl=function()
+local sm=Enum.UserInputType.Touch
+return sm
+end
+local sn=function()
+local so=Enum.UserInputType.MouseMovement
+return so
+end
+local sp=function()
+local sq=tick()
+return sq
+end
+local sr=function()
+local ss=time()
+return ss
+end
+local st=function()
+local su=os.time()
+return su
+end
+local sv=function()
+local sw=workspace.DistributedGameTime
+return sw
+end
+local sx=function()
+return "ok"
+end
+local sy=function()
+return 1
+end
+local sz=function()
+return 0
+end
+local ta=function()
+return nil
+end
+local tb=function()
+return {}
+end
+local tc=function()
+return function() end
+end
+local td=function()
+local te=Instance.new("Part")
+te.Anchored=true
+te.Transparency=1
+te.Size=Vector3.new(1,1,1)
+te.Parent=b
+task.delay(0.1,function() te:Destroy() end)
+end
+local tf=function()
+local tg=Instance.new("Sound")
+tg.Volume=0
+tg.Parent=b
+task.delay(0.1,function() tg:Destroy() end)
+end
+local th=function()
+local ti=Instance.new("BillboardGui")
+ti.Size=UDim2.new(0,10,0,10)
+ti.Parent=w
+task.delay(0.1,function() ti:Destroy() end)
+end
+local tj=function()
+local tk=Instance.new("ImageLabel")
+tk.BackgroundTransparency=1
+tk.Parent=w
+task.delay(0.1,function() tk:Destroy() end)
+end
+local tl=function()
+local tm=Instance.new("TextLabel")
+tm.BackgroundTransparency=1
+tm.Text=""
+tm.Parent=w
+task.delay(0.1,function() tm:Destroy() end)
+end
+local tn=function()
+local to=Instance.new("TextButton")
+to.BackgroundTransparency=1
+to.Text=""
+to.Parent=w
+task.delay(0.1,function() to:Destroy() end)
+end
+local tp=function()
+local tq=Instance.new("Frame")
+tq.BackgroundTransparency=1
+tq.Parent=w
+task.delay(0.1,function() tq:Destroy() end)
+end
+local tr=function()
+local ts=Instance.new("ScrollingFrame")
+ts.BackgroundTransparency=1
+ts.Parent=w
+task.delay(0.1,function() ts:Destroy() end)
+end
+local tt=function()
+local tu=Instance.new("UICorner")
+return tu
+end
+local tv=function()
+local tw=Instance.new("UIStroke")
+return tw
+end
+local tx=function()
+local ty=Instance.new("UIListLayout")
+return ty
+end
+local tz=function()
+local ua=Instance.new("UIPadding")
+return ua
+end
+local ub=function()
+local uc=Instance.new("UIGradient")
+return uc
+end
+local ud=function()
+local ue=Instance.new("UIAspectRatioConstraint")
+return ue
+end
+local uf=function()
+local ug=Instance.new("UISizeConstraint")
+return ug
+end
+local uh=function()
+local ui=Instance.new("UITextSizeConstraint")
+return ui
+end
+local uj=function()
+local uk=Instance.new("UITableLayout")
+return uk
+end
+local ul=function()
+local um=Instance.new("UIPageLayout")
+return um
+end
+local un=function()
+local uo=Instance.new("UIGridLayout")
+return uo
+end
+local up=function()
+local uq=Instance.new("UIScale")
+return uq
+end
+local ur=function()
+local us=Instance.new("Folder")
+return us
+end
+local ut=function()
+local uu=Instance.new("Configuration")
+return uu
+end
+local uv=function()
+local uw=Instance.new("BindableEvent")
+return uw
+end
+local ux=function()
+local uy=Instance.new("BindableFunction")
+return uy
+end
+local uz=function()
+local va=Instance.new("RemoteEvent")
+return va
+end
+local vb=function()
+local vc=Instance.new("RemoteFunction")
+return vc
+end
+local vd=function()
+local ve=Instance.new("ModuleScript")
+return ve
+end
+local vf=function()
+local vg=Instance.new("LocalScript")
+return vg
+end
+local vh=function()
+local vi=Instance.new("Script")
+return vi
+end
+local vj=function()
+local vk=Instance.new("StringValue")
+return vk
+end
+local vl=function()
+local vm=Instance.new("NumberValue")
+return vm
+end
+local vn=function()
+local vo=Instance.new("BoolValue")
+return vo
+end
+local vp=function()
+local vq=Instance.new("ObjectValue")
+return vq
+end
+local vr=function()
+local vs=Instance.new("IntValue")
+return vs
+end
+local vt=function()
+local vu=Instance.new("CFrameValue")
+return vu
+end
+local vv=function()
+local vw=Instance.new("Vector3Value")
+return vw
+end
+local vx=function()
+local vy=Instance.new("Color3Value")
+return vy
+end
+local vz=function()
+local wa=Instance.new("BrickColorValue")
+return wa
+end
+local wb=function()
+local wc=Instance.new("RayValue")
+return wc
+end
