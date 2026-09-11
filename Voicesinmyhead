@@ -108,7 +108,8 @@ af.BackgroundTransparency=1
 af.BorderSizePixel=0
 af.ScrollBarThickness=4
 af.ScrollBarImageColor3=Color3.fromRGB(60,60,60)
-af.CanvasSize=UDim2.new(0,0,0,420)
+af.CanvasSize=UDim2.new(0,0,0,0)
+af.AutomaticCanvasSize=Enum.AutomaticSize.Y
 af.Visible=false
 af.Parent=x
 local ag=Instance.new("UIListLayout")
@@ -434,7 +435,6 @@ local cs=UDim2.new(0,cr.Position.X-cp.X,0,cr.Position.Y-cp.Y)
 x.Position=cs
 end
 end)
--- close handled above
 local function ct(cu)
 if not cu then return nil end
 local cv=cu:FindFirstChild("Head") or cu:FindFirstChild("UpperTorso") or cu:FindFirstChild("Torso") or cu:FindFirstChild("HumanoidRootPart")
@@ -553,6 +553,7 @@ return nil
 end
 local function eq(er,es,et)
 if not r.u then return false end
+if es==f and not r.s then return false end
 local eu=el(es)
 if not eu then return false end
 local ev=ec(f,es)
@@ -661,6 +662,8 @@ end)
 end
 end
 end
+local hc=20
+local hj=45
 local function fo(fp)
 i[fp]={fq=100,fr=100}
 dm(fp)
@@ -716,7 +719,7 @@ if fp.Character then fs(fp.Character) end
 fp.CharacterAdded:Connect(fs)
 coroutine.wrap(function()
 while fp.Parent do
-task.wait(math.random(20,45))
+task.wait(math.random(hc,hj))
 if math.random(1,100)<=n[1] then
 if ds(fp,1) then
 local gb=dq(g[1])
@@ -784,7 +787,6 @@ if gw and gw.fb and gw.fb.Parent then gw.fb:Destroy() end
 end
 h={}
 end
-return gj
 
 local gx=Instance.new("Frame")
 gx.Size=UDim2.new(1,0,0,32)
@@ -816,7 +818,6 @@ ha.Parent=gx
 local hb=Instance.new("UICorner")
 hb.CornerRadius=UDim.new(0,4)
 hb.Parent=ha
-local hc=20
 ha.FocusLost:Connect(function()
 local hd=tonumber(ha.Text)
 if hd and hd>0 then hc=hd else ha.Text=tostring(hc) end
@@ -852,7 +853,6 @@ hh.Parent=he
 local hi=Instance.new("UICorner")
 hi.CornerRadius=UDim.new(0,4)
 hi.Parent=hh
-local hj=45
 hh.FocusLost:Connect(function()
 local hk=tonumber(hh.Text)
 if hk and hk>hc then hj=hk else hh.Text=tostring(hj) end
@@ -997,8 +997,6 @@ ih.FocusLost:Connect(function()
 local ij=tonumber(ih.Text)
 if ij and ij>0 then m[4]=ij else ih.Text=tostring(m[4]) end
 end)
-
-af.CanvasSize=UDim2.new(0,0,0,420)
 
 local ik=function()
 for il=1,50 do
@@ -1667,3 +1665,5 @@ local wb=function()
 local wc=Instance.new("RayValue")
 return wc
 end
+
+return gj
