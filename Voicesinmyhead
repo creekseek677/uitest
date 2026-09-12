@@ -1,539 +1,1261 @@
--- error-protected wrapper
-local ok, err = pcall(function()
-local a=game:GetService("Players") local b=game:GetService("Workspace")
-local c=game:GetService("UserInputService") local d=game:GetService("TweenService") local e=game:GetService("RunService")
-local f=a.LocalPlayer local g={
+local a=game:GetService("Players")
+local b=game:GetService("Workspace")
+local c=game:GetService("UserInputService")
+local d=game:GetService("TweenService")
+local e=game:GetService("RunService")
+local f=a.LocalPlayer
+local g={
 [1]={123044303994375,103660746061428,75637648039086,5030402048,86837306997861,96281103613406,137581198061053,97852528632885,5161592186,99927181905461,94960112472516,4541552530,138155938349025,2164397857,77680306214562,125454319097196,139785351379081,119866685732193,6364600789,4541601937,7226610682,135074773934459,114000468625580,119669644558502,4541496591,77927942306834,7436555614,100053426740689,73944013855086,111134077549844,8266908202,88558209523087,77767534864229,100718900484328,86489612055236,140177918664226,89947470135373,138023320028337,7518827825,107811801422160,111185293097461,74224041251020,133871445663152,107462093686133,89772394068591,82706203808655,83348169518954,90997053045711,78096726451207,136349473943981,134229432519727,140644686986145,75536411243388,89089261050741,86394425280837,101942393815597,84917813742365,109523676339672,100785284742630,120738866199180,127682283769953,105656929862560,82461785419863,121655250859854,78903997608315,103174106803434,134097384411270,97509020628298,7518835656,134937624513424,137363192765480,125746048332941,127380548842621,128536736641243,81988139281220,111813337356720,134124154776208,130400014876558,115350222916022,128469629950144,87453017467147,84881583814092,83719896470978,98688401406115,83698740666045,113048198226469,114088246078285,100340156582123,101816267586417,85365894642945,120224963718630,127781343273877,98495875536738,107819330848898,134653783511274,77285387413057,91895029907428,5359431243,72414792787245,92279199079271,84632739448429,95831042912410,140644831633779,92037028831221,115516809640212,132686709305301,90151067916460,120987979668202,117245798021315,95376108276083,89678520529165,5717121527,104325116068612,108706289463478,74027948052683,117333274135220,7078730266,122586997527353,80383471346647,13502750239,128301429841017,120007408401235,132707208976018,129099343557564,140201753911558,90354737662165,136514507117808,113604801712666,111583187408971,104392572604782,84931461699163,135940592018966,89648856262009,123077176424112,138864598498483,111677597842516,80301627508319,92888520831475,135455822510958,4269343309,86771275626153,18960307174,103313929612435,84512277901997,136515209354869,95072412283035,75099750017962,7102441747,74446091290636,93857490751151,140505698910456,73151937286069,117689483112264,112857810922097,79332954343290,103182202071549,121809529868087,8830417389,124288658658869,122060876723823,97541058657879,109603358638247,102125069984975,134283353678806,131140990880922,117236105724823,116614571801498,137884010024670,9118907001,101565269491832,85843840195489,132711750902093,124866950774339,102560602322001,110771398988100,86036858040298,138822171314257,91029029275852,121468353358396,116195744920617,136532027751110,6400547643,70979345372029,75005076882649,89636569052293,138442043819459,130953728323065,76700051050162,117593323315250,140037223576002,113027067329756,77370447654653,118214676544833,140384727798439,134549360210972,132485278597776,125169624790105,116106179787633,104991057651871,104221287036914,7173976933,7169485926,108458794103088,128217175445044,98065299568261,72692630081496,88751021428882,123556631405308,135909181856526,131475073519274,130487946468477,129672214850442,127228515866792,126683068752302,119467299888806,117325264323989,106044493989182,95611319293585,94147072524450,93787950025550,85099269013874,85510602512034,75130373593960,73284353028765,9117803265,9117802186,9113461595,9066422312,8751354974,7662156159,7662145278,7662129214,7662116657,6984479449,6984423651,4980436517,1253565304,1253558886,138535601469792,9125773982,125853087610330,104347159363539,96719824081387,79210276414151,3892151882,7105187524,104226481380868,86926175961875,99248100907398,111373247510728,137812336859925,72875981721445,117992684269470,82241925071719,122771968483267,121521552258987,126296283190978,129503172509025,92338441194085,81588784147895,132603075666016,116245229309693,106296775532751,72285865814647,75690425331627,109205203550230,83321762959042,5256600840,6860725411,131349769139285,73809996990793,8742003414,100670471448441,78311278956073,107741584211234,108201876079710,116316828209167,92058045131140,73550334887374,93581420805853,71652979013382,9117800464,98774782275896,81994115419537,109969981277507,105113656480314,72839390391168,7159310972,71198952735275,97866017637646,118926509382938,90626684549819,75313342766037,139441486682031,75036337376608,9117801185,123979217071359,119665126324216,116810636115696,110986192072697,131073013941233,124663801420429,131435365612251,113214756266889,73099897790517,126755337402751,6984514157,107667766078851,95500081888104,71074580551637,85777622219760,87587071290310,131315418528721,85626179321332,133895736596002,115568873580262,76744769738457,115232492430878},
 [2]={77503682299807,88506904433512,135651685303108,5887507874,89738815265557,103552223389683,183345423,5291641717,17712048342,114739399228816,124085568487204,70545394897779,81473153453639,124102449219812,117304386224395,134631462190753,133212103539028,123572846158655,88631209504508,86766344642064,75199053916603,116565600001923,87792884329852,137378206255510},
 [3]={129187403689496,126619913329099,4980304037,135881090369317,78523844245618,9058909979,97480286525719,92241766174214,104461187583348,1080610583,565424701,112398446636056,3604140002,1106906657,571884894,1080625252,96271190588167,17638604308,18900008907,81602283697675,90700989840687,75201111270943,100494222092218,138653824465794,116569075451653,129016542446095,107081526006526,7745218668,120684568421123,112618609792970,76981902327303,89566790255807},
 [4]={7393525156,679847985,1000204726,73880845386129,126986741585934,7085409495,131558826975154,81218800788892,8974931344,95457517353904,97586771453333,116978677797205,114834244992089,111204965045440,116890211384648,130963551021153,100229277884126,139053006613829,105808563439062,88558077689131,110475244339697,5685399745,5223746841,103139690245935,138796141112694,128213715101985,93398055562825,111507391511100,105720610295075,128203559567945,17571063959,78876396429378,130723519809726}
-} local h={} local i={} local j={} local k={} local l={} local jsChance
-= 0 local m={ [1]=3, [2]=10, [3]=10, [4]=1.5 } local n={ [1]=50, [4]=70
-} local o={ p=200, q=50 } local r={ s=true, t=1.0, u=true, v=true }
+}
+local h={}
+local i={}
+local j={}
+local k={}
+local l={}
+local m={
+[1]=3,
+[2]=10,
+[3]=10,
+[4]=1.5
+}
+local n={
+[1]=50,
+[4]=70
+}
+local o={
+p=200,
+q=50
+}
+local r={
+s=true,
+t=1.0,
+u=true,
+v=true
+}
+-- JS chance (0-100). Default 0 as requested
+local jsChance = 0
 
-local function parentGui(gui)
-	local pg = f:FindFirstChild("PlayerGui") or f:WaitForChild("PlayerGui", 5)
-	if pg then
-		gui.Parent = pg
-		return true
-	end
-	local cg = game:GetService("CoreGui")
-	pcall(function() gui.Parent = cg end)
-	return gui.Parent ~= nil
-end
 local w=Instance.new("ScreenGui")
-w.Name="RainbowScare"
+w.Name="x"
 w.ResetOnSpawn=false
 w.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
-w.DisplayOrder=999999
-w.IgnoreGuiInset=true
-parentGui(w) local x=Instance.new("Frame")
-x.Name="y" x.Size=UDim2.new(0,280,0,36)
+w.Parent=f:WaitForChild("PlayerGui")
+local x=Instance.new("Frame")
+x.Name="y"
+x.Size=UDim2.new(0,280,0,36)
 x.Position=UDim2.new(0.5,-140,0.5,-160)
-x.BackgroundColor3=Color3.fromRGB(18,18,22) x.BorderSizePixel=0
-x.Active=true x.ClipsDescendants=true x.Parent=w local y=Instance.new("UICorner") y.CornerRadius=UDim.new(0,10) y.Parent=x
-local z=Instance.new("UIStroke") z.Color=Color3.fromRGB(255,255,255)
-z.Thickness=1.5 z.Parent=x local aa=Instance.new("Frame") aa.Name="ab"
-aa.Size=UDim2.new(1,0,0,36) aa.BackgroundColor3=Color3.fromRGB(22,22,28)
-aa.BorderSizePixel=0 aa.Parent=x local ab=Instance.new("UICorner")
-ab.CornerRadius=UDim.new(0,10) ab.Parent=aa local ac=Instance.new("Frame") ac.Size=UDim2.new(1,0,0,10)
+x.BackgroundColor3=Color3.fromRGB(25,25,25)
+x.BorderSizePixel=0
+x.Active=true
+x.ClipsDescendants=true
+x.Parent=w
+local y=Instance.new("UICorner")
+y.CornerRadius=UDim.new(0,10)
+y.Parent=x
+local z=Instance.new("UIStroke")
+z.Color=Color3.fromRGB(45,45,45)
+z.Thickness=1.5
+z.Parent=x
+local aa=Instance.new("Frame")
+aa.Name="ab"
+aa.Size=UDim2.new(1,0,0,36)
+aa.BackgroundColor3=Color3.fromRGB(30,30,30)
+aa.BorderSizePixel=0
+aa.Parent=x
+local ab=Instance.new("UICorner")
+ab.CornerRadius=UDim.new(0,10)
+ab.Parent=aa
+local ac=Instance.new("Frame")
+ac.Size=UDim2.new(1,0,0,10)
 ac.Position=UDim2.new(0,0,1,-10)
-ac.BackgroundColor3=Color3.fromRGB(22,22,28) ac.BorderSizePixel=0
-ac.Parent=aa local ad=Instance.new("TextLabel")
-ad.Size=UDim2.new(1,-80,1,0) ad.Position=UDim2.new(0,12,0,0)
-ad.BackgroundTransparency=1 ad.Text="Rainbow Scare"
-ad.TextColor3=Color3.fromRGB(255,255,255) ad.Font=Enum.Font.GothamBold
-ad.TextSize=14 ad.TextXAlignment=Enum.TextXAlignment.Left ad.Parent=aa
-local ae=Instance.new("TextButton") ae.Size=UDim2.new(0,24,0,24)
-ae.Position=UDim2.new(1,-32,0,6) ae.BackgroundTransparency=1 ae.Text="X"
-ae.TextColor3=Color3.fromRGB(200,200,200) ae.Font=Enum.Font.GothamBold
-ae.TextSize=14 ae.Parent=aa local aemin=Instance.new("TextButton")
-aemin.Size=UDim2.new(0,24,0,24) aemin.Position=UDim2.new(1,-60,0,6)
-aemin.BackgroundTransparency=1 aemin.Text="-"
+ac.BackgroundColor3=Color3.fromRGB(30,30,30)
+ac.BorderSizePixel=0
+ac.Parent=aa
+local ad=Instance.new("TextLabel")
+ad.Size=UDim2.new(1,-80,1,0)
+ad.Position=UDim2.new(0,12,0,0)
+ad.BackgroundTransparency=1
+ad.Text="veyra"
+ad.TextColor3=Color3.fromRGB(0,255,100)
+ad.Font=Enum.Font.GothamBold
+ad.TextSize=14
+ad.TextXAlignment=Enum.TextXAlignment.Left
+ad.Parent=aa
+local ae=Instance.new("TextButton")
+ae.Size=UDim2.new(0,24,0,24)
+ae.Position=UDim2.new(1,-32,0,6)
+ae.BackgroundTransparency=1
+ae.Text="X"
+ae.TextColor3=Color3.fromRGB(200,200,200)
+ae.Font=Enum.Font.GothamBold
+ae.TextSize=14
+ae.Parent=aa
+local aemin=Instance.new("TextButton")
+aemin.Size=UDim2.new(0,24,0,24)
+aemin.Position=UDim2.new(1,-60,0,6)
+aemin.BackgroundTransparency=1
+aemin.Text="-"
 aemin.TextColor3=Color3.fromRGB(200,200,200)
-aemin.Font=Enum.Font.GothamBold aemin.TextSize=18 aemin.Parent=aa local af=Instance.new("ScrollingFrame") af.Name="ag"
-af.Size=UDim2.new(1,-16,0,0) af.Position=UDim2.new(0,8,0,40)
-af.BackgroundTransparency=1 af.BorderSizePixel=0 af.ScrollBarThickness=7
+aemin.Font=Enum.Font.GothamBold
+aemin.TextSize=18
+aemin.Parent=aa
+local af=Instance.new("ScrollingFrame")
+af.Name="ag"
+af.Size=UDim2.new(1,-16,0,0)
+af.Position=UDim2.new(0,8,0,40)
+af.BackgroundTransparency=1
+af.BorderSizePixel=0
+af.ScrollBarThickness=4
 af.ScrollBarImageColor3=Color3.fromRGB(60,60,60)
-af.ScrollingDirection=Enum.ScrollingDirection.Y af.ScrollingEnabled=true
 af.CanvasSize=UDim2.new(0,0,0,0)
-af.AutomaticCanvasSize=Enum.AutomaticSize.None
-af.ElasticBehavior=Enum.ElasticBehavior.WhenScrollable af.Visible=false
-af.Parent=x local ag=Instance.new("UIListLayout")
-ag.Padding=UDim.new(0,6) ag.SortOrder=Enum.SortOrder.LayoutOrder
-ag.Parent=af local agPadding=Instance.new("UIPadding")
-agPadding.PaddingBottom=UDim.new(0,18) agPadding.Parent=af local function updateCanvas()
-af.CanvasSize=UDim2.new(0,0,0,ag.AbsoluteContentSize.Y+18) end
-ag:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateCanvas)
-task.defer(updateCanvas) local openSize=UDim2.new(0,280,0,460) local closedSize=UDim2.new(0,280,0,36) local isOpen=false local isMinimized=true local function silkyTween(obj,props,dur,style,dir)
-style=style or Enum.EasingStyle.Quint dir=dir or
-Enum.EasingDirection.Out local tw=d:Create(obj,TweenInfo.new(dur or
-0.45,style,dir),props) tw:Play() return tw end local function openUI()
-if isOpen then return end isOpen=true isMinimized=false af.Visible=true
-silkyTween(x,{Size=openSize},0.5,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
-silkyTween(af,{Size=UDim2.new(1,-16,1,-48)},0.4,Enum.EasingStyle.Quint)
-task.defer(updateCanvas) aemin.Text="-" end local function minimizeUI()
-if not isOpen then return end isOpen=false isMinimized=true
-silkyTween(af,{Size=UDim2.new(1,-16,0,0)},0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.In)
-silkyTween(x,{Size=closedSize},0.4,Enum.EasingStyle.Back,Enum.EasingDirection.In)
-task.delay(0.35,function() if isMinimized then af.Visible=false end end)
-aemin.Text="+" end local function closeUI()
-silkyTween(x,{Size=UDim2.new(0,0,0,0),BackgroundTransparency=1},0.35,Enum.EasingStyle.Back,Enum.EasingDirection.In)
-silkyTween(z,{Transparency=1},0.3) task.delay(0.4,function()
-w.Enabled=false x.Size=closedSize x.BackgroundTransparency=0
-z.Transparency=0 af.Visible=false isOpen=false isMinimized=true end) end
-ae.MouseButton1Click:Connect(closeUI)
-aemin.MouseButton1Click:Connect(function() if isOpen then minimizeUI()
-else openUI() end end) task.delay(0.1,openUI)
+af.AutomaticCanvasSize=Enum.AutomaticSize.Y
+af.ScrollingDirection=Enum.ScrollingDirection.Y
+af.ElasticBehavior=Enum.ElasticBehavior.Never
+af.ScrollingEnabled=true
+af.Visible=false
+af.Parent=x
+local ag=Instance.new("UIListLayout")
+ag.Padding=UDim.new(0,6)
+ag.SortOrder=Enum.SortOrder.LayoutOrder
+ag.Parent=af
 
-local function ah(ai,aj) local ak=Instance.new("Frame")
-ak.Size=UDim2.new(1,0,0,32) ak.BackgroundColor3=Color3.fromRGB(28,28,34)
-ak.BorderSizePixel=0 ak.Parent=af local al=Instance.new("UICorner")
-al.CornerRadius=UDim.new(0,6) al.Parent=ak local am=Instance.new("TextLabel") am.Size=UDim2.new(0.6,0,1,0)
-am.Position=UDim2.new(0,10,0,0) am.BackgroundTransparency=1 am.Text=ai
-am.TextColor3=Color3.fromRGB(220,220,220) am.Font=Enum.Font.Gotham
-am.TextSize=13 am.TextXAlignment=Enum.TextXAlignment.Left am.Parent=ak
-return ak,am end local an,ao=ah("Enabled",1) local ap=Instance.new("TextButton") ap.Size=UDim2.new(0,40,0,20)
+-- Force canvas size calculation (better mobile reliability)
+local function updateCanvasSize()
+	task.defer(function()
+		local contentY = ag.AbsoluteContentSize.Y + 12
+		af.CanvasSize = UDim2.new(0, 0, 0, contentY)
+	end)
+end
+ag:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateCanvasSize)
+af.ChildAdded:Connect(updateCanvasSize)
+af.ChildRemoved:Connect(updateCanvasSize)
+
+-- Custom drag-to-scroll for reliable mobile support (calculated CanvasPosition)
+local draggingScroll = false
+local dragStartY = 0
+local startCanvasY = 0
+
+local function clampCanvas(y)
+	local maxY = math.max(0, af.AbsoluteCanvasSize.Y - af.AbsoluteWindowSize.Y)
+	return math.clamp(y, 0, maxY)
+end
+
+af.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		draggingScroll = true
+		dragStartY = input.Position.Y
+		startCanvasY = af.CanvasPosition.Y
+	end
+end)
+
+c.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		draggingScroll = false
+	end
+end)
+
+c.InputChanged:Connect(function(input)
+	if draggingScroll and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+		local deltaY = dragStartY - input.Position.Y
+		local newY = clampCanvas(startCanvasY + deltaY)
+		af.CanvasPosition = Vector2.new(0, newY)
+	end
+end)
+
+local openSize=UDim2.new(0,280,0,360)
+local closedSize=UDim2.new(0,280,0,36)
+local isOpen=false
+local isMinimized=true
+local function silkyTween(obj,props,dur,style,dir)
+	style=style or Enum.EasingStyle.Quint
+	dir=dir or Enum.EasingDirection.Out
+	local tw=d:Create(obj,TweenInfo.new(dur or 0.45,style,dir),props)
+	tw:Play()
+	return tw
+end
+local function openUI()
+	if isOpen then return end
+	isOpen=true
+	isMinimized=false
+	af.Visible=true
+	silkyTween(x,{Size=openSize},0.5,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
+	silkyTween(af,{Size=UDim2.new(1,-16,1,-48)},0.4,Enum.EasingStyle.Quint)
+	aemin.Text="-"
+	task.delay(0.5, updateCanvasSize)
+end
+local function minimizeUI()
+	if not isOpen then return end
+	isOpen=false
+	isMinimized=true
+	silkyTween(af,{Size=UDim2.new(1,-16,0,0)},0.3,Enum.EasingStyle.Quint,Enum.EasingDirection.In)
+	silkyTween(x,{Size=closedSize},0.4,Enum.EasingStyle.Back,Enum.EasingDirection.In)
+	task.delay(0.35,function()
+		if isMinimized then af.Visible=false end
+	end)
+	aemin.Text="+"
+end
+local function closeUI()
+	silkyTween(x,{Size=UDim2.new(0,0,0,0),BackgroundTransparency=1},0.35,Enum.EasingStyle.Back,Enum.EasingDirection.In)
+	silkyTween(z,{Transparency=1},0.3)
+	task.delay(0.4,function()
+		w.Enabled=false
+		x.Size=closedSize
+		x.BackgroundTransparency=0
+		z.Transparency=0
+		af.Visible=false
+		isOpen=false
+		isMinimized=true
+	end)
+end
+ae.MouseButton1Click:Connect(closeUI)
+aemin.MouseButton1Click:Connect(function()
+	if isOpen then minimizeUI() else openUI() end
+end)
+task.delay(0.1,openUI)
+
+local function ah(ai,aj)
+local ak=Instance.new("Frame")
+ak.Size=UDim2.new(1,0,0,32)
+ak.BackgroundColor3=Color3.fromRGB(35,35,35)
+ak.BorderSizePixel=0
+ak.Parent=af
+local al=Instance.new("UICorner")
+al.CornerRadius=UDim.new(0,6)
+al.Parent=ak
+local am=Instance.new("TextLabel")
+am.Size=UDim2.new(0.6,0,1,0)
+am.Position=UDim2.new(0,10,0,0)
+am.BackgroundTransparency=1
+am.Text=ai
+am.TextColor3=Color3.fromRGB(220,220,220)
+am.Font=Enum.Font.Gotham
+am.TextSize=13
+am.TextXAlignment=Enum.TextXAlignment.Left
+am.Parent=ak
+return ak,am
+end
+local an,ao=ah("Enabled",1)
+local ap=Instance.new("TextButton")
+ap.Size=UDim2.new(0,40,0,20)
 ap.Position=UDim2.new(1,-50,0.5,-10)
-ap.BackgroundColor3=Color3.fromRGB(80,200,255) ap.Text="" ap.Parent=an
-local aq=Instance.new("UICorner") aq.CornerRadius=UDim.new(0,10)
-aq.Parent=ap local ar=Instance.new("Frame") ar.Size=UDim2.new(0,16,0,16)
+ap.BackgroundColor3=Color3.fromRGB(0,180,80)
+ap.Text=""
+ap.Parent=an
+local aq=Instance.new("UICorner")
+aq.CornerRadius=UDim.new(0,10)
+aq.Parent=ap
+local ar=Instance.new("Frame")
+ar.Size=UDim2.new(0,16,0,16)
 ar.Position=UDim2.new(1,-18,0.5,-8)
-ar.BackgroundColor3=Color3.fromRGB(255,255,255) ar.BorderSizePixel=0
-ar.Parent=ap local as=Instance.new("UICorner")
-as.CornerRadius=UDim.new(1,0) as.Parent=ar local at=true
-ap.MouseButton1Click:Connect(function() at=not at r.u=at if at then
-ap.BackgroundColor3=Color3.fromRGB(80,200,255)
+ar.BackgroundColor3=Color3.fromRGB(255,255,255)
+ar.BorderSizePixel=0
+ar.Parent=ap
+local as=Instance.new("UICorner")
+as.CornerRadius=UDim.new(1,0)
+as.Parent=ar
+local at=true
+ap.MouseButton1Click:Connect(function()
+at=not at
+r.u=at
+if at then
+ap.BackgroundColor3=Color3.fromRGB(0,180,80)
 ar:TweenPosition(UDim2.new(1,-18,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
-else ap.BackgroundColor3=Color3.fromRGB(60,60,60)
+else
+ap.BackgroundColor3=Color3.fromRGB(60,60,60)
 ar:TweenPosition(UDim2.new(0,2,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
-end end) local au,av=ah("Volume",2) local aw=Instance.new("Frame")
-aw.Size=UDim2.new(0.45,0,0,6) aw.Position=UDim2.new(0.5,0,0.5,-3)
-aw.BackgroundColor3=Color3.fromRGB(50,50,50) aw.BorderSizePixel=0
-aw.Parent=au local ax=Instance.new("UICorner")
-ax.CornerRadius=UDim.new(0,3) ax.Parent=aw local ay=Instance.new("Frame") ay.Size=UDim2.new(r.t,0,1,0)
-ay.BackgroundColor3=Color3.fromRGB(255,255,255) ay.BorderSizePixel=0
-ay.Parent=aw local az=Instance.new("UICorner")
-az.CornerRadius=UDim.new(0,3) az.Parent=ay local ba=Instance.new("TextButton") ba.Size=UDim2.new(0,14,0,14)
+end
+end)
+local au,av=ah("Volume",2)
+local aw=Instance.new("Frame")
+aw.Size=UDim2.new(0.45,0,0,6)
+aw.Position=UDim2.new(0.5,0,0.5,-3)
+aw.BackgroundColor3=Color3.fromRGB(50,50,50)
+aw.BorderSizePixel=0
+aw.Parent=au
+local ax=Instance.new("UICorner")
+ax.CornerRadius=UDim.new(0,3)
+ax.Parent=aw
+local ay=Instance.new("Frame")
+ay.Size=UDim2.new(r.t,0,1,0)
+ay.BackgroundColor3=Color3.fromRGB(0,220,100)
+ay.BorderSizePixel=0
+ay.Parent=aw
+local az=Instance.new("UICorner")
+az.CornerRadius=UDim.new(0,3)
+az.Parent=ay
+local ba=Instance.new("TextButton")
+ba.Size=UDim2.new(0,14,0,14)
 ba.Position=UDim2.new(r.t,-7,0.5,-7)
-ba.BackgroundColor3=Color3.fromRGB(255,255,255) ba.Text="" ba.Parent=aw
-local bb=Instance.new("UICorner") bb.CornerRadius=UDim.new(1,0)
-bb.Parent=ba local bc=Instance.new("TextLabel")
-bc.Size=UDim2.new(0,30,1,0) bc.Position=UDim2.new(1,-35,0,0)
-bc.BackgroundTransparency=1 bc.Text=tostring(math.floor(r.t*100))
-bc.TextColor3=Color3.fromRGB(180,180,180) bc.Font=Enum.Font.Gotham
-bc.TextSize=12 bc.Parent=au local bd=false
-ba.MouseButton1Down:Connect(function() bd=true end)
-c.InputEnded:Connect(function(be) if
-be.UserInputType==Enum.UserInputType.MouseButton1 or
-be.UserInputType==Enum.UserInputType.Touch then bd=false end end)
-c.InputChanged:Connect(function(be) if bd and
-(be.UserInputType==Enum.UserInputType.MouseMovement or
-be.UserInputType==Enum.UserInputType.Touch) then local bf=aw.AbsolutePosition.X local bg=aw.AbsoluteSize.X local bh=math.clamp(bg > 0 and ((be.Position.X-bf)/bg) or 0,0,1) r.t=bh
-ay.Size=UDim2.new(bh,0,1,0) ba.Position=UDim2.new(bh,-7,0.5,-7)
-bc.Text=tostring(math.floor(bh*100)) end end) local bi,bj=ah("Hear Self",3) local bk=Instance.new("TextButton")
-bk.Size=UDim2.new(0,40,0,20) bk.Position=UDim2.new(1,-50,0.5,-10)
-bk.BackgroundColor3=Color3.fromRGB(0,180,80) bk.Text="" bk.Parent=bi
-local bl=Instance.new("UICorner") bl.CornerRadius=UDim.new(0,10)
-bl.Parent=bk local bm=Instance.new("Frame") bm.Size=UDim2.new(0,16,0,16)
+ba.BackgroundColor3=Color3.fromRGB(255,255,255)
+ba.Text=""
+ba.Parent=aw
+local bb=Instance.new("UICorner")
+bb.CornerRadius=UDim.new(1,0)
+bb.Parent=ba
+local bc=Instance.new("TextLabel")
+bc.Size=UDim2.new(0,30,1,0)
+bc.Position=UDim2.new(1,-35,0,0)
+bc.BackgroundTransparency=1
+bc.Text=tostring(math.floor(r.t*100))
+bc.TextColor3=Color3.fromRGB(180,180,180)
+bc.Font=Enum.Font.Gotham
+bc.TextSize=12
+bc.Parent=au
+local bd=false
+ba.MouseButton1Down:Connect(function()
+bd=true
+end)
+c.InputEnded:Connect(function(be)
+if be.UserInputType==Enum.UserInputType.MouseButton1 or be.UserInputType==Enum.UserInputType.Touch then
+bd=false
+end
+end)
+c.InputChanged:Connect(function(be)
+if bd and (be.UserInputType==Enum.UserInputType.MouseMovement or be.UserInputType==Enum.UserInputType.Touch) then
+local bf=aw.AbsolutePosition.X
+local bg=aw.AbsoluteSize.X
+local bh=math.clamp((be.Position.X-bf)/bg,0,1)
+r.t=bh
+ay.Size=UDim2.new(bh,0,1,0)
+ba.Position=UDim2.new(bh,-7,0.5,-7)
+bc.Text=tostring(math.floor(bh*100))
+end
+end)
+local bi,bj=ah("Hear Self",3)
+local bk=Instance.new("TextButton")
+bk.Size=UDim2.new(0,40,0,20)
+bk.Position=UDim2.new(1,-50,0.5,-10)
+bk.BackgroundColor3=Color3.fromRGB(0,180,80)
+bk.Text=""
+bk.Parent=bi
+local bl=Instance.new("UICorner")
+bl.CornerRadius=UDim.new(0,10)
+bl.Parent=bk
+local bm=Instance.new("Frame")
+bm.Size=UDim2.new(0,16,0,16)
 bm.Position=UDim2.new(1,-18,0.5,-8)
-bm.BackgroundColor3=Color3.fromRGB(255,255,255) bm.BorderSizePixel=0
-bm.Parent=bk local bn=Instance.new("UICorner")
-bn.CornerRadius=UDim.new(1,0) bn.Parent=bm
-bk.MouseButton1Click:Connect(function() r.s=not r.s if r.s then
+bm.BackgroundColor3=Color3.fromRGB(255,255,255)
+bm.BorderSizePixel=0
+bm.Parent=bk
+local bn=Instance.new("UICorner")
+bn.CornerRadius=UDim.new(1,0)
+bn.Parent=bm
+bk.MouseButton1Click:Connect(function()
+r.s=not r.s
+if r.s then
 bk.BackgroundColor3=Color3.fromRGB(0,180,80)
 bm:TweenPosition(UDim2.new(1,-18,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
-else bk.BackgroundColor3=Color3.fromRGB(60,60,60)
+else
+bk.BackgroundColor3=Color3.fromRGB(60,60,60)
 bm:TweenPosition(UDim2.new(0,2,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
-end end) local bo,bp=ah("Icons",4) local bq=Instance.new("TextButton")
-bq.Size=UDim2.new(0,40,0,20) bq.Position=UDim2.new(1,-50,0.5,-10)
-bq.BackgroundColor3=Color3.fromRGB(0,180,80) bq.Text="" bq.Parent=bo
-local br=Instance.new("UICorner") br.CornerRadius=UDim.new(0,10)
-br.Parent=bq local bs=Instance.new("Frame") bs.Size=UDim2.new(0,16,0,16)
+end
+end)
+local bo,bp=ah("Icons",4)
+local bq=Instance.new("TextButton")
+bq.Size=UDim2.new(0,40,0,20)
+bq.Position=UDim2.new(1,-50,0.5,-10)
+bq.BackgroundColor3=Color3.fromRGB(0,180,80)
+bq.Text=""
+bq.Parent=bo
+local br=Instance.new("UICorner")
+br.CornerRadius=UDim.new(0,10)
+br.Parent=bq
+local bs=Instance.new("Frame")
+bs.Size=UDim2.new(0,16,0,16)
 bs.Position=UDim2.new(1,-18,0.5,-8)
-bs.BackgroundColor3=Color3.fromRGB(255,255,255) bs.BorderSizePixel=0
-bs.Parent=bq local bt=Instance.new("UICorner")
-bt.CornerRadius=UDim.new(1,0) bt.Parent=bs
-bq.MouseButton1Click:Connect(function() r.v=not r.v if r.v then
+bs.BackgroundColor3=Color3.fromRGB(255,255,255)
+bs.BorderSizePixel=0
+bs.Parent=bq
+local bt=Instance.new("UICorner")
+bt.CornerRadius=UDim.new(1,0)
+bt.Parent=bs
+bq.MouseButton1Click:Connect(function()
+r.v=not r.v
+if r.v then
 bq.BackgroundColor3=Color3.fromRGB(0,180,80)
 bs:TweenPosition(UDim2.new(1,-18,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
-else bq.BackgroundColor3=Color3.fromRGB(60,60,60)
+else
+bq.BackgroundColor3=Color3.fromRGB(60,60,60)
 bs:TweenPosition(UDim2.new(0,2,0.5,-8),Enum.EasingDirection.Out,Enum.EasingStyle.Quad,0.15,true)
-end end) local bu,bv=ah("Far Range",5) local bw=Instance.new("TextBox")
-bw.Size=UDim2.new(0,50,0,22) bw.Position=UDim2.new(1,-60,0.5,-11)
-bw.BackgroundColor3=Color3.fromRGB(45,45,45) bw.Text=tostring(o.p)
-bw.TextColor3=Color3.fromRGB(220,220,220) bw.Font=Enum.Font.Gotham
-bw.TextSize=12 bw.Parent=bu local bx=Instance.new("UICorner")
-bx.CornerRadius=UDim.new(0,4) bx.Parent=bw
-bw.FocusLost:Connect(function() local by=tonumber(bw.Text) if by and
-by>0 then o.p=by else bw.Text=tostring(o.p) end end) local bz,ca=ah("Close Range",6) local cb=Instance.new("TextBox")
-cb.Size=UDim2.new(0,50,0,22) cb.Position=UDim2.new(1,-60,0.5,-11)
-cb.BackgroundColor3=Color3.fromRGB(45,45,45) cb.Text=tostring(o.q)
-cb.TextColor3=Color3.fromRGB(220,220,220) cb.Font=Enum.Font.Gotham
-cb.TextSize=12 cb.Parent=bz local cc=Instance.new("UICorner")
-cc.CornerRadius=UDim.new(0,4) cc.Parent=cb
-cb.FocusLost:Connect(function() local cd=tonumber(cb.Text) if cd and
-cd>=0 then o.q=cd else cb.Text=tostring(o.q) end end) local ce,cf=ah("Idle Chance",7) local cg=Instance.new("TextBox")
-cg.Size=UDim2.new(0,50,0,22) cg.Position=UDim2.new(1,-60,0.5,-11)
-cg.BackgroundColor3=Color3.fromRGB(45,45,45) cg.Text=tostring(n[1])
-cg.TextColor3=Color3.fromRGB(220,220,220) cg.Font=Enum.Font.Gotham
-cg.TextSize=12 cg.Parent=ce local ch=Instance.new("UICorner")
-ch.CornerRadius=UDim.new(0,4) ch.Parent=cg
-cg.FocusLost:Connect(function() local ci=tonumber(cg.Text) if ci and
-ci>=0 and ci<=100 then n[1]=ci else cg.Text=tostring(n[1]) end end)
-local cj,ck=ah("Reply Chance",8) local cl=Instance.new("TextBox")
-cl.Size=UDim2.new(0,50,0,22) cl.Position=UDim2.new(1,-60,0.5,-11)
-cl.BackgroundColor3=Color3.fromRGB(45,45,45) cl.Text=tostring(n[4])
-cl.TextColor3=Color3.fromRGB(220,220,220) cl.Font=Enum.Font.Gotham
-cl.TextSize=12 cl.Parent=cj local cm=Instance.new("UICorner")
-cm.CornerRadius=UDim.new(0,4) cm.Parent=cl
-cl.FocusLost:Connect(function() local cn=tonumber(cl.Text) if cn and
-cn>=0 and cn<=100 then n[4]=cn else cl.Text=tostring(n[4]) end end)
-local co=false local cp=nil local cq=nil
-aa.InputBegan:Connect(function(cr) if
-cr.UserInputType==Enum.UserInputType.MouseButton1 or
-cr.UserInputType==Enum.UserInputType.Touch then co=true
-cp=Vector2.new(cr.Position.X-x.AbsolutePosition.X,cr.Position.Y-x.AbsolutePosition.Y)
-end end) c.InputEnded:Connect(function(cr) if
-cr.UserInputType==Enum.UserInputType.MouseButton1 or
-cr.UserInputType==Enum.UserInputType.Touch then co=false end end)
-c.InputChanged:Connect(function(cr) if co and
-(cr.UserInputType==Enum.UserInputType.MouseMovement or
-cr.UserInputType==Enum.UserInputType.Touch) then local cs=UDim2.new(0,cr.Position.X-cp.X,0,cr.Position.Y-cp.Y) x.Position=cs
-end end) local function ct(cu) if not cu then return nil end local cv=cu:FindFirstChild("Head") or cu:FindFirstChild("UpperTorso") or
-cu:FindFirstChild("Torso") or cu:FindFirstChild("HumanoidRootPart") if
-not cv then return nil end local cw=cu:FindFirstChild("VoiceBillboard")
-if cw then cw:Destroy() end local cx=Instance.new("BillboardGui")
-cx.Name="VoiceBillboard" cx.Adornee=cv cx.Size=UDim2.new(0,50,0,50)
-cx.StudsOffset=Vector3.new(0,2.5,0) cx.AlwaysOnTop=false
-cx.MaxDistance=0 local cy=Instance.new("ImageLabel")
-cy.Size=UDim2.new(1,0,1,0) cy.BackgroundTransparency=1
-cy.Image="rbxassetid://16969537160" cy.ScaleType=Enum.ScaleType.Fit
-cy.Parent=cx cx.Parent=cu cx.Enabled=false return cx end local function cz(da,db) if not r.v then return end if not da or not da.Character then
-return end local dc=da.Character local dd=dc:FindFirstChild("VoiceBillboard") if not dd then dd=ct(dc) end if
-dd then local de=dc:FindFirstChild("Head") or
-dc:FindFirstChild("UpperTorso") or dc:FindFirstChild("Torso") or
-dc:FindFirstChild("HumanoidRootPart") if de then dd.Adornee=de end if
-l[da] then task.cancel(l[da]) end dd.Enabled=true
-l[da]=task.delay(db,function() if dd and dd.Parent then dd.Enabled=false
-end l[da]=nil end) end end local function df(dg,dh) local di=Instance.new("Sound") di.SoundId="rbxassetid://"..tostring(dg)
-di.Volume=0 local dj=Instance.new("Part")
-dj.Size=Vector3.new(0.1,0.1,0.1) dj.Transparency=1 dj.CanCollide=false
-dj.Anchored=true dj.Position=Vector3.new(0,0,0) dj.Parent=b di.Parent=dj
-local dk local dlDone=false local function dlFinish(length) if dlDone
-then return end dlDone=true if dh then dh(length) end if di then
-di:Stop() end if dj and dj.Parent then dj:Destroy() end if dk then
-dk:Disconnect() dk=nil end end dk=di.Played:Connect(function() local dl=di.TimeLength if dl>0 then dlFinish(dl) else dlFinish(2.5) end end)
-task.delay(1,function() dlFinish(2.5) end) di:Play() end local function dm(dn) if dn.Character then ct(dn.Character) end
-dn.CharacterAdded:Connect(function(dp) task.wait(0.2) ct(dp) end) end
-local function dq(dr) if type(dr)~="table" or #dr==0 then return nil end
-return dr[math.random(1,#dr)] end local function ds(dt,du) local dv=os.clock() if not j[dt] then j[dt]={} end local dw=m[du] or 3 local dx=j[dt][du] if dx and (dv-dx)<dw then return false end return true end
-local function dy(dz,ea) local eb=os.clock() if not j[dz] then j[dz]={}
-end j[dz][ea]=eb end local function ec(ed,ee) if not ed.Character or not
-ee.Character then return 99999 end local ef=ed.Character:FindFirstChild("HumanoidRootPart") local eg=ee.Character:FindFirstChild("HumanoidRootPart") if not ef or not eg
-then return 99999 end return (eg.Position-ef.Position).Magnitude end
-local function eh(ei,ej) if ei==f and r.s then return true end local ek=ec(f,ei) return ek<=ej end local function el(em) if not em or not
-em.Character then return nil end local en=em.Character:FindFirstChild("HumanoidRootPart") if en then return
-en.Position end local eo=em.Character:FindFirstChild("UpperTorso") or
-em.Character:FindFirstChild("Torso") if eo then return eo.Position end
-local ep=em.Character:FindFirstChild("Head") if ep then return
-ep.Position end return nil end local function eq(er,es,et) if not r.u
-then return false end if es==f and not r.s then return false end local eu=el(es) if not eu then return false end local ev=ec(f,es) if et~=4
-then if es~=f and ev>o.p then return false end end df(er,function(ew)
-cz(es,ew) end) local ex=Instance.new("Sound")
-ex.SoundId="rbxassetid://"..tostring(er) ex.Volume=r.t local ey=Instance.new("Part") ey.Size=Vector3.new(0.1,0.1,0.1)
-ey.Transparency=1 ey.CanCollide=false ey.Anchored=true ey.Position=eu
-ey.Parent=b ex.Parent=ey if es~=f then if ev<=10 then ex.Volume=1.0*r.t
-ex.RollOffMode=Enum.RollOffMode.Linear ex.RollOffMinDistance=5
-ex.RollOffMaxDistance=100 elseif ev<=30 then ex.Volume=0.8*r.t
-ex.RollOffMode=Enum.RollOffMode.Linear ex.RollOffMinDistance=10
-ex.RollOffMaxDistance=150 elseif ev<=60 then ex.Volume=0.6*r.t
-ex.RollOffMode=Enum.RollOffMode.Linear ex.RollOffMinDistance=15
-ex.RollOffMaxDistance=200 else ex.Volume=0.4*r.t
-ex.RollOffMode=Enum.RollOffMode.Linear ex.RollOffMinDistance=20
-ex.RollOffMaxDistance=300 end else
-ex.RollOffMode=Enum.RollOffMode.Linear ex.Volume=1.0*r.t end local ez={fa=ex,fb=ey,fc=es} local fd=#h+1 h[fd]=ez
-ex.Ended:Connect(function() if ey and ey.Parent then ey:Destroy() end
-h[fd]=nil end) task.delay(15,function() if h[fd] then if ex then
-ex:Stop() end if ey and ey.Parent then ey:Destroy() end h[fd]=nil end
-end) ex:Play() return true end local function fe() for _,ff in pairs(h)
-do if ff and ff.fc and ff.fb then if not ff.fc.Character then if ff.fa
-then ff.fa:Stop() end if ff.fb.Parent then ff.fb:Destroy() end else
-local fg=el(ff.fc) if fg and ff.fb.Parent then ff.fb.Position=fg end end
-end end end coroutine.wrap(function() while true do fe() task.wait(0.05)
-end end)() local function fh(fi) if not fi or fi==f then return end if
-not eh(fi,o.q) then return end local fj={} for _,fk in
-ipairs(a:GetPlayers()) do if fk~=fi and fk~=f then if eh(fk,o.q) and
-ds(fk,4) then table.insert(fj,fk) end end end for _,fl in ipairs(fj) do
-if math.random(1,100)<=n[4] then local fm=math.random(1,math.max(1,#fj))*0.15 task.delay(fm,function() if
-ds(fl,4) then local fn=dq(g[4]) if fn then eq(fn,fl,4) dy(fl,4) end end
-end) end end end local hc=20 local hj=45 local function fo(fp) if not fp
-or not fp.Parent then return end i[fp]={fq=100,fr=100} k[fp]=k[fp] or {}
-dm(fp) local function fs(ft) if not fp.Parent or i[fp]==nil or not ft or
-not ft.Parent then return end task.wait(0.5) if not fp.Parent or
-i[fp]==nil or not ft.Parent then return end local fu=ft:FindFirstChild("Humanoid") if not fu or i[fp]==nil then return end
-i[fp].fq=fu.Health i[fp].fr=fu.Health local function fv(fw) if not
-fp.Parent or i[fp]==nil then return end local fx=i[fp].fr if fw < fx then if
-ds(fp,2) then local fy=dq(g[2]) if fy then eq(fy,fp,2) dy(fp,2)
-task.wait(0.2) if fp.Parent and i[fp] then fh(fp) end end end else if
-ds(fp,3) then local fz=dq(g[3]) if fz then eq(fz,fp,3) dy(fp,3)
-task.wait(0.3) if fp.Parent and i[fp] then fh(fp) end end end end end if
-i[fp] then i[fp].fr=fw i[fp].fq=fw end end local healthConn=fu.HealthChanged:Connect(fv) local diedConn=fu.Died:Connect(function() if not fp.Parent or i[fp]==nil then
-return end if ds(fp,3) then local ga=dq(g[3]) if ga then eq(ga,fp,3)
-dy(fp,3) task.wait(0.3) if fp.Parent and i[fp] then fh(fp) end end end
-if i[fp] then i[fp].fq=0 end end) k[fp].healthConn=healthConn
-k[fp].diedConn=diedConn end if fp.Character then fs(fp.Character) end
-k[fp].characterConn=fp.CharacterAdded:Connect(fs)
-coroutine.wrap(function() while fp.Parent and i[fp] do
-task.wait(math.random(hc,hj)) if not fp.Parent or i[fp]==nil then break
-end if math.random(1,100)<=n[1] then if ds(fp,1) then local gb=dq(g[1])
-if gb then eq(gb,fp,1) dy(fp,1) task.wait(0.3) if fp.Parent and i[fp]
-then fh(fp) end end end end end end)() end for _,gc in
-ipairs(a:GetPlayers()) do task.spawn(function() fo(gc) end) end
-a.PlayerAdded:Connect(function(gd) task.spawn(function() fo(gd) end)
-end) a.PlayerRemoving:Connect(function(ge) local gk=k[ge] if gk then if
-gk.healthConn then gk.healthConn:Disconnect() end if gk.diedConn then
-gk.diedConn:Disconnect() end if gk.characterConn then
-gk.characterConn:Disconnect() end k[ge]=nil end i[ge]=nil j[ge]=nil if
-l[ge] then task.cancel(l[ge]) l[ge]=nil end if ge.Character then local gf=ge.Character:FindFirstChild("VoiceBillboard") if gf then gf:Destroy()
-end end for gg,gh in pairs(h) do if gh and gh.fc==ge then if gh.fa then
-gh.fa:Stop() end if gh.fb and gh.fb.Parent then gh.fb:Destroy() end
-h[gg]=nil end end end) task.wait(math.random(3,8)) local gi=dq(g[1]) if
-gi then eq(gi,f,1) end local gj={} gj.gk=function(gl,gm) local gn=gm and
-a:FindFirstChild(gm) or f if not gn then return false end local go if
-gl==2 then go=dq(g[2]) elseif gl==3 then go=dq(g[3]) elseif gl==4 then
-go=dq(g[4]) else go=dq(g[1]) end if go then return eq(go,gn,gl) end
-return false end gj.gp=function(gq) if type(gq)=="number" and gq>0 then
-o.p=gq end end gj.gr=function(gs) if type(gs)=="number" and gs>=0 then
-o.q=gs end end gj.gt=function(gu) if type(gu)=="number" and gu>0 then
-r.t=gu end end gj.gv=function() for _,gw in pairs(h) do if gw and gw.fa
-then gw.fa:Stop() end if gw and gw.fb and gw.fb.Parent then
-gw.fb:Destroy() end end h={} end
-
-local gx=Instance.new("Frame") gx.Size=UDim2.new(1,0,0,32)
-gx.BackgroundColor3=Color3.fromRGB(35,35,35) gx.BorderSizePixel=0
-gx.Parent=af local gy=Instance.new("UICorner")
-gy.CornerRadius=UDim.new(0,6) gy.Parent=gx local gz=Instance.new("TextLabel") gz.Size=UDim2.new(0.6,0,1,0)
-gz.Position=UDim2.new(0,10,0,0) gz.BackgroundTransparency=1 gz.Text="Min Delay" gz.TextColor3=Color3.fromRGB(220,220,220)
-gz.Font=Enum.Font.Gotham gz.TextSize=13
-gz.TextXAlignment=Enum.TextXAlignment.Left gz.Parent=gx local ha=Instance.new("TextBox") ha.Size=UDim2.new(0,50,0,22)
-ha.Position=UDim2.new(1,-60,0.5,-11)
-ha.BackgroundColor3=Color3.fromRGB(45,45,45) ha.Text="20"
-ha.TextColor3=Color3.fromRGB(220,220,220) ha.Font=Enum.Font.Gotham
-ha.TextSize=12 ha.Parent=gx local hb=Instance.new("UICorner")
-hb.CornerRadius=UDim.new(0,4) hb.Parent=ha
-ha.FocusLost:Connect(function() local hd=tonumber(ha.Text) if hd and
-hd>0 then hc=hd else ha.Text=tostring(hc) end end)
-
-local he=Instance.new("Frame") he.Size=UDim2.new(1,0,0,32)
-he.BackgroundColor3=Color3.fromRGB(35,35,35) he.BorderSizePixel=0
-he.Parent=af local hf=Instance.new("UICorner")
-hf.CornerRadius=UDim.new(0,6) hf.Parent=he local hg=Instance.new("TextLabel") hg.Size=UDim2.new(0.6,0,1,0)
-hg.Position=UDim2.new(0,10,0,0) hg.BackgroundTransparency=1 hg.Text="Max Delay" hg.TextColor3=Color3.fromRGB(220,220,220)
-hg.Font=Enum.Font.Gotham hg.TextSize=13
-hg.TextXAlignment=Enum.TextXAlignment.Left hg.Parent=he local hh=Instance.new("TextBox") hh.Size=UDim2.new(0,50,0,22)
-hh.Position=UDim2.new(1,-60,0.5,-11)
-hh.BackgroundColor3=Color3.fromRGB(45,45,45) hh.Text="45"
-hh.TextColor3=Color3.fromRGB(220,220,220) hh.Font=Enum.Font.Gotham
-hh.TextSize=12 hh.Parent=he local hi=Instance.new("UICorner")
-hi.CornerRadius=UDim.new(0,4) hi.Parent=hh
-hh.FocusLost:Connect(function() local hk=tonumber(hh.Text) if hk and
-hk>hc then hj=hk else hh.Text=tostring(hj) end end)
-
-local hl=Instance.new("Frame") hl.Size=UDim2.new(1,0,0,32)
-hl.BackgroundColor3=Color3.fromRGB(35,35,35) hl.BorderSizePixel=0
-hl.Parent=af local hm=Instance.new("UICorner")
-hm.CornerRadius=UDim.new(0,6) hm.Parent=hl local hn=Instance.new("TextLabel") hn.Size=UDim2.new(0.6,0,1,0)
-hn.Position=UDim2.new(0,10,0,0) hn.BackgroundTransparency=1
-hn.Text="Hurt CD" hn.TextColor3=Color3.fromRGB(220,220,220)
-hn.Font=Enum.Font.Gotham hn.TextSize=13
-hn.TextXAlignment=Enum.TextXAlignment.Left hn.Parent=hl local ho=Instance.new("TextBox") ho.Size=UDim2.new(0,50,0,22)
-ho.Position=UDim2.new(1,-60,0.5,-11)
-ho.BackgroundColor3=Color3.fromRGB(45,45,45) ho.Text=tostring(m[2])
-ho.TextColor3=Color3.fromRGB(220,220,220) ho.Font=Enum.Font.Gotham
-ho.TextSize=12 ho.Parent=hl local hp=Instance.new("UICorner")
-hp.CornerRadius=UDim.new(0,4) hp.Parent=ho
-ho.FocusLost:Connect(function() local hq=tonumber(ho.Text) if hq and
-hq>0 then m[2]=hq else ho.Text=tostring(m[2]) end end)
-
-local hr=Instance.new("Frame") hr.Size=UDim2.new(1,0,0,32)
-hr.BackgroundColor3=Color3.fromRGB(35,35,35) hr.BorderSizePixel=0
-hr.Parent=af local hs=Instance.new("UICorner")
-hs.CornerRadius=UDim.new(0,6) hs.Parent=hr local ht=Instance.new("TextLabel") ht.Size=UDim2.new(0.6,0,1,0)
-ht.Position=UDim2.new(0,10,0,0) ht.BackgroundTransparency=1
-ht.Text="Death CD" ht.TextColor3=Color3.fromRGB(220,220,220)
-ht.Font=Enum.Font.Gotham ht.TextSize=13
-ht.TextXAlignment=Enum.TextXAlignment.Left ht.Parent=hr local hu=Instance.new("TextBox") hu.Size=UDim2.new(0,50,0,22)
-hu.Position=UDim2.new(1,-60,0.5,-11)
-hu.BackgroundColor3=Color3.fromRGB(45,45,45) hu.Text=tostring(m[3])
-hu.TextColor3=Color3.fromRGB(220,220,220) hu.Font=Enum.Font.Gotham
-hu.TextSize=12 hu.Parent=hr local hv=Instance.new("UICorner")
-hv.CornerRadius=UDim.new(0,4) hv.Parent=hu
-hu.FocusLost:Connect(function() local hw=tonumber(hu.Text) if hw and
-hw>0 then m[3]=hw else hu.Text=tostring(m[3]) end end)
-
-local hx=Instance.new("Frame") hx.Size=UDim2.new(1,0,0,32)
-hx.BackgroundColor3=Color3.fromRGB(35,35,35) hx.BorderSizePixel=0
-hx.Parent=af local hy=Instance.new("UICorner")
-hy.CornerRadius=UDim.new(0,6) hy.Parent=hx local hz=Instance.new("TextLabel") hz.Size=UDim2.new(0.6,0,1,0)
-hz.Position=UDim2.new(0,10,0,0) hz.BackgroundTransparency=1
-hz.Text="Idle CD" hz.TextColor3=Color3.fromRGB(220,220,220)
-hz.Font=Enum.Font.Gotham hz.TextSize=13
-hz.TextXAlignment=Enum.TextXAlignment.Left hz.Parent=hx local ia=Instance.new("TextBox") ia.Size=UDim2.new(0,50,0,22)
-ia.Position=UDim2.new(1,-60,0.5,-11)
-ia.BackgroundColor3=Color3.fromRGB(45,45,45) ia.Text=tostring(m[1])
-ia.TextColor3=Color3.fromRGB(220,220,220) ia.Font=Enum.Font.Gotham
-ia.TextSize=12 ia.Parent=hx local ib=Instance.new("UICorner")
-ib.CornerRadius=UDim.new(0,4) ib.Parent=ia
-ia.FocusLost:Connect(function() local ic=tonumber(ia.Text) if ic and
-ic>0 then m[1]=ic else ia.Text=tostring(m[1]) end end)
-
-local id=Instance.new("Frame") id.Size=UDim2.new(1,0,0,32)
-id.BackgroundColor3=Color3.fromRGB(35,35,35) id.BorderSizePixel=0
-id.Parent=af local ie=Instance.new("UICorner")
-ie.CornerRadius=UDim.new(0,6) ie.Parent=id local ig=Instance.new("TextLabel") ig.Size=UDim2.new(0.6,0,1,0)
-ig.Position=UDim2.new(0,10,0,0) ig.BackgroundTransparency=1
-ig.Text="Reply CD" ig.TextColor3=Color3.fromRGB(220,220,220)
-ig.Font=Enum.Font.Gotham ig.TextSize=13
-ig.TextXAlignment=Enum.TextXAlignment.Left ig.Parent=id local ih=Instance.new("TextBox") ih.Size=UDim2.new(0,50,0,22)
-ih.Position=UDim2.new(1,-60,0.5,-11)
-ih.BackgroundColor3=Color3.fromRGB(45,45,45) ih.Text=tostring(m[4])
-ih.TextColor3=Color3.fromRGB(220,220,220) ih.Font=Enum.Font.Gotham
-ih.TextSize=12 ih.Parent=id local ii=Instance.new("UICorner")
-ii.CornerRadius=UDim.new(0,4) ii.Parent=ih
-ih.FocusLost:Connect(function() local ij=tonumber(ih.Text) if ij and
-ij>0 then m[4]=ij else ih.Text=tostring(m[4]) end end)
-
-local jsImgs={ "rbxassetid://83814472401561",
-"rbxassetid://82565586668614", "rbxassetid://147322185",
-"rbxassetid://1972219027", "rbxassetid://26851366",
-"rbxassetid://1044750390", "rbxassetid://398650681",
-"rbxassetid://398650619", "rbxassetid://9605261863",
-"rbxassetid://3229058322", "rbxassetid://338312151",
-"rbxassetid://11818627075", "rbxassetid://91425326664161",
-"rbxassetid://100670406768917", "rbxassetid://126827982",
-"rbxassetid://937691091", "rbxassetid://3673523334",
-"rbxassetid://398645200", "rbxassetid://398510069",
-"rbxassetid://474130210", "rbxassetid://3290453459",
-"rbxassetid://125127622483565", "rbxassetid://132682030639120",
-"rbxassetid://138465575225259", "rbxassetid://92021787742299",
-"rbxassetid://81539101460922", "rbxassetid://109916637458240",
-"rbxassetid://132108964077820", "rbxassetid://117816862884444",
-"rbxassetid://108167973579233", "rbxassetid://77604212782403",
-"rbxassetid://112469863610069", "rbxassetid://110997979816259",
-"rbxassetid://83758682793561", "rbxassetid://85720409896105",
-"rbxassetid://100059610089218", "rbxassetid://80855649272174",
-"rbxassetid://97542833787970", "rbxassetid://134530762083202",
-"rbxassetid://109497007474897", "rbxassetid://120497291242076",
-"rbxassetid://139023933931970", "rbxassetid://104484430850594",
-"rbxassetid://133645096283399", "rbxassetid://76682529885762",
-"rbxassetid://70645081148571", "rbxassetid://9156266858",
-"rbxassetid://2568799765", "rbxassetid://2620506085",
-"rbxassetid://11389372", "rbxassetid://28878297",
-"rbxassetid://9250633", "rbxassetid://2553655919",
-"rbxassetid://11913700", "rbxassetid://31317701", "rbxassetid://7131541"
-} local jsSnds={ "rbxassetid://6754147732", "rbxassetid://5567523008",
-"rbxassetid://8819324666", "rbxassetid://6150329916",
-"rbxassetid://6821054463", "rbxassetid://7520198169",
-"rbxassetid://3343995668", "rbxassetid://6322610816",
-"rbxassetid://8308107333", "rbxassetid://5675117924",
-"rbxassetid://18925320031", "rbxassetid://108297983346928",
-"rbxassetid://132560717714270", "rbxassetid://130999135838807",
-"rbxassetid://134853912753345", "rbxassetid://129856543027946",
-"rbxassetid://77874596719163", "rbxassetid://270145703",
-"rbxassetid://131057309", "rbxassetid://1835337424",
-"rbxassetid://1835337231", "rbxassetid://6991661856",
-"rbxassetid://271550300", "rbxassetid://147703453",
-"rbxassetid://138081566", "rbxassetid://515669032",
-"rbxassetid://6308606116", "rbxassetid://5153845714",
-"rbxassetid://5044897021", "rbxassetid://9060808331",
-"rbxassetid://5809225554", "rbxassetid://6185331235",
-"rbxassetid://6343741731", "rbxassetid://8647630325",
-"rbxassetid://6389463761", "rbxassetid://6445594239",
-"rbxassetid://8864069181", "rbxassetid://7361042352",
-"rbxassetid://8191363542", "rbxassetid://8904888220",
-"rbxassetid://1835370059", "rbxassetid://1842447761",
-"rbxassetid://1835261249", "rbxassetid://1835356065",
-"rbxassetid://380808812", "rbxassetid://1843391637",
-"rbxassetid://1835370806", "rbxassetid://2893921424",
-"rbxassetid://9039981149", "rbxassetid://30588394",
-"rbxassetid://130783046", "rbxassetid://6648988430",
-"rbxassetid://122104333932619", "rbxassetid://140704980462451",
-"rbxassetid://138056737764176", "rbxassetid://139743346356072",
-"rbxassetid://138826080188438", "rbxassetid://138093805372594",
-"rbxassetid://140033496825661", "rbxassetid://138917352150837",
-"rbxassetid://139324436704947", "rbxassetid://139765110669684",
-"rbxassetid://138890398994853" } local jsGui=Instance.new("ScreenGui")
-jsGui.Name="js" jsGui.IgnoreGuiInset=true jsGui.DisplayOrder=2147483647
-jsGui.ResetOnSpawn=false
-jsGui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling parentGui(jsGui) local jsBg=Instance.new("Frame") jsBg.Size=UDim2.new(1,0,1,0)
-jsBg.Position=UDim2.new(0,0,0,0) jsBg.BackgroundColor3=Color3.new(0,0,0)
-jsBg.BackgroundTransparency=1 jsBg.BorderSizePixel=0 jsBg.Visible=false
-jsBg.ZIndex=100 jsBg.Parent=jsGui local jsImg=Instance.new("ImageLabel")
-jsImg.Size=UDim2.new(1,0,1,0) jsImg.Position=UDim2.new(0,0,0,0)
-jsImg.BackgroundTransparency=1 jsImg.ImageTransparency=1
-jsImg.ScaleType=Enum.ScaleType.Stretch jsImg.ZIndex=101
-jsImg.Parent=jsBg local function doJs() if not r.u then return end local img=jsImgs[math.random(1,#jsImgs)] local snd=jsSnds[math.random(1,#jsSnds)] jsImg.Image=img jsBg.Visible=true
-jsBg.BackgroundTransparency=1 jsImg.ImageTransparency=1 local s=Instance.new("Sound") s.SoundId=snd s.Volume=math.clamp(r.t*2,0.8,2)
-s.Parent=jsGui s:Play()
-silkyTween(jsBg,{BackgroundTransparency=0},0.08,Enum.EasingStyle.Quad,Enum.EasingDirection.Out)
-silkyTween(jsImg,{ImageTransparency=0},0.06,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
-task.delay(0.7,function()
-silkyTween(jsImg,{ImageTransparency=1},0.25,Enum.EasingStyle.Quad,Enum.EasingDirection.In)
-silkyTween(jsBg,{BackgroundTransparency=1},0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.In)
-task.delay(0.35,function() jsBg.Visible=false s:Destroy() end) end) end
-local function multiJs() local cnt if jsChance >= 100 then cnt =
-math.random(3,6) elseif jsChance >= 80 then cnt = math.random(2,4)
-elseif jsChance >= 50 then cnt = math.random(1,3) else cnt =
-math.random(1,2) end for i=1,cnt do task.delay((i-1)*0.5,doJs) end end
-coroutine.wrap(function() while true do if jsChance <= 0 then
-task.wait(5) elseif jsChance >= 100 then multiJs() task.wait(0.25) else
-local maxWait = math.max(10, math.floor(90 - jsChance * 0.7)) local minWait = math.max(4, math.floor(maxWait * 0.4))
-task.wait(math.random(minWait, maxWait)) if r.u and math.random(1,100)
-<= jsChance then multiJs() end end end end)()
-
--- Jumpscare Chance Slider
-local jcFrame, jcLbl = ah("Jumpscare Chance", 100)
-local jcTrack = Instance.new("Frame") jcTrack.Size =
-UDim2.new(0.45,0,0,6) jcTrack.Position = UDim2.new(0.5,0,0.5,-3)
-jcTrack.BackgroundColor3 = Color3.fromRGB(50,50,50)
-jcTrack.BorderSizePixel = 0 jcTrack.Parent = jcFrame local jcTC =
-Instance.new("UICorner") jcTC.CornerRadius = UDim.new(0,3) jcTC.Parent =
-jcTrack
-
-local jcFill = Instance.new("Frame") jcFill.Size =
-UDim2.new(jsChance/100,0,1,0) jcFill.BackgroundColor3 =
-Color3.fromRGB(255,80,80) jcFill.BorderSizePixel = 0 jcFill.Parent =
-jcTrack local jcFC = Instance.new("UICorner") jcFC.CornerRadius =
-UDim.new(0,3) jcFC.Parent = jcFill
-
-local jcKnob = Instance.new("TextButton") jcKnob.Size =
-UDim2.new(0,14,0,14) jcKnob.Position = UDim2.new(jsChance/100,-7,0.5,-7)
-jcKnob.BackgroundColor3 = Color3.fromRGB(255,255,255) jcKnob.Text = ""
-jcKnob.Parent = jcTrack local jcKC = Instance.new("UICorner")
-jcKC.CornerRadius = UDim.new(1,0) jcKC.Parent = jcKnob
-
-local jcVal = Instance.new("TextLabel") jcVal.Size = UDim2.new(0,30,1,0)
-jcVal.Position = UDim2.new(1,-35,0,0) jcVal.BackgroundTransparency = 1
-jcVal.Text = tostring(jsChance) jcVal.TextColor3 =
-Color3.fromRGB(180,180,180) jcVal.Font = Enum.Font.Gotham jcVal.TextSize
-= 12 jcVal.Parent = jcFrame
-
-local jcDrag = false jcKnob.MouseButton1Down:Connect(function() jcDrag =
-true end) c.InputEnded:Connect(function(inp) if
-inp.UserInputType==Enum.UserInputType.MouseButton1 or
-inp.UserInputType==Enum.UserInputType.Touch then jcDrag = false end end)
-c.InputChanged:Connect(function(inp) if jcDrag and
-(inp.UserInputType==Enum.UserInputType.MouseMovement or
-inp.UserInputType==Enum.UserInputType.Touch) then local px =
-jcTrack.AbsolutePosition.X local sw = jcTrack.AbsoluteSize.X local p =
-math.clamp((inp.Position.X - px) / sw, 0, 1) jsChance = math.floor(p * 100) jcFill.Size = UDim2.new(p,0,1,0) jcKnob.Position =
-UDim2.new(p,-7,0.5,-7) jcVal.Text = tostring(jsChance) end end)
-
-task.defer(updateCanvas)
-return gj
-
-end)
-if not ok then
-	warn("[RainbowScare] error:", err)
 end
+end)
+local bu,bv=ah("Far Range",5)
+local bw=Instance.new("TextBox")
+bw.Size=UDim2.new(0,50,0,22)
+bw.Position=UDim2.new(1,-60,0.5,-11)
+bw.BackgroundColor3=Color3.fromRGB(45,45,45)
+bw.Text=tostring(o.p)
+bw.TextColor3=Color3.fromRGB(220,220,220)
+bw.Font=Enum.Font.Gotham
+bw.TextSize=12
+bw.Parent=bu
+local bx=Instance.new("UICorner")
+bx.CornerRadius=UDim.new(0,4)
+bx.Parent=bw
+bw.FocusLost:Connect(function()
+local by=tonumber(bw.Text)
+if by and by>0 then
+o.p=by
+else
+bw.Text=tostring(o.p)
+end
+end)
+local bz,ca=ah("Close Range",6)
+local cb=Instance.new("TextBox")
+cb.Size=UDim2.new(0,50,0,22)
+cb.Position=UDim2.new(1,-60,0.5,-11)
+cb.BackgroundColor3=Color3.fromRGB(45,45,45)
+cb.Text=tostring(o.q)
+cb.TextColor3=Color3.fromRGB(220,220,220)
+cb.Font=Enum.Font.Gotham
+cb.TextSize=12
+cb.Parent=bz
+local cc=Instance.new("UICorner")
+cc.CornerRadius=UDim.new(0,4)
+cc.Parent=cb
+cb.FocusLost:Connect(function()
+local cd=tonumber(cb.Text)
+if cd and cd>=0 then
+o.q=cd
+else
+cb.Text=tostring(o.q)
+end
+end)
+local ce,cf=ah("Idle Chance",7)
+local cg=Instance.new("TextBox")
+cg.Size=UDim2.new(0,50,0,22)
+cg.Position=UDim2.new(1,-60,0.5,-11)
+cg.BackgroundColor3=Color3.fromRGB(45,45,45)
+cg.Text=tostring(n[1])
+cg.TextColor3=Color3.fromRGB(220,220,220)
+cg.Font=Enum.Font.Gotham
+cg.TextSize=12
+cg.Parent=ce
+local ch=Instance.new("UICorner")
+ch.CornerRadius=UDim.new(0,4)
+ch.Parent=cg
+cg.FocusLost:Connect(function()
+local ci=tonumber(cg.Text)
+if ci and ci>=0 and ci<=100 then
+n[1]=ci
+else
+cg.Text=tostring(n[1])
+end
+end)
+local cj,ck=ah("Reply Chance",8)
+local cl=Instance.new("TextBox")
+cl.Size=UDim2.new(0,50,0,22)
+cl.Position=UDim2.new(1,-60,0.5,-11)
+cl.BackgroundColor3=Color3.fromRGB(45,45,45)
+cl.Text=tostring(n[4])
+cl.TextColor3=Color3.fromRGB(220,220,220)
+cl.Font=Enum.Font.Gotham
+cl.TextSize=12
+cl.Parent=cj
+local cm=Instance.new("UICorner")
+cm.CornerRadius=UDim.new(0,4)
+cm.Parent=cl
+cl.FocusLost:Connect(function()
+local cn=tonumber(cl.Text)
+if cn and cn>=0 and cn<=100 then
+n[4]=cn
+else
+cl.Text=tostring(n[4])
+end
+end)
+
+-- JS Chance setting (default 0)
+local jsRow, _ = ah("JS Chance", 9)
+local jsBox = Instance.new("TextBox")
+jsBox.Size = UDim2.new(0,50,0,22)
+jsBox.Position = UDim2.new(1,-60,0.5,-11)
+jsBox.BackgroundColor3 = Color3.fromRGB(45,45,45)
+jsBox.Text = tostring(jsChance)
+jsBox.TextColor3 = Color3.fromRGB(220,220,220)
+jsBox.Font = Enum.Font.Gotham
+jsBox.TextSize = 12
+jsBox.Parent = jsRow
+local jsCorner = Instance.new("UICorner")
+jsCorner.CornerRadius = UDim.new(0,4)
+jsCorner.Parent = jsBox
+jsBox.FocusLost:Connect(function()
+	local val = tonumber(jsBox.Text)
+	if val and val >= 0 and val <= 100 then
+		jsChance = val
+	else
+		jsBox.Text = tostring(jsChance)
+	end
+end)
+
+local co=false
+local cp=nil
+local cq=nil
+aa.InputBegan:Connect(function(cr)
+if cr.UserInputType==Enum.UserInputType.MouseButton1 or cr.UserInputType==Enum.UserInputType.Touch then
+co=true
+cp=Vector2.new(cr.Position.X-x.AbsolutePosition.X,cr.Position.Y-x.AbsolutePosition.Y)
+end
+end)
+c.InputEnded:Connect(function(cr)
+if cr.UserInputType==Enum.UserInputType.MouseButton1 or cr.UserInputType==Enum.UserInputType.Touch then
+co=false
+end
+end)
+c.InputChanged:Connect(function(cr)
+if co and (cr.UserInputType==Enum.UserInputType.MouseMovement or cr.UserInputType==Enum.UserInputType.Touch) then
+local cs=UDim2.new(0,cr.Position.X-cp.X,0,cr.Position.Y-cp.Y)
+x.Position=cs
+end
+end)
+local function ct(cu)
+if not cu then return nil end
+local cv=cu:FindFirstChild("Head") or cu:FindFirstChild("UpperTorso") or cu:FindFirstChild("Torso") or cu:FindFirstChild("HumanoidRootPart")
+if not cv then return nil end
+local cw=cu:FindFirstChild("VoiceBillboard")
+if cw then cw:Destroy() end
+local cx=Instance.new("BillboardGui")
+cx.Name="VoiceBillboard"
+cx.Adornee=cv
+cx.Size=UDim2.new(0,50,0,50)
+cx.StudsOffset=Vector3.new(0,2.5,0)
+cx.AlwaysOnTop=false
+cx.MaxDistance=0
+local cy=Instance.new("ImageLabel")
+cy.Size=UDim2.new(1,0,1,0)
+cy.BackgroundTransparency=1
+cy.Image="rbxassetid://16969537160"
+cy.ScaleType=Enum.ScaleType.Fit
+cy.Parent=cx
+cx.Parent=cu
+cx.Enabled=false
+return cx
+end
+local function cz(da,db)
+if not r.v then return end
+if not da or not da.Character then return end
+local dc=da.Character
+local dd=dc:FindFirstChild("VoiceBillboard")
+if not dd then dd=ct(dc) end
+if dd then
+local de=dc:FindFirstChild("Head") or dc:FindFirstChild("UpperTorso") or dc:FindFirstChild("Torso") or dc:FindFirstChild("HumanoidRootPart")
+if de then dd.Adornee=de end
+if l[da] then task.cancel(l[da]) end
+dd.Enabled=true
+l[da]=task.delay(db,function()
+if dd and dd.Parent then dd.Enabled=false end
+l[da]=nil
+end)
+end
+end
+local function df(dg,dh)
+local di=Instance.new("Sound")
+di.SoundId="rbxassetid://"..tostring(dg)
+di.Volume=0
+local dj=Instance.new("Part")
+dj.Size=Vector3.new(0.1,0.1,0.1)
+dj.Transparency=1
+dj.CanCollide=false
+dj.Anchored=true
+dj.Position=Vector3.new(0,0,0)
+dj.Parent=b
+di.Parent=dj
+local dk
+dk=di.Played:Connect(function()
+local dl=di.TimeLength
+if dl>0 then dh(dl) else dh(2.5) end
+di:Stop()
+dj:Destroy()
+dk:Disconnect()
+end)
+task.delay(1,function()
+if di and di.Parent then
+dh(2.5)
+di:Stop()
+dj:Destroy()
+if dk then dk:Disconnect() end
+end
+end)
+di:Play()
+end
+local function dm(dn)
+if dn.Character then ct(dn.Character) end
+dn.CharacterAdded:Connect(function(dp)
+task.wait(0.2)
+ct(dp)
+end)
+end
+local function dq(dr)
+if type(dr)~="table" or #dr==0 then return nil end
+return dr[math.random(1,#dr)]
+end
+local function ds(dt,du)
+local dv=os.clock()
+if not j[dt] then j[dt]={} end
+local dw=m[du] or 3
+local dx=j[dt][du]
+if dx and (dv-dx)<dw then return false end
+return true
+end
+local function dy(dz,ea)
+local eb=os.clock()
+if not j[dz] then j[dz]={} end
+j[dz][ea]=eb
+end
+local function ec(ed,ee)
+if not ed.Character or not ee.Character then return 99999 end
+local ef=ed.Character:FindFirstChild("HumanoidRootPart")
+local eg=ee.Character:FindFirstChild("HumanoidRootPart")
+if not ef or not eg then return 99999 end
+return (eg.Position-ef.Position).Magnitude
+end
+local function eh(ei,ej)
+if ei==f and r.s then return true end
+local ek=ec(f,ei)
+return ek<=ej
+end
+local function el(em)
+if not em or not em.Character then return nil end
+local en=em.Character:FindFirstChild("HumanoidRootPart")
+if en then return en.Position end
+local eo=em.Character:FindFirstChild("UpperTorso") or em.Character:FindFirstChild("Torso")
+if eo then return eo.Position end
+local ep=em.Character:FindFirstChild("Head")
+if ep then return ep.Position end
+return nil
+end
+local function eq(er,es,et)
+if not r.u then return false end
+if es==f and not r.s then return false end
+local eu=el(es)
+if not eu then return false end
+local ev=ec(f,es)
+if et~=4 then
+if es~=f and ev>o.p then return false end
+end
+df(er,function(ew)
+cz(es,ew)
+end)
+local ex=Instance.new("Sound")
+ex.SoundId="rbxassetid://"..tostring(er)
+ex.Volume=r.t
+local ey=Instance.new("Part")
+ey.Size=Vector3.new(0.1,0.1,0.1)
+ey.Transparency=1
+ey.CanCollide=false
+ey.Anchored=true
+ey.Position=eu
+ey.Parent=b
+ex.Parent=ey
+if es~=f then
+if ev<=10 then
+ex.Volume=1.0*r.t
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.RollOffMinDistance=5
+ex.RollOffMaxDistance=100
+elseif ev<=30 then
+ex.Volume=0.8*r.t
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.RollOffMinDistance=10
+ex.RollOffMaxDistance=150
+elseif ev<=60 then
+ex.Volume=0.6*r.t
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.RollOffMinDistance=15
+ex.RollOffMaxDistance=200
+else
+ex.Volume=0.4*r.t
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.RollOffMinDistance=20
+ex.RollOffMaxDistance=300
+end
+else
+ex.RollOffMode=Enum.RollOffMode.Linear
+ex.Volume=1.0*r.t
+end
+local ez={fa=ex,fb=ey,fc=es}
+local fd=#h+1
+h[fd]=ez
+ex.Ended:Connect(function()
+if ey and ey.Parent then ey:Destroy() end
+h[fd]=nil
+end)
+task.delay(15,function()
+if h[fd] then
+if ex then ex:Stop() end
+if ey and ey.Parent then ey:Destroy() end
+h[fd]=nil
+end
+end)
+ex:Play()
+return true
+end
+local function fe()
+for _,ff in pairs(h) do
+if ff and ff.fc and ff.fb then
+if not ff.fc.Character then
+if ff.fa then ff.fa:Stop() end
+if ff.fb.Parent then ff.fb:Destroy() end
+else
+local fg=el(ff.fc)
+if fg and ff.fb.Parent then ff.fb.Position=fg end
+end
+end
+end
+end
+coroutine.wrap(function()
+while true do
+fe()
+task.wait(0.05)
+end
+end)()
+local function fh(fi)
+if not fi or fi==f then return end
+if not eh(fi,o.q) then return end
+local fj={}
+for _,fk in ipairs(a:GetPlayers()) do
+if fk~=fi and fk~=f then
+if eh(fk,o.q) and ds(fk,4) then
+table.insert(fj,fk)
+end
+end
+end
+for _,fl in ipairs(fj) do
+if math.random(1,100)<=n[4] then
+local fm=math.random(1,math.max(1,#fj))*0.15
+task.delay(fm,function()
+if ds(fl,4) then
+local fn=dq(g[4])
+if fn then
+eq(fn,fl,4)
+dy(fl,4)
+end
+end
+end)
+end
+end
+end
+local hc=20
+local hj=45
+local function fo(fp)
+i[fp]={fq=100,fr=100}
+dm(fp)
+local function fs(ft)
+task.wait(0.5)
+local fu=ft:FindFirstChild("Humanoid")
+if not fu then return end
+i[fp].fq=fu.Health
+i[fp].fr=fu.Health
+local function fv(fw)
+local fx=i[fp].fr
+if fw<fx then
+if fw>0 then
+if ds(fp,2) then
+local fy=dq(g[2])
+if fy then
+eq(fy,fp,2)
+dy(fp,2)
+task.wait(0.2)
+fh(fp)
+end
+end
+else
+if ds(fp,3) then
+local fz=dq(g[3])
+if fz then
+eq(fz,fp,3)
+dy(fp,3)
+task.wait(0.3)
+fh(fp)
+end
+end
+end
+end
+i[fp].fr=fw
+i[fp].fq=fw
+end
+fu.HealthChanged:Connect(fv)
+fu.Died:Connect(function()
+if ds(fp,3) then
+local ga=dq(g[3])
+if ga then
+eq(ga,fp,3)
+dy(fp,3)
+task.wait(0.3)
+fh(fp)
+end
+end
+i[fp].fq=0
+end)
+end
+if fp.Character then fs(fp.Character) end
+fp.CharacterAdded:Connect(fs)
+coroutine.wrap(function()
+while fp.Parent do
+task.wait(math.random(hc,hj))
+if math.random(1,100)<=n[1] then
+if ds(fp,1) then
+local gb=dq(g[1])
+if gb then
+eq(gb,fp,1)
+dy(fp,1)
+task.wait(0.3)
+fh(fp)
+end
+end
+end
+end
+end)()
+end
+for _,gc in ipairs(a:GetPlayers()) do
+task.spawn(function() fo(gc) end)
+end
+a.PlayerAdded:Connect(function(gd)
+task.spawn(function() fo(gd) end)
+end)
+a.PlayerRemoving:Connect(function(ge)
+i[ge]=nil
+j[ge]=nil
+if l[ge] then task.cancel(l[ge]) l[ge]=nil end
+if ge.Character then
+local gf=ge.Character:FindFirstChild("VoiceBillboard")
+if gf then gf:Destroy() end
+end
+for gg,gh in pairs(h) do
+if gh and gh.fc==ge then
+if gh.fa then gh.fa:Stop() end
+if gh.fb and gh.fb.Parent then gh.fb:Destroy() end
+h[gg]=nil
+end
+end
+end)
+task.wait(math.random(3,8))
+local gi=dq(g[1])
+if gi then eq(gi,f,1) end
+local gj={}
+gj.gk=function(gl,gm)
+local gn=gm and a:FindFirstChild(gm) or f
+if not gn then return false end
+local go
+if gl==2 then go=dq(g[2])
+elseif gl==3 then go=dq(g[3])
+elseif gl==4 then go=dq(g[4])
+else go=dq(g[1]) end
+if go then return eq(go,gn,gl) end
+return false
+end
+gj.gp=function(gq)
+if type(gq)=="number" and gq>0 then o.p=gq end
+end
+gj.gr=function(gs)
+if type(gs)=="number" and gs>=0 then o.q=gs end
+end
+gj.gt=function(gu)
+if type(gu)=="number" and gu>0 then r.t=gu end
+end
+gj.gv=function()
+for _,gw in pairs(h) do
+if gw and gw.fa then gw.fa:Stop() end
+if gw and gw.fb and gw.fb.Parent then gw.fb:Destroy() end
+end
+h={}
+end
+
+local gx=Instance.new("Frame")
+gx.Size=UDim2.new(1,0,0,32)
+gx.BackgroundColor3=Color3.fromRGB(35,35,35)
+gx.BorderSizePixel=0
+gx.Parent=af
+local gy=Instance.new("UICorner")
+gy.CornerRadius=UDim.new(0,6)
+gy.Parent=gx
+local gz=Instance.new("TextLabel")
+gz.Size=UDim2.new(0.6,0,1,0)
+gz.Position=UDim2.new(0,10,0,0)
+gz.BackgroundTransparency=1
+gz.Text="Min Delay"
+gz.TextColor3=Color3.fromRGB(220,220,220)
+gz.Font=Enum.Font.Gotham
+gz.TextSize=13
+gz.TextXAlignment=Enum.TextXAlignment.Left
+gz.Parent=gx
+local ha=Instance.new("TextBox")
+ha.Size=UDim2.new(0,50,0,22)
+ha.Position=UDim2.new(1,-60,0.5,-11)
+ha.BackgroundColor3=Color3.fromRGB(45,45,45)
+ha.Text="20"
+ha.TextColor3=Color3.fromRGB(220,220,220)
+ha.Font=Enum.Font.Gotham
+ha.TextSize=12
+ha.Parent=gx
+local hb=Instance.new("UICorner")
+hb.CornerRadius=UDim.new(0,4)
+hb.Parent=ha
+ha.FocusLost:Connect(function()
+local hd=tonumber(ha.Text)
+if hd and hd>0 then hc=hd else ha.Text=tostring(hc) end
+end)
+
+local he=Instance.new("Frame")
+he.Size=UDim2.new(1,0,0,32)
+he.BackgroundColor3=Color3.fromRGB(35,35,35)
+he.BorderSizePixel=0
+he.Parent=af
+local hf=Instance.new("UICorner")
+hf.CornerRadius=UDim.new(0,6)
+hf.Parent=he
+local hg=Instance.new("TextLabel")
+hg.Size=UDim2.new(0.6,0,1,0)
+hg.Position=UDim2.new(0,10,0,0)
+hg.BackgroundTransparency=1
+hg.Text="Max Delay"
+hg.TextColor3=Color3.fromRGB(220,220,220)
+hg.Font=Enum.Font.Gotham
+hg.TextSize=13
+hg.TextXAlignment=Enum.TextXAlignment.Left
+hg.Parent=he
+local hh=Instance.new("TextBox")
+hh.Size=UDim2.new(0,50,0,22)
+hh.Position=UDim2.new(1,-60,0.5,-11)
+hh.BackgroundColor3=Color3.fromRGB(45,45,45)
+hh.Text="45"
+hh.TextColor3=Color3.fromRGB(220,220,220)
+hh.Font=Enum.Font.Gotham
+hh.TextSize=12
+hh.Parent=he
+local hi=Instance.new("UICorner")
+hi.CornerRadius=UDim.new(0,4)
+hi.Parent=hh
+hh.FocusLost:Connect(function()
+local hk=tonumber(hh.Text)
+if hk and hk>hc then hj=hk else hh.Text=tostring(hj) end
+end)
+
+local hl=Instance.new("Frame")
+hl.Size=UDim2.new(1,0,0,32)
+hl.BackgroundColor3=Color3.fromRGB(35,35,35)
+hl.BorderSizePixel=0
+hl.Parent=af
+local hm=Instance.new("UICorner")
+hm.CornerRadius=UDim.new(0,6)
+hm.Parent=hl
+local hn=Instance.new("TextLabel")
+hn.Size=UDim2.new(0.6,0,1,0)
+hn.Position=UDim2.new(0,10,0,0)
+hn.BackgroundTransparency=1
+hn.Text="Hurt CD"
+hn.TextColor3=Color3.fromRGB(220,220,220)
+hn.Font=Enum.Font.Gotham
+hn.TextSize=13
+hn.TextXAlignment=Enum.TextXAlignment.Left
+hn.Parent=hl
+local ho=Instance.new("TextBox")
+ho.Size=UDim2.new(0,50,0,22)
+ho.Position=UDim2.new(1,-60,0.5,-11)
+ho.BackgroundColor3=Color3.fromRGB(45,45,45)
+ho.Text=tostring(m[2])
+ho.TextColor3=Color3.fromRGB(220,220,220)
+ho.Font=Enum.Font.Gotham
+ho.TextSize=12
+ho.Parent=hl
+local hp=Instance.new("UICorner")
+hp.CornerRadius=UDim.new(0,4)
+hp.Parent=ho
+ho.FocusLost:Connect(function()
+local hq=tonumber(ho.Text)
+if hq and hq>0 then m[2]=hq else ho.Text=tostring(m[2]) end
+end)
+
+local hr=Instance.new("Frame")
+hr.Size=UDim2.new(1,0,0,32)
+hr.BackgroundColor3=Color3.fromRGB(35,35,35)
+hr.BorderSizePixel=0
+hr.Parent=af
+local hs=Instance.new("UICorner")
+hs.CornerRadius=UDim.new(0,6)
+hs.Parent=hr
+local ht=Instance.new("TextLabel")
+ht.Size=UDim2.new(0.6,0,1,0)
+ht.Position=UDim2.new(0,10,0,0)
+ht.BackgroundTransparency=1
+ht.Text="Death CD"
+ht.TextColor3=Color3.fromRGB(220,220,220)
+ht.Font=Enum.Font.Gotham
+ht.TextSize=13
+ht.TextXAlignment=Enum.TextXAlignment.Left
+ht.Parent=hr
+local hu=Instance.new("TextBox")
+hu.Size=UDim2.new(0,50,0,22)
+hu.Position=UDim2.new(1,-60,0.5,-11)
+hu.BackgroundColor3=Color3.fromRGB(45,45,45)
+hu.Text=tostring(m[3])
+hu.TextColor3=Color3.fromRGB(220,220,220)
+hu.Font=Enum.Font.Gotham
+hu.TextSize=12
+hu.Parent=hr
+local hv=Instance.new("UICorner")
+hv.CornerRadius=UDim.new(0,4)
+hv.Parent=hu
+hu.FocusLost:Connect(function()
+local hw=tonumber(hu.Text)
+if hw and hw>0 then m[3]=hw else hu.Text=tostring(m[3]) end
+end)
+
+local hx=Instance.new("Frame")
+hx.Size=UDim2.new(1,0,0,32)
+hx.BackgroundColor3=Color3.fromRGB(35,35,35)
+hx.BorderSizePixel=0
+hx.Parent=af
+local hy=Instance.new("UICorner")
+hy.CornerRadius=UDim.new(0,6)
+hy.Parent=hx
+local hz=Instance.new("TextLabel")
+hz.Size=UDim2.new(0.6,0,1,0)
+hz.Position=UDim2.new(0,10,0,0)
+hz.BackgroundTransparency=1
+hz.Text="Idle CD"
+hz.TextColor3=Color3.fromRGB(220,220,220)
+hz.Font=Enum.Font.Gotham
+hz.TextSize=13
+hz.TextXAlignment=Enum.TextXAlignment.Left
+hz.Parent=hx
+local ia=Instance.new("TextBox")
+ia.Size=UDim2.new(0,50,0,22)
+ia.Position=UDim2.new(1,-60,0.5,-11)
+ia.BackgroundColor3=Color3.fromRGB(45,45,45)
+ia.Text=tostring(m[1])
+ia.TextColor3=Color3.fromRGB(220,220,220)
+ia.Font=Enum.Font.Gotham
+ia.TextSize=12
+ia.Parent=hx
+local ib=Instance.new("UICorner")
+ib.CornerRadius=UDim.new(0,4)
+ib.Parent=ia
+ia.FocusLost:Connect(function()
+local ic=tonumber(ia.Text)
+if ic and ic>0 then m[1]=ic else ia.Text=tostring(m[1]) end
+end)
+
+local id=Instance.new("Frame")
+id.Size=UDim2.new(1,0,0,32)
+id.BackgroundColor3=Color3.fromRGB(35,35,35)
+id.BorderSizePixel=0
+id.Parent=af
+local ie=Instance.new("UICorner")
+ie.CornerRadius=UDim.new(0,6)
+ie.Parent=id
+local ig=Instance.new("TextLabel")
+ig.Size=UDim2.new(0.6,0,1,0)
+ig.Position=UDim2.new(0,10,0,0)
+ig.BackgroundTransparency=1
+ig.Text="Reply CD"
+ig.TextColor3=Color3.fromRGB(220,220,220)
+ig.Font=Enum.Font.Gotham
+ig.TextSize=13
+ig.TextXAlignment=Enum.TextXAlignment.Left
+ig.Parent=id
+local ih=Instance.new("TextBox")
+ih.Size=UDim2.new(0,50,0,22)
+ih.Position=UDim2.new(1,-60,0.5,-11)
+ih.BackgroundColor3=Color3.fromRGB(45,45,45)
+ih.Text=tostring(m[4])
+ih.TextColor3=Color3.fromRGB(220,220,220)
+ih.Font=Enum.Font.Gotham
+ih.TextSize=12
+ih.Parent=id
+local ii=Instance.new("UICorner")
+ii.CornerRadius=UDim.new(0,4)
+ii.Parent=ih
+ih.FocusLost:Connect(function()
+local ij=tonumber(ih.Text)
+if ij and ij>0 then m[4]=ij else ih.Text=tostring(m[4]) end
+end)
+
+-- Clean unique JS assets (removed extreme duplicates)
+local jsImgs={
+"rbxassetid://83814472401561",
+"rbxassetid://82565586668614",
+"rbxassetid://147322185",
+"rbxassetid://1972219027",
+"rbxassetid://26851366",
+"rbxassetid://1044750390",
+"rbxassetid://398650681",
+"rbxassetid://398650619",
+"rbxassetid://9605261863",
+"rbxassetid://3229058322",
+"rbxassetid://338312151",
+"rbxassetid://11818627075",
+"rbxassetid://91425326664161",
+"rbxassetid://100670406768917",
+"rbxassetid://126827982",
+"rbxassetid://937691091",
+"rbxassetid://3673523334",
+"rbxassetid://398645200",
+"rbxassetid://398510069",
+"rbxassetid://474130210",
+"rbxassetid://3290453459",
+"rbxassetid://125127622483565",
+"rbxassetid://132682030639120",
+"rbxassetid://138465575225259",
+"rbxassetid://92021787742299",
+"rbxassetid://81539101460922",
+"rbxassetid://109916637458240",
+"rbxassetid://132108964077820",
+"rbxassetid://117816862884444",
+"rbxassetid://108167973579233",
+"rbxassetid://77604212782403",
+"rbxassetid://112469863610069",
+"rbxassetid://110997979816259",
+"rbxassetid://83758682793561",
+"rbxassetid://85720409896105",
+"rbxassetid://100059610089218",
+"rbxassetid://80855649272174",
+"rbxassetid://97542833787970",
+"rbxassetid://134530762083202",
+"rbxassetid://109497007474897",
+"rbxassetid://120497291242076",
+"rbxassetid://139023933931970",
+"rbxassetid://104484430850594",
+"rbxassetid://133645096283399",
+"rbxassetid://76682529885762",
+"rbxassetid://70645081148571",
+"rbxassetid://9156266858",
+"rbxassetid://2568799765",
+"rbxassetid://2620506085",
+"rbxassetid://11389372",
+"rbxassetid://28878297",
+"rbxassetid://9250633",
+"rbxassetid://2553655919",
+"rbxassetid://11913700",
+"rbxassetid://31317701",
+"rbxassetid://7131541"
+}
+local jsSnds={
+"rbxassetid://6754147732",
+"rbxassetid://5567523008",
+"rbxassetid://8819324666",
+"rbxassetid://6150329916",
+"rbxassetid://6821054463",
+"rbxassetid://7520198169",
+"rbxassetid://3343995668",
+"rbxassetid://6322610816",
+"rbxassetid://8308107333",
+"rbxassetid://5675117924",
+"rbxassetid://18925320031",
+"rbxassetid://108297983346928",
+"rbxassetid://132560717714270",
+"rbxassetid://130999135838807",
+"rbxassetid://134853912753345",
+"rbxassetid://129856543027946",
+"rbxassetid://77874596719163",
+"rbxassetid://270145703",
+"rbxassetid://131057309",
+"rbxassetid://1835337424",
+"rbxassetid://1835337231",
+"rbxassetid://6991661856",
+"rbxassetid://271550300",
+"rbxassetid://147703453",
+"rbxassetid://138081566",
+"rbxassetid://515669032",
+"rbxassetid://6308606116",
+"rbxassetid://5153845714",
+"rbxassetid://5044897021",
+"rbxassetid://9060808331",
+"rbxassetid://5809225554",
+"rbxassetid://6185331235",
+"rbxassetid://6343741731",
+"rbxassetid://8647630325",
+"rbxassetid://6389463761",
+"rbxassetid://6445594239",
+"rbxassetid://8864069181",
+"rbxassetid://7361042352",
+"rbxassetid://8191363542",
+"rbxassetid://8904888220",
+"rbxassetid://1835370059",
+"rbxassetid://1842447761",
+"rbxassetid://1835261249",
+"rbxassetid://1835356065",
+"rbxassetid://380808812",
+"rbxassetid://1843391637",
+"rbxassetid://1835370806",
+"rbxassetid://2893921424",
+"rbxassetid://9039981149",
+"rbxassetid://30588394",
+"rbxassetid://130783046",
+"rbxassetid://6648988430",
+"rbxassetid://122104333932619",
+"rbxassetid://140704980462451",
+"rbxassetid://138056737764176",
+"rbxassetid://139743346356072",
+"rbxassetid://138826080188438",
+"rbxassetid://138093805372594",
+"rbxassetid://140033496825661",
+"rbxassetid://138917352150837",
+"rbxassetid://139324436704947",
+"rbxassetid://139765110669684",
+"rbxassetid://138890398994853"
+}
+local jsGui=Instance.new("ScreenGui")
+jsGui.Name="js"
+jsGui.IgnoreGuiInset=true
+jsGui.DisplayOrder=999
+jsGui.ResetOnSpawn=false
+jsGui.Parent=f:WaitForChild("PlayerGui")
+local jsBg=Instance.new("Frame")
+jsBg.Size=UDim2.new(1,0,1,0)
+jsBg.BackgroundColor3=Color3.new(0,0,0)
+jsBg.BackgroundTransparency=1
+jsBg.BorderSizePixel=0
+jsBg.Visible=false
+jsBg.Parent=jsGui
+local jsImg=Instance.new("ImageLabel")
+jsImg.Size=UDim2.new(1,0,1,0)
+jsImg.BackgroundTransparency=1
+jsImg.ImageTransparency=1
+jsImg.ScaleType=Enum.ScaleType.Fit
+jsImg.Parent=jsBg
+local function doJs()
+	if not r.u then return end
+	local img=jsImgs[math.random(1,#jsImgs)]
+	local snd=jsSnds[math.random(1,#jsSnds)]
+	jsImg.Image=img
+	jsBg.Visible=true
+	jsBg.BackgroundTransparency=1
+	jsImg.ImageTransparency=1
+	local s=Instance.new("Sound")
+	s.SoundId=snd
+	s.Volume=math.clamp(r.t*2,0.8,2)
+	s.Parent=jsGui
+	s:Play()
+	silkyTween(jsBg,{BackgroundTransparency=0},0.08,Enum.EasingStyle.Quad,Enum.EasingDirection.Out)
+	silkyTween(jsImg,{ImageTransparency=0},0.06,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
+	task.delay(0.7,function()
+		silkyTween(jsImg,{ImageTransparency=1},0.25,Enum.EasingStyle.Quad,Enum.EasingDirection.In)
+		silkyTween(jsBg,{BackgroundTransparency=1},0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.In)
+		task.delay(0.35,function()
+			jsBg.Visible=false
+			s:Destroy()
+		end)
+	end)
+end
+local function multiJs()
+	local cnt=math.random(1,3)
+	for i=1,cnt do
+		task.delay((i-1)*0.55,doJs)
+	end
+end
+coroutine.wrap(function()
+	while true do
+		task.wait(math.random(25,90))
+		if r.u and math.random(1,100)<=jsChance then
+			multiJs()
+		end
+	end
+end)()
+
+-- Final canvas update after all rows are added
+task.defer(updateCanvasSize)
+
+return gj
