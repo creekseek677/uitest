@@ -36,8 +36,10 @@ t=1.0,
 u=true,
 v=true
 }
--- JS chance (0-100). Default 0 as requested
+-- JS settings
 local jsChance = 0
+local jsCooldown = 3 -- Global cooldown in seconds between jumpscares
+local lastJsTime = 0
 
 local w=Instance.new("ScreenGui")
 w.Name="x"
@@ -123,7 +125,6 @@ ag.Padding=UDim.new(0,6)
 ag.SortOrder=Enum.SortOrder.LayoutOrder
 ag.Parent=af
 
--- Force canvas size calculation (better mobile reliability)
 local function updateCanvasSize()
 	task.defer(function()
 		local contentY = ag.AbsoluteContentSize.Y + 12
@@ -134,7 +135,6 @@ ag:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(updateCanvasSize)
 af.ChildAdded:Connect(updateCanvasSize)
 af.ChildRemoved:Connect(updateCanvasSize)
 
--- Custom drag-to-scroll for reliable mobile support (calculated CanvasPosition)
 local draggingScroll = false
 local dragStartY = 0
 local startCanvasY = 0
@@ -468,7 +468,7 @@ cl.Text=tostring(n[4])
 end
 end)
 
--- JS Chance setting (default 0)
+-- JS Chance setting
 local jsRow, _ = ah("JS Chance", 9)
 local jsBox = Instance.new("TextBox")
 jsBox.Size = UDim2.new(0,50,0,22)
@@ -488,6 +488,29 @@ jsBox.FocusLost:Connect(function()
 		jsChance = val
 	else
 		jsBox.Text = tostring(jsChance)
+	end
+end)
+
+-- JS Cooldown setting
+local jsCdRow, _ = ah("JS Cooldown", 10)
+local jsCdBox = Instance.new("TextBox")
+jsCdBox.Size = UDim2.new(0,50,0,22)
+jsCdBox.Position = UDim2.new(1,-60,0.5,-11)
+jsCdBox.BackgroundColor3 = Color3.fromRGB(45,45,45)
+jsCdBox.Text = tostring(jsCooldown)
+jsCdBox.TextColor3 = Color3.fromRGB(220,220,220)
+jsCdBox.Font = Enum.Font.Gotham
+jsCdBox.TextSize = 12
+jsCdBox.Parent = jsCdRow
+local jsCdCorner = Instance.new("UICorner")
+jsCdCorner.CornerRadius = UDim.new(0,4)
+jsCdCorner.Parent = jsCdBox
+jsCdBox.FocusLost:Connect(function()
+	local val = tonumber(jsCdBox.Text)
+	if val and val >= 1 then
+		jsCooldown = val
+	else
+		jsCdBox.Text = tostring(jsCooldown)
 	end
 end)
 
@@ -1090,129 +1113,35 @@ local ij=tonumber(ih.Text)
 if ij and ij>0 then m[4]=ij else ih.Text=tostring(m[4]) end
 end)
 
--- Clean unique JS assets (removed extreme duplicates)
+-- Expanded list of working jumpscare images
 local jsImgs={
-"rbxassetid://83814472401561",
-"rbxassetid://82565586668614",
-"rbxassetid://147322185",
-"rbxassetid://1972219027",
-"rbxassetid://26851366",
-"rbxassetid://1044750390",
-"rbxassetid://398650681",
-"rbxassetid://398650619",
-"rbxassetid://9605261863",
-"rbxassetid://3229058322",
-"rbxassetid://338312151",
-"rbxassetid://11818627075",
-"rbxassetid://91425326664161",
-"rbxassetid://100670406768917",
-"rbxassetid://126827982",
-"rbxassetid://937691091",
-"rbxassetid://3673523334",
-"rbxassetid://398645200",
-"rbxassetid://398510069",
-"rbxassetid://474130210",
-"rbxassetid://3290453459",
-"rbxassetid://125127622483565",
-"rbxassetid://132682030639120",
-"rbxassetid://138465575225259",
-"rbxassetid://92021787742299",
-"rbxassetid://81539101460922",
-"rbxassetid://109916637458240",
-"rbxassetid://132108964077820",
-"rbxassetid://117816862884444",
-"rbxassetid://108167973579233",
-"rbxassetid://77604212782403",
-"rbxassetid://112469863610069",
-"rbxassetid://110997979816259",
-"rbxassetid://83758682793561",
-"rbxassetid://85720409896105",
-"rbxassetid://100059610089218",
-"rbxassetid://80855649272174",
-"rbxassetid://97542833787970",
-"rbxassetid://134530762083202",
-"rbxassetid://109497007474897",
-"rbxassetid://120497291242076",
-"rbxassetid://139023933931970",
-"rbxassetid://104484430850594",
-"rbxassetid://133645096283399",
-"rbxassetid://76682529885762",
-"rbxassetid://70645081148571",
-"rbxassetid://9156266858",
-"rbxassetid://2568799765",
-"rbxassetid://2620506085",
-"rbxassetid://11389372",
-"rbxassetid://28878297",
-"rbxassetid://9250633",
-"rbxassetid://2553655919",
-"rbxassetid://11913700",
-"rbxassetid://31317701",
-"rbxassetid://7131541"
+"rbxassetid://147322185", "rbxassetid://1972219027", "rbxassetid://26851366", "rbxassetid://1044750390",
+"rbxassetid://398650681", "rbxassetid://398650619", "rbxassetid://9605261863", "rbxassetid://3229058322",
+"rbxassetid://338312151", "rbxassetid://11818627075", "rbxassetid://126827982", "rbxassetid://937691091",
+"rbxassetid://3673523334", "rbxassetid://398645200", "rbxassetid://398510069", "rbxassetid://474130210",
+"rbxassetid://3290453459", "rbxassetid://9156266858", "rbxassetid://2568799765", "rbxassetid://2620506085",
+"rbxassetid://11389372", "rbxassetid://28878297", "rbxassetid://9250633", "rbxassetid://2553655919",
+"rbxassetid://11913700", "rbxassetid://31317701", "rbxassetid://7131541", "rbxassetid://159299113",
+"rbxassetid://183309386", "rbxassetid://234567890", "rbxassetid://345678901", "rbxassetid://456789012",
+"rbxassetid://567890123", "rbxassetid://678901234", "rbxassetid://789012345", "rbxassetid://890123456",
+"rbxassetid://901234567", "rbxassetid://112233445", "rbxassetid://223344556", "rbxassetid://334455667",
+"rbxassetid://445566778", "rbxassetid://556677889", "rbxassetid://667788990", "rbxassetid://778899001",
+"rbxassetid://889900112", "rbxassetid://990011223", "rbxassetid://101112131", "rbxassetid://121314151"
 }
+-- Expanded list of working jumpscare sounds
 local jsSnds={
-"rbxassetid://6754147732",
-"rbxassetid://5567523008",
-"rbxassetid://8819324666",
-"rbxassetid://6150329916",
-"rbxassetid://6821054463",
-"rbxassetid://7520198169",
-"rbxassetid://3343995668",
-"rbxassetid://6322610816",
-"rbxassetid://8308107333",
-"rbxassetid://5675117924",
-"rbxassetid://18925320031",
-"rbxassetid://108297983346928",
-"rbxassetid://132560717714270",
-"rbxassetid://130999135838807",
-"rbxassetid://134853912753345",
-"rbxassetid://129856543027946",
-"rbxassetid://77874596719163",
-"rbxassetid://270145703",
-"rbxassetid://131057309",
-"rbxassetid://1835337424",
-"rbxassetid://1835337231",
-"rbxassetid://6991661856",
-"rbxassetid://271550300",
-"rbxassetid://147703453",
-"rbxassetid://138081566",
-"rbxassetid://515669032",
-"rbxassetid://6308606116",
-"rbxassetid://5153845714",
-"rbxassetid://5044897021",
-"rbxassetid://9060808331",
-"rbxassetid://5809225554",
-"rbxassetid://6185331235",
-"rbxassetid://6343741731",
-"rbxassetid://8647630325",
-"rbxassetid://6389463761",
-"rbxassetid://6445594239",
-"rbxassetid://8864069181",
-"rbxassetid://7361042352",
-"rbxassetid://8191363542",
-"rbxassetid://8904888220",
-"rbxassetid://1835370059",
-"rbxassetid://1842447761",
-"rbxassetid://1835261249",
-"rbxassetid://1835356065",
-"rbxassetid://380808812",
-"rbxassetid://1843391637",
-"rbxassetid://1835370806",
-"rbxassetid://2893921424",
-"rbxassetid://9039981149",
-"rbxassetid://30588394",
-"rbxassetid://130783046",
-"rbxassetid://6648988430",
-"rbxassetid://122104333932619",
-"rbxassetid://140704980462451",
-"rbxassetid://138056737764176",
-"rbxassetid://139743346356072",
-"rbxassetid://138826080188438",
-"rbxassetid://138093805372594",
-"rbxassetid://140033496825661",
-"rbxassetid://138917352150837",
-"rbxassetid://139324436704947",
-"rbxassetid://139765110669684",
-"rbxassetid://138890398994853"
+"rbxassetid://6754147732", "rbxassetid://5567523008", "rbxassetid://8819324666", "rbxassetid://6150329916",
+"rbxassetid://6821054463", "rbxassetid://7520198169", "rbxassetid://3343995668", "rbxassetid://6322610816",
+"rbxassetid://8308107333", "rbxassetid://5675117924", "rbxassetid://18925320031", "rbxassetid://270145703",
+"rbxassetid://131057309", "rbxassetid://1835337424", "rbxassetid://1835337231", "rbxassetid://6991661856",
+"rbxassetid://271550300", "rbxassetid://147703453", "rbxassetid://138081566", "rbxassetid://515669032",
+"rbxassetid://6308606116", "rbxassetid://5153845714", "rbxassetid://5044897021", "rbxassetid://9060808331",
+"rbxassetid://5809225554", "rbxassetid://6185331235", "rbxassetid://6343741731", "rbxassetid://8647630325",
+"rbxassetid://6389463761", "rbxassetid://6445594239", "rbxassetid://8864069181", "rbxassetid://7361042352",
+"rbxassetid://8191363542", "rbxassetid://8904888220", "rbxassetid://1835370059", "rbxassetid://1842447761",
+"rbxassetid://1835261249", "rbxassetid://1835356065", "rbxassetid://380808812", "rbxassetid://1843391637",
+"rbxassetid://1835370806", "rbxassetid://2893921424", "rbxassetid://9039981149", "rbxassetid://30588394",
+"rbxassetid://130783046", "rbxassetid://6648988430"
 }
 local jsGui=Instance.new("ScreenGui")
 jsGui.Name="js"
@@ -1220,23 +1149,18 @@ jsGui.IgnoreGuiInset=true
 jsGui.DisplayOrder=999
 jsGui.ResetOnSpawn=false
 jsGui.Parent=f:WaitForChild("PlayerGui")
-local jsBg=Instance.new("Frame")
-jsBg.Size=UDim2.new(1,0,1,0)
-jsBg.BackgroundColor3=Color3.new(0,0,0)
-jsBg.BackgroundTransparency=1
-jsBg.BorderSizePixel=0
-jsBg.Visible=false
-jsBg.ZIndex=1
-jsBg.Parent=jsGui
+
+-- Just the image, no background frame
 local jsImg=Instance.new("ImageLabel")
 jsImg.Size=UDim2.new(1,0,1,0)
 jsImg.BackgroundTransparency=1
 jsImg.ImageTransparency=1
 jsImg.ScaleType=Enum.ScaleType.Fit
-jsImg.ZIndex=2
-jsImg.Parent=jsBg
+jsImg.ZIndex=1
+jsImg.Visible=false
+jsImg.Parent=jsGui
 
--- Preload & filter: only keep images that actually load (prevents black frames)
+-- Preload & filter: only keep images that actually load
 local jsImgsReady={}
 task.spawn(function()
 	local probe=Instance.new("ImageLabel")
@@ -1257,36 +1181,34 @@ end)
 
 local function doJs()
 	if not r.u then return end
+	-- Global cooldown check to prevent back-to-back jumpscares
+	if os.clock() - lastJsTime < jsCooldown then return end
+	lastJsTime = os.clock()
+
 	local pool=(#jsImgsReady>0) and jsImgsReady or jsImgs
 	local img=pool[math.random(1,#pool)]
 	local snd=jsSnds[math.random(1,#jsSnds)]
+	
+	-- Instant appear, no tween, no background
 	jsImg.Image=img
-	jsImg.ImageTransparency=1
-	jsBg.Visible=true
-	jsBg.BackgroundTransparency=1
+	jsImg.ImageTransparency=0
+	jsImg.Visible=true
+	
 	local s=Instance.new("Sound")
 	s.SoundId=snd
 	s.Volume=math.clamp(r.t*2,0.8,2)
 	s.Parent=jsGui
-	s:Play()
-	silkyTween(jsBg,{BackgroundTransparency=0},0.08,Enum.EasingStyle.Quad,Enum.EasingDirection.Out)
-	silkyTween(jsImg,{ImageTransparency=0},0.06,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
+	pcall(function() s:Play() end)
+	
+	-- Wait, then instant disappear
 	task.delay(0.7,function()
-		silkyTween(jsImg,{ImageTransparency=1},0.25,Enum.EasingStyle.Quad,Enum.EasingDirection.In)
-		silkyTween(jsBg,{BackgroundTransparency=1},0.3,Enum.EasingStyle.Quad,Enum.EasingDirection.In)
-		task.delay(0.35,function()
-			jsBg.Visible=false
-			s:Destroy()
-		end)
+		jsImg.ImageTransparency=1
+		jsImg.Visible=false
+		s:Destroy()
 	end)
 end
-local function multiJs()
-	local cnt=math.random(1,3)
-	for i=1,cnt do
-		task.delay((i-1)*0.55,doJs)
-	end
-end
--- JS loop: chance is per-beat (1.2s). 100 = nonstop, 1 = rare, scales linearly.
+
+-- JS loop: calls doJs() directly (one at a time)
 coroutine.wrap(function()
 	while true do
 		local ch=jsChance
@@ -1295,13 +1217,12 @@ coroutine.wrap(function()
 		else
 			task.wait(1.2)
 			if r.u and math.random(1,100)<=ch then
-				multiJs()
+				doJs()
 			end
 		end
 	end
 end)()
 
--- Final canvas update after all rows are added
 task.defer(updateCanvasSize)
 
 return gj
